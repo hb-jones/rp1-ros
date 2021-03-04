@@ -1,9 +1,5 @@
 from typing import Tuple
 import logging
-if __name__ == "__main__": #TODO this is dirty af and probably shoudnt exist
-    from rp1controller import RP1Controller
-else:
-    RP1Controller = object
 
 #TODO Target struct, potentially replace with dictionary, using typing.NewType?
 class Target:
@@ -30,8 +26,9 @@ class ControlMode:
     """Parent class for control modes. All control modes take a target object as an input and return local velocity and angular velocity targets"""
     name = "prototype"
 
-    def __init__(self, hlc: RP1Controller):
-        self.hlc = hlc
+    def __init__(self, hlc):
+        from .rp1interface import RP1Controller
+        self.hlc: RP1Controller = hlc
         self.logger = logging.getLogger(__name__) #Creates a logger for use with the base logger
         return
     def input_target(self, target: Target): 
@@ -47,7 +44,8 @@ class ControlMode:
 
     def output_target(self, linear, angular):
         """Sends target LV to LLI"""
-        return
+        self.hlc.low_level_interface.set_target(linear, angular)
+        return True
 
 #Local Frame Velocity Controllers
 class LocalVelocityControl(ControlMode):

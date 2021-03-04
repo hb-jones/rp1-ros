@@ -68,3 +68,15 @@
 2021-03-02 13:42:08,256  -  ERROR:__main__:check_errors:axis_FL: - Axis Error: 2
 2021-03-02 13:42:08,261  -  WARNING:__main__:check_errors:axis_FR: - Error detected on axis
 2021-03-02 13:42:08,263  -  ERROR:__main__:check_errors:axis_FR: - Axis Error: 2
+2021-03-04 15:01:05,737  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-03-04 15:01:05,737  -  INFO:rp1controller.low_level_interface:__init__: - Starting LLC
+2021-03-04 15:04:44,929  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-03-04 15:04:44,930  -  INFO:rp1controller.low_level_interface:__init__: - Starting LLC
+2021-03-04 15:05:54,775  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-03-04 15:05:54,775  -  INFO:rp1controller.low_level_interface:__init__: - Starting LLC
+2021-03-04 15:07:11,226  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-03-04 15:07:11,227  -  INFO:rp1controller.low_level_interface:__init__: - Starting LLC

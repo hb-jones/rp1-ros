@@ -1,10 +1,9 @@
 from logging import config
+from .rp1interface import RP1Controller
 from typing import Dict
-from typings import Odrive as Odrv, Axis #For type checking etc
+from .typings import Odrive as Odrv, Axis #For type checking etc
 import odrive
 from odrive.enums import *
-import rp1controller
-from rp1controller import RP1Controller
 import time
 from time import sleep
 import logging
