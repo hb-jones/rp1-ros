@@ -1,0 +1,1169 @@
+2021-02-24 13:07:42,855  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:07:42,856  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:07:42,857  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:07:42,857  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:07:42,943  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:07:42,944  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:07:43,011  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:07:43,011  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:07:44,028  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:07:44,594  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:07:44,594  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:07:44,595  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:07:44,597  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:07:44,598  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:07:44,635  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:07:44,636  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:07:44,636  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:07:44,636  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:07:44,649  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:07:44,660  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:07:44,679  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614125264.6787374
+2021-02-24 13:08:05,698  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:08:05,743  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:08:05,744  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:08:05,745  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:08:05,746  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:08:05,748  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:08:05,749  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:08:05,774  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:08:05,775  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:08:05,776  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:08:05,777  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:08:05,785  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:08:05,785  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:08:45,009  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:08:45,010  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:08:45,010  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:08:45,010  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:08:45,091  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:08:45,091  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:08:45,151  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:08:45,151  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:08:46,158  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:08:46,723  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:08:46,723  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:08:46,724  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:08:46,726  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:08:46,727  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:08:46,749  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:08:46,751  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:08:46,751  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:08:46,752  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:08:46,765  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:08:46,776  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:08:46,795  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614125326.7957659
+2021-02-24 13:09:07,815  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:09:07,845  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:09:07,853  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:09:07,854  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:09:07,855  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:09:07,857  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:09:07,858  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:09:07,892  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:09:07,892  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:09:07,893  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:09:07,893  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:09:07,900  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:09:07,900  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:10:45,936  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:10:45,937  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:10:45,937  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:10:45,937  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:10:46,021  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:10:46,021  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:10:46,116  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:10:46,116  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:10:47,117  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:10:47,684  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:10:47,685  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:10:47,686  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:10:47,687  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:10:47,689  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:10:47,711  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:10:47,712  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:10:47,712  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:10:47,714  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:10:47,726  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:10:47,737  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:10:47,756  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614125447.7568977
+2021-02-24 13:10:50,777  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:10:50,822  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:10:50,822  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:10:50,823  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:10:50,825  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:10:50,826  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:10:50,827  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:10:50,853  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:10:50,854  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:10:50,855  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:10:50,856  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:10:50,863  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:10:50,863  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:11:12,901  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:11:12,903  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:11:12,904  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:11:12,904  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:11:12,989  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:11:12,989  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:11:13,048  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:11:13,048  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:11:14,060  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:11:14,628  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:11:14,629  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:11:14,630  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:11:14,631  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:11:14,632  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:11:14,655  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:11:14,656  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:11:14,657  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:11:14,658  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:11:14,670  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:11:14,684  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:11:14,704  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614125474.704619
+2021-02-24 13:11:21,731  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:11:21,745  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:11:21,745  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:11:21,746  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:11:21,748  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:11:21,749  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:11:21,750  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:11:21,776  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:11:21,777  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:11:21,777  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:11:21,778  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:11:21,786  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:11:21,787  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:11:55,836  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:11:55,837  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:11:55,839  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:11:55,839  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:11:55,934  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:11:55,934  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:11:55,993  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:11:55,993  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:11:56,994  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:11:57,560  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:11:57,561  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:11:57,562  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:11:57,564  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:11:57,565  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:11:57,587  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:11:57,587  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:11:57,589  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:11:57,590  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:11:57,603  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:11:57,614  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:11:57,632  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614125517.632938
+2021-02-24 13:12:04,669  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:12:04,716  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:12:04,716  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:12:04,717  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:12:04,718  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:12:04,719  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:12:04,720  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:12:04,746  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:12:04,747  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:12:04,747  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:12:04,748  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:12:04,754  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:12:04,754  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:12:25,990  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:12:25,991  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:12:25,991  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:12:25,991  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:12:26,071  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:12:26,071  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:12:26,133  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:12:26,133  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:12:27,147  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:12:27,713  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:12:27,713  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:12:27,714  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:12:27,716  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:12:27,717  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:12:27,739  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:12:27,740  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:12:27,741  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:12:27,741  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:12:27,752  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:12:27,763  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:12:27,783  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614125547.783528
+2021-02-24 13:12:34,802  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:12:34,833  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:12:34,833  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:12:34,834  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:12:34,836  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:12:34,837  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:12:34,839  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:12:34,864  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:12:34,865  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:12:34,865  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:12:34,866  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:12:34,872  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:12:34,873  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:12:47,161  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:12:47,163  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:12:47,164  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:12:47,164  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:12:47,245  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:12:47,245  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:12:47,306  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:12:47,306  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:12:48,322  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:12:48,887  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:12:48,888  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:12:48,889  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:12:48,890  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:12:48,891  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:12:48,915  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:12:48,916  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:12:48,917  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:12:48,918  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:12:48,929  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:12:48,940  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:12:48,959  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614125568.9597354
+2021-02-24 13:12:55,985  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:12:56,030  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:12:56,030  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:12:56,031  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:12:56,032  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:12:56,033  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:12:56,034  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:12:56,061  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:12:56,062  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:12:56,062  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:12:56,063  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:12:56,069  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:12:56,069  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:13:30,248  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:13:30,249  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:13:30,250  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:13:30,250  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:13:30,336  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:13:30,336  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:13:30,398  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:13:30,398  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:13:31,412  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:13:31,978  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:13:31,978  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:13:31,979  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:13:31,980  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:13:31,982  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:13:32,004  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:13:32,005  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:13:32,005  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:13:32,007  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:13:32,018  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:13:32,029  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:13:32,049  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614125612.049203
+2021-02-24 13:13:39,089  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:13:39,135  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:13:39,135  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:13:39,137  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:13:39,138  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:13:39,140  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:13:39,141  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:13:39,167  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:13:39,168  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:13:39,168  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:13:39,168  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:13:39,175  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:13:39,175  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:14:05,220  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:14:05,221  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:14:05,221  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:14:05,221  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:14:05,306  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:14:05,306  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:14:05,373  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:14:05,373  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:14:06,385  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:14:06,952  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:14:06,952  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:14:06,953  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:14:06,955  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:14:06,956  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:14:06,979  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:14:06,980  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:14:06,981  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:14:06,982  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:14:06,994  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:14:07,005  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:14:07,024  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614125647.0244634
+2021-02-24 13:14:14,062  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:14:14,093  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:14:14,099  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:14:14,100  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:14:14,101  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:14:14,103  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:14:14,104  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:14:14,140  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:14:14,144  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:14:14,145  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:14:14,146  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:14:14,152  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:14:14,152  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:17:05,487  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:17:05,489  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:17:05,490  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:17:05,490  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:17:05,681  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:17:05,681  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:17:05,820  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:17:05,821  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:17:06,836  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:17:07,406  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:17:07,407  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:17:07,409  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:17:07,412  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:17:07,414  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:17:07,445  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:17:07,447  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:17:07,448  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:17:07,450  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:17:07,467  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:17:07,486  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:17:07,523  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614125827.5230768
+2021-02-24 13:17:13,559  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:17:13,603  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:17:13,627  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:17:13,628  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:17:13,631  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:17:13,634  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:17:13,637  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:17:13,667  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:17:13,668  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:17:13,670  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:17:13,671  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:17:13,686  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:17:13,686  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:17:31,830  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:17:31,831  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:17:31,832  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:17:31,832  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:17:32,034  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:17:32,034  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:17:32,199  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:17:32,200  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:17:33,210  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:17:33,778  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:17:33,779  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:17:33,781  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:17:33,783  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:17:33,786  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:17:33,816  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:17:33,818  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:17:33,818  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:17:33,820  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:17:33,837  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:17:33,856  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:17:33,895  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614125853.8955867
+2021-02-24 13:17:39,940  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:17:39,970  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:17:39,971  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:17:39,972  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:17:39,975  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:17:39,977  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:17:39,979  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:17:40,002  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:17:40,003  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:17:40,004  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:17:40,006  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:17:40,021  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:17:40,022  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:18:06,690  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:18:06,692  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:18:06,693  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:18:06,694  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:18:06,894  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:18:06,894  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:18:06,997  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:18:06,997  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:18:08,003  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:18:08,572  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:18:08,573  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:18:08,575  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:18:08,578  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:18:08,579  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:18:08,612  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:18:08,614  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:18:08,615  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:18:08,617  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:18:08,632  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:18:08,651  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:18:08,690  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614125888.6907852
+2021-02-24 13:18:17,730  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:18:17,744  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:18:17,754  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:18:17,756  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:18:17,758  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:18:17,760  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:18:17,763  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:18:17,792  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:18:17,794  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:18:17,795  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:18:17,796  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:18:17,810  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:18:17,811  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:18:49,305  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:18:49,307  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:18:49,308  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:18:49,308  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:18:49,530  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:18:49,530  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:18:49,672  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:18:49,672  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:18:50,684  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:18:51,251  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:18:51,252  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:18:51,255  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:18:51,257  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:18:51,259  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:18:51,290  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:18:51,291  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:18:51,293  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:18:51,294  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:18:51,311  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:18:51,329  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:18:51,367  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614125931.367439
+2021-02-24 13:19:00,401  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:19:00,432  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:19:00,444  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:19:00,445  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:19:00,447  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:19:00,449  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:19:00,451  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:19:00,480  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:19:00,481  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:19:00,482  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:19:00,483  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:19:00,497  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:19:00,497  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:19:38,428  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:19:38,430  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:19:38,431  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:19:38,432  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:19:38,627  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:19:38,627  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:19:38,854  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:19:38,854  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:19:39,857  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:19:40,427  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:19:40,429  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:19:40,431  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:19:40,433  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:19:40,435  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:19:40,468  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:19:40,470  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:19:40,470  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:19:40,472  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:19:40,488  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:19:40,507  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:19:40,549  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614125980.548686
+2021-02-24 13:19:47,585  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:19:47,631  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:19:47,652  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:19:47,653  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:19:47,656  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:19:47,658  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:19:47,660  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:19:47,696  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:19:47,698  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:19:47,699  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:19:47,700  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:19:47,715  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:19:47,715  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:20:27,653  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:20:27,655  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:20:27,656  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:20:27,656  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:20:27,828  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:20:27,828  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:20:27,934  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:20:27,934  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:20:28,942  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:20:29,518  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:20:29,518  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:20:29,520  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:20:29,521  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:20:29,523  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:20:29,560  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:20:29,561  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:20:29,561  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:20:29,563  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:20:29,576  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:20:29,591  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:20:29,619  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614126029.6192958
+2021-02-24 13:20:38,645  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:20:38,674  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:20:38,676  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:20:38,677  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:20:38,680  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:20:38,682  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:20:38,685  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:20:38,722  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:20:38,723  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:20:38,724  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:20:38,726  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:20:38,740  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:20:38,741  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:20:49,250  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:20:49,252  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:20:49,269  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:20:49,269  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:20:49,443  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:20:49,443  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:20:49,544  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:20:49,544  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:20:50,545  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:20:51,115  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:20:51,117  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:20:51,118  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:20:51,121  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:20:51,123  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:20:51,155  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:20:51,157  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:20:51,158  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:20:51,160  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:20:51,177  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:20:51,196  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:20:51,235  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614126051.2352538
+2021-02-24 13:21:00,281  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:21:00,310  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:21:00,312  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:21:00,313  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:21:00,316  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:21:00,318  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:21:00,320  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:21:00,357  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:21:00,358  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:21:00,360  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:21:00,361  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:21:00,375  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:21:00,376  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:21:15,818  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:21:15,819  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:21:15,836  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:21:15,836  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:21:16,045  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:21:16,045  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:21:16,184  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:21:16,184  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:21:17,200  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:21:17,769  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:21:17,770  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:21:17,772  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:21:17,774  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:21:17,776  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:21:17,807  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:21:17,809  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:21:17,811  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:21:17,812  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:21:17,829  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:21:17,847  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:21:17,887  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614126077.8872402
+2021-02-24 13:21:26,926  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:21:26,956  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:21:26,968  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:21:26,969  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:21:26,972  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:21:26,975  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:21:26,977  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:21:27,005  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:21:27,006  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:21:27,007  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:21:27,008  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:21:27,023  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:21:27,023  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:21:41,237  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:21:41,239  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:21:41,256  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:21:41,256  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:21:41,465  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:21:41,466  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:21:41,623  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:21:41,623  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:21:42,638  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:21:43,206  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:21:43,208  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:21:43,210  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:21:43,212  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:21:43,214  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:21:43,246  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:21:43,248  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:21:43,249  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:21:43,250  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:21:43,268  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:21:43,286  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:21:43,327  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614126103.3270137
+2021-02-24 13:21:52,360  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:21:52,389  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:21:52,391  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:21:52,392  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:21:52,395  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:21:52,397  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:21:52,399  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:21:52,436  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:21:52,437  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:21:52,440  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:21:52,440  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:21:52,455  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:21:52,455  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:22:31,005  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:22:31,007  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:22:31,024  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:22:31,024  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:22:31,229  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:22:31,229  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:22:31,364  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:22:31,365  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:22:32,375  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:22:32,942  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:22:32,943  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:22:32,945  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:22:32,948  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:22:32,950  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:22:32,981  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:22:32,982  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:22:32,984  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:22:32,985  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:22:33,001  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:22:33,019  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:22:33,059  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614126153.0594437
+2021-02-24 13:22:42,090  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:22:42,120  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:22:42,143  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:22:42,145  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:22:42,147  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:22:42,150  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:22:42,152  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:22:42,184  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:22:42,185  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:22:42,186  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:22:42,188  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:22:42,203  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:22:42,203  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:23:01,334  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:23:01,336  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:23:01,337  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:23:01,337  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:23:01,519  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:23:01,520  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:23:01,689  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:23:01,689  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:23:02,701  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:23:03,270  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:23:03,272  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:23:03,274  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:23:03,276  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:23:03,278  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:23:03,311  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:23:03,312  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:23:03,313  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:23:03,314  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:23:03,331  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:23:03,349  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:23:03,386  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614126183.3866248
+2021-02-24 13:23:07,354  -  WARNING:__main__:check_errors:axis_FL: - Error detected on axis
+2021-02-24 13:23:07,358  -  ERROR:__main__:check_errors:axis_FL: - Axis Error: 2
+2021-02-24 13:23:07,389  -  WARNING:__main__:check_errors:axis_FR: - Error detected on axis
+2021-02-24 13:23:07,393  -  ERROR:__main__:check_errors:axis_FR: - Axis Error: 2
+2021-02-24 13:23:07,401  -  WARNING:__main__:check_errors:axis_BL: - Error detected on axis
+2021-02-24 13:33:18,852  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:33:18,854  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:33:18,855  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:33:18,855  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:33:23,219  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:33:23,219  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:33:23,329  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:33:23,329  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:33:24,337  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:33:24,904  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:33:24,906  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:33:24,908  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:33:24,910  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:33:24,913  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:33:24,943  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:33:24,945  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:33:24,946  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:33:24,948  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:33:24,966  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:33:24,984  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:33:25,016  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614126805.0166438
+2021-02-24 13:33:34,241  -  WARNING:__main__:check_errors:axis_FL: - Error detected on axis
+2021-02-24 13:33:34,245  -  ERROR:__main__:check_errors:axis_FL: - Axis Error: 2
+2021-02-24 13:33:34,275  -  WARNING:__main__:check_errors:axis_FR: - Error detected on axis
+2021-02-24 13:33:34,279  -  ERROR:__main__:check_errors:axis_FR: - Axis Error: 2
+2021-02-24 13:33:34,293  -  ERROR:__main__:check_state: - State check failed
+2021-02-24 13:33:34,313  -  WARNING:__main__:main_loop: - LLC Loop Error: State check unsucessful. Loop aborting
+2021-02-24 13:33:34,316  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:33:34,399  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:33:34,400  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:33:34,403  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:33:34,405  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:33:34,408  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:33:34,440  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:33:34,441  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:33:34,443  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:33:34,444  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:33:34,449  -  WARNING:__main__:check_errors:axis_FL: - Error detected on axis
+2021-02-24 13:33:34,452  -  ERROR:__main__:check_errors:axis_FL: - Axis Error: 2
+2021-02-24 13:33:34,461  -  WARNING:__main__:check_errors:axis_FR: - Error detected on axis
+2021-02-24 13:33:34,465  -  ERROR:__main__:check_errors:axis_FR: - Axis Error: 2
+2021-02-24 13:33:34,510  -  ERROR:__main__:check_state: - State check failed
+2021-02-24 13:33:35,619  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:33:35,619  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:33:44,653  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:33:44,654  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:34:43,778  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:34:43,781  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:34:43,781  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:34:43,782  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:34:43,970  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:34:43,971  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:34:44,109  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:34:44,109  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:34:45,118  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:34:45,687  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:34:45,689  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:34:45,690  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:34:45,692  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:34:45,694  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:34:45,727  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:34:45,728  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:34:45,729  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:34:45,731  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:34:45,748  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:34:45,766  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:34:45,804  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614126885.8049903
+2021-02-24 13:34:56,506  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:34:56,553  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:34:56,554  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:34:56,556  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:34:56,558  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:34:56,560  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:34:56,562  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:34:56,585  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:34:56,586  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:34:56,588  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:34:56,589  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:34:56,604  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:34:56,604  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:35:05,636  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:35:05,637  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:35:05,637  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:35:42,841  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:35:42,844  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:35:42,844  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:35:42,845  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:35:43,110  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:35:43,110  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:35:43,348  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:35:43,348  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:35:44,362  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:35:44,932  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:35:44,933  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:35:44,935  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:35:44,937  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:35:44,940  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:35:44,971  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:35:44,973  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:35:44,974  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:35:44,976  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:35:44,992  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:35:45,011  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:35:45,049  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614126945.049749
+2021-02-24 13:35:55,728  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:35:55,743  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:35:55,745  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:35:55,746  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:35:55,748  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:35:55,751  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:35:55,753  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:35:55,776  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:35:55,778  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:35:55,779  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:35:55,779  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:35:55,795  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:35:55,795  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:36:04,819  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:36:04,819  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:36:04,819  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:36:41,891  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:36:41,893  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:36:41,894  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:36:41,895  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:36:42,127  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:36:42,127  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:36:42,301  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:36:42,302  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:36:43,312  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:36:43,882  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:36:43,884  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:36:43,886  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:36:43,888  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:36:43,890  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:36:43,922  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:36:43,923  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:36:43,924  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:36:43,926  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:36:43,943  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:36:43,962  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:36:43,998  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614127003.9986665
+2021-02-24 13:36:50,265  -  WARNING:__main__:check_errors:axis_BL: - Error detected on axis
+2021-02-24 13:36:50,268  -  ERROR:__main__:check_errors:axis_BL: - Axis Error: 2
+2021-02-24 13:36:50,300  -  WARNING:__main__:check_errors:axis_BR: - Error detected on axis
+2021-02-24 13:36:50,329  -  ERROR:__main__:check_errors:axis_BR: - Axis Error: 2
+2021-02-24 13:36:50,334  -  ERROR:__main__:check_state: - State check failed
+2021-02-24 13:36:50,359  -  WARNING:__main__:main_loop: - LLC Loop Error: State check unsucessful. Loop aborting
+2021-02-24 13:36:50,361  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:36:50,363  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:36:50,364  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:36:50,366  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:36:50,368  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:36:50,370  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:36:50,395  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:36:50,396  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:36:50,399  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:36:50,400  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:36:50,411  -  WARNING:__main__:check_errors:axis_BL: - Error detected on axis
+2021-02-24 13:36:50,426  -  ERROR:__main__:check_errors:axis_BL: - Axis Error: 2
+2021-02-24 13:36:50,435  -  WARNING:__main__:check_errors:axis_BR: - Error detected on axis
+2021-02-24 13:36:50,461  -  ERROR:__main__:check_errors:axis_BR: - Axis Error: 2
+2021-02-24 13:36:50,466  -  ERROR:__main__:check_state: - State check failed
+2021-02-24 13:37:18,639  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:37:18,644  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:37:18,645  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:37:18,645  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:37:18,897  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:37:18,897  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:37:19,026  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:37:19,026  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:37:20,029  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:37:20,599  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:37:20,601  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:37:20,603  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:37:20,605  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:37:20,607  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:37:20,639  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:37:20,640  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:37:20,642  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:37:20,643  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:37:20,660  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:37:20,678  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:37:20,716  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614127040.7169232
+2021-02-24 13:38:27,466  -  WARNING:__main__:check_errors:axis_FL: - Error detected on axis
+2021-02-24 13:38:27,470  -  ERROR:__main__:check_errors:axis_FL: - Axis Error: 2
+2021-02-24 13:38:27,503  -  WARNING:__main__:check_errors:axis_FR: - Error detected on axis
+2021-02-24 13:38:27,506  -  ERROR:__main__:check_errors:axis_FR: - Axis Error: 2
+2021-02-24 13:38:27,514  -  WARNING:__main__:check_errors:axis_BL: - Error detected on axis
+2021-02-24 13:38:27,518  -  ERROR:__main__:check_errors:axis_BL: - Axis Error: 2
+2021-02-24 13:38:52,627  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:38:52,628  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:38:52,628  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:38:52,628  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:44:39,519  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:44:39,520  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:44:39,520  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:44:39,520  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:44:39,750  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:44:39,751  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:44:39,853  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:44:39,853  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:44:40,858  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:44:41,425  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:44:41,427  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:44:41,429  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:44:41,431  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:44:41,433  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:44:41,466  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:44:41,467  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:44:41,469  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:44:41,470  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:44:41,485  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:44:41,500  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:44:41,522  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614127481.522245
+2021-02-24 13:47:52,153  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:47:52,164  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:47:52,165  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:47:52,167  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:47:52,169  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:47:52,171  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:47:52,173  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:47:52,196  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:47:52,197  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:47:52,199  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:47:52,200  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:47:52,215  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:47:52,215  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:49:25,047  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:49:25,048  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:49:25,049  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:49:25,049  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:49:25,323  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:49:25,324  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:49:25,478  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:49:25,478  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:49:26,486  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:49:27,055  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:49:27,057  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:49:27,058  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:49:27,061  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:49:27,063  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:49:27,095  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:49:27,097  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:49:27,098  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:49:27,100  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:49:27,117  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:49:27,132  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:49:27,158  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614127767.1589572
+2021-02-24 13:49:30,581  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1.1670114994049072
+2021-02-24 13:49:33,641  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1.4814317226409912
+2021-02-24 13:49:41,047  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1.447127103805542
+2021-02-24 13:49:42,149  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1.1012649536132812
+2021-02-24 13:49:47,409  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1.0552725791931152
+2021-02-24 13:49:48,434  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1.0253958702087402
+2021-02-24 13:49:49,476  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1.0421178340911865
+2021-02-24 13:49:52,393  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1.1510448455810547
+2021-02-24 13:49:52,598  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:49:53,433  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1.039093017578125
+2021-02-24 13:49:53,510  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-02-24 13:49:53,526  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 1
+2021-02-24 13:49:53,605  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 1
+2021-02-24 13:49:53,746  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 1
+2021-02-24 13:49:53,794  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 1
+2021-02-24 13:49:53,826  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 1
+2021-02-24 13:49:53,905  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 1 was successfull
+2021-02-24 13:49:53,982  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 1 was successfull
+2021-02-24 13:49:53,998  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 1 was successfull
+2021-02-24 13:49:54,077  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 1 was successfull
+2021-02-24 13:49:54,708  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:49:54,724  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:49:58,135  -  DEBUG:__main__:stop_loop: - Attempting  to stop LLC loop...
+2021-02-24 13:49:58,151  -  DEBUG:__main__:stop_loop: - LLC loop stopped successfully
+2021-02-24 13:49:58,167  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-02-24 13:50:38,392  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:50:38,394  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:50:38,394  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:50:38,395  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:50:38,619  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:50:38,619  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:50:38,777  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:50:38,777  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:50:39,783  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:50:40,347  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:50:40,348  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:50:40,351  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:50:40,353  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:50:40,354  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:50:40,387  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:50:40,389  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:50:40,390  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:50:40,391  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:50:40,408  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:50:40,425  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:50:40,453  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614127840.4539778
+2021-02-24 13:53:10,375  -  WARNING:__main__:check_errors:axis_FR: - Error detected on axis
+2021-02-24 13:53:10,379  -  ERROR:__main__:check_errors:axis_FR: - Axis Error: 2
+2021-02-24 13:53:10,397  -  WARNING:__main__:check_errors:axis_BL: - Error detected on axis
+2021-02-24 13:53:10,400  -  ERROR:__main__:check_errors:axis_BL: - Axis Error: 2
+2021-02-24 13:53:10,408  -  WARNING:__main__:check_errors:axis_BR: - Error detected on axis
+2021-02-24 13:54:11,824  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 13:54:11,825  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 13:54:11,826  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 13:54:11,826  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 13:54:12,074  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 13:54:12,074  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 13:54:12,214  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 13:54:12,215  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 13:54:13,228  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 13:54:13,800  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 13:54:13,801  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 13:54:13,804  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 13:54:13,806  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 13:54:13,808  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 13:54:13,839  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 13:54:13,841  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 13:54:13,842  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 13:54:13,843  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 13:54:13,860  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 13:54:13,878  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 13:54:13,906  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614128053.9068043
+2021-02-24 13:54:45,009  -  WARNING:__main__:check_errors:axis_FL: - Error detected on axis
+2021-02-24 13:54:45,012  -  ERROR:__main__:check_errors:axis_FL: - Axis Error: 2
+2021-02-24 13:54:45,021  -  WARNING:__main__:check_errors:axis_FR: - Error detected on axis
+2021-02-24 13:54:45,026  -  ERROR:__main__:check_errors:axis_FR: - Axis Error: 2
+2021-02-24 13:54:45,035  -  WARNING:__main__:check_errors:axis_BL: - Error detected on axis
+2021-02-24 13:54:45,038  -  ERROR:__main__:check_errors:axis_BL: - Axis Error: 2
+2021-02-24 13:54:45,047  -  WARNING:__main__:check_errors:axis_BR: - Error detected on axis
+2021-02-24 14:03:28,324  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 14:03:28,325  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 14:03:28,325  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 14:03:28,325  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 14:03:28,472  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 14:03:28,472  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 14:03:28,593  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 14:03:28,594  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 14:03:29,609  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 14:03:30,178  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 14:03:30,179  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 14:03:30,181  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 14:03:30,184  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 14:03:30,187  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 14:03:30,217  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 14:03:30,219  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 14:03:30,221  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 14:03:30,222  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 14:03:30,241  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 14:03:30,261  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 14:03:30,290  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614128610.2902517
+2021-02-24 14:05:58,005  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 14:05:58,006  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 14:05:58,010  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 14:05:58,010  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 14:05:58,241  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 14:05:58,241  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 14:05:58,400  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 14:05:58,401  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 14:05:59,403  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 14:05:59,971  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 14:05:59,973  -  WARNING:__main__:axis_set_state:axis_FL: - State Error: Current state is 8 and not IDLE. Attempting to fix...
+2021-02-24 14:06:00,089  -  INFO:__main__:axis_set_state:axis_FL: - State Error: Current state is 1
+2021-02-24 14:06:00,090  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 14:06:00,093  -  WARNING:__main__:axis_set_state:axis_FR: - State Error: Current state is 8 and not IDLE. Attempting to fix...
+2021-02-24 14:06:00,200  -  INFO:__main__:axis_set_state:axis_FR: - State Error: Current state is 1
+2021-02-24 14:06:00,201  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 14:06:00,205  -  WARNING:__main__:axis_set_state:axis_BL: - State Error: Current state is 8 and not IDLE. Attempting to fix...
+2021-02-24 14:06:00,340  -  INFO:__main__:axis_set_state:axis_BL: - State Error: Current state is 1
+2021-02-24 14:06:00,341  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 14:06:00,343  -  WARNING:__main__:axis_set_state:axis_BR: - State Error: Current state is 8 and not IDLE. Attempting to fix...
+2021-02-24 14:06:00,479  -  INFO:__main__:axis_set_state:axis_BR: - State Error: Current state is 1
+2021-02-24 14:06:00,480  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 14:06:00,511  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 14:06:00,512  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 14:06:00,513  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 14:06:00,515  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 14:06:00,529  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 14:06:00,547  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 14:06:00,586  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614128760.586386
+2021-02-24 14:17:51,720  -  WARNING:__main__:check_errors:axis_FL: - Error detected on axis
+2021-02-24 14:17:51,722  -  ERROR:__main__:check_errors:axis_FL: - Axis Error: 2
+2021-02-24 14:17:51,730  -  WARNING:__main__:check_errors:axis_FR: - Error detected on axis
+2021-02-24 14:17:51,755  -  ERROR:__main__:check_errors:axis_FR: - Axis Error: 2
+2021-02-24 14:17:51,765  -  WARNING:__main__:check_errors:axis_BL: - Error detected on axis
+2021-02-24 14:17:51,768  -  ERROR:__main__:check_errors:axis_BL: - Axis Error: 2
+2021-02-24 14:17:51,777  -  WARNING:__main__:check_errors:axis_BR: - Error detected on axis
+2021-02-24 14:42:54,700  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 14:42:54,701  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 14:42:54,702  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 14:42:54,702  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 14:42:54,883  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 14:42:54,883  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 14:42:55,024  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 14:42:55,024  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 14:42:56,030  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 14:42:56,606  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 14:42:56,607  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 14:42:56,609  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 14:42:56,610  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 14:42:56,611  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 14:42:56,647  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 14:42:56,648  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 14:42:56,650  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 14:42:56,650  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 14:42:56,665  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 14:42:56,678  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 14:42:56,700  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614130976.7001457
+2021-02-24 14:45:21,636  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 14:45:21,637  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 14:45:21,637  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 14:45:21,638  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 14:45:21,831  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 14:45:21,831  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 14:45:21,973  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 14:45:21,973  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 14:45:22,986  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 14:45:23,558  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 14:45:23,560  -  WARNING:__main__:axis_set_state:axis_FL: - State Error: Current state is 8 and not IDLE. Attempting to fix...
+2021-02-24 14:45:23,673  -  INFO:__main__:axis_set_state:axis_FL: - State Error: Current state is 1
+2021-02-24 14:45:23,674  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 14:45:23,678  -  WARNING:__main__:axis_set_state:axis_FR: - State Error: Current state is 8 and not IDLE. Attempting to fix...
+2021-02-24 14:45:23,784  -  INFO:__main__:axis_set_state:axis_FR: - State Error: Current state is 1
+2021-02-24 14:45:23,785  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 14:45:23,788  -  WARNING:__main__:axis_set_state:axis_BL: - State Error: Current state is 8 and not IDLE. Attempting to fix...
+2021-02-24 14:45:23,910  -  INFO:__main__:axis_set_state:axis_BL: - State Error: Current state is 1
+2021-02-24 14:45:23,911  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 14:45:23,915  -  WARNING:__main__:axis_set_state:axis_BR: - State Error: Current state is 8 and not IDLE. Attempting to fix...
+2021-02-24 14:45:24,053  -  INFO:__main__:axis_set_state:axis_BR: - State Error: Current state is 1
+2021-02-24 14:45:24,054  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 14:45:24,084  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 14:45:24,085  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 14:45:24,086  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 14:45:24,087  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 14:45:24,102  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 14:45:24,117  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 14:45:24,161  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614131124.161869
+2021-02-24 14:46:12,865  -  WARNING:__main__:check_errors:axis_FL: - Error detected on axis
+2021-02-24 14:46:12,868  -  ERROR:__main__:check_errors:axis_FL: - Axis Error: 2
+2021-02-24 14:46:12,876  -  WARNING:__main__:check_errors:axis_FR: - Error detected on axis
+2021-02-24 14:46:12,902  -  ERROR:__main__:check_errors:axis_FR: - Axis Error: 2
+2021-02-24 14:46:12,912  -  WARNING:__main__:check_errors:axis_BL: - Error detected on axis
+2021-02-24 14:46:12,915  -  ERROR:__main__:check_errors:axis_BL: - Axis Error: 2
+2021-02-24 14:46:12,923  -  WARNING:__main__:check_errors:axis_BR: - Error detected on axis
+2021-02-24 16:11:08,990  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-02-24 16:11:08,991  -  INFO:__main__:__init__: - Starting LLC
+2021-02-24 16:11:08,991  -  DEBUG:__main__:connect_drives: - Attempting to connect to Odrives
+2021-02-24 16:11:08,992  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 208239904D4D
+2021-02-24 16:11:12,286  -  DEBUG:__main__:get_drive: - Odrive 208239904D4D connected successfully
+2021-02-24 16:11:12,286  -  DEBUG:__main__:get_drive: - Attempting connection with Odrive 206039994D4D
+2021-02-24 16:11:12,409  -  DEBUG:__main__:get_drive: - Odrive 206039994D4D connected successfully
+2021-02-24 16:11:12,409  -  INFO:__main__:connect_drives: - Drives Connected
+2021-02-24 16:11:13,419  -  DEBUG:__main__:prepare_drives: - Preparing drives
+2021-02-24 16:11:13,990  -  DEBUG:__main__:axis_set_state: - Performing full axis state change to 8
+2021-02-24 16:11:13,991  -  DEBUG:__main__:axis_set_state:axis_FL: - Setting state to 8
+2021-02-24 16:11:13,993  -  DEBUG:__main__:axis_set_state:axis_FR: - Setting state to 8
+2021-02-24 16:11:13,995  -  DEBUG:__main__:axis_set_state:axis_BL: - Setting state to 8
+2021-02-24 16:11:13,998  -  DEBUG:__main__:axis_set_state:axis_BR: - Setting state to 8
+2021-02-24 16:11:14,029  -  DEBUG:__main__:axis_set_state:axis_FL: - State change to 8 was successfull
+2021-02-24 16:11:14,030  -  DEBUG:__main__:axis_set_state:axis_FR: - State change to 8 was successfull
+2021-02-24 16:11:14,032  -  DEBUG:__main__:axis_set_state:axis_BL: - State change to 8 was successfull
+2021-02-24 16:11:14,033  -  DEBUG:__main__:axis_set_state:axis_BR: - State change to 8 was successfull
+2021-02-24 16:11:14,050  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-02-24 16:11:14,067  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-02-24 16:11:14,095  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614136274.0944483

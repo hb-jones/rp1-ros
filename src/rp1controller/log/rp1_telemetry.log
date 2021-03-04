@@ -1,0 +1,70 @@
+2021-03-02 09:45:20,234  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-03-02 09:45:20,236  -  INFO:__main__:__init__: - Starting LLC
+2021-03-02 13:32:04,295  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-03-02 13:32:04,296  -  INFO:__main__:__init__: - Starting LLC
+2021-03-02 13:32:04,587  -  INFO:__main__:connect_drives: - Drives Connected
+2021-03-02 13:32:06,219  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-03-02 13:32:06,232  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-03-02 13:32:06,251  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614645126.250881
+2021-03-02 13:34:25,726  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-03-02 13:34:25,726  -  INFO:__main__:__init__: - Starting LLC
+2021-03-02 13:34:25,966  -  INFO:__main__:connect_drives: - Drives Connected
+2021-03-02 13:34:27,552  -  WARNING:__main__:axis_set_state:axis_FL: - State Error: Current state is 8 and not IDLE. Attempting to fix...
+2021-03-02 13:34:27,670  -  INFO:__main__:axis_set_state:axis_FL: - State Error: Current state is 1
+2021-03-02 13:34:27,673  -  WARNING:__main__:axis_set_state:axis_FR: - State Error: Current state is 8 and not IDLE. Attempting to fix...
+2021-03-02 13:34:27,777  -  INFO:__main__:axis_set_state:axis_FR: - State Error: Current state is 1
+2021-03-02 13:34:27,782  -  WARNING:__main__:axis_set_state:axis_BL: - State Error: Current state is 8 and not IDLE. Attempting to fix...
+2021-03-02 13:34:27,904  -  INFO:__main__:axis_set_state:axis_BL: - State Error: Current state is 1
+2021-03-02 13:34:27,909  -  WARNING:__main__:axis_set_state:axis_BR: - State Error: Current state is 8 and not IDLE. Attempting to fix...
+2021-03-02 13:34:28,045  -  INFO:__main__:axis_set_state:axis_BR: - State Error: Current state is 1
+2021-03-02 13:34:28,093  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-03-02 13:34:28,106  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-03-02 13:34:28,132  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614645268.1326838
+2021-03-02 13:36:36,657  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-03-02 13:36:36,701  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-03-02 13:36:43,351  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-03-02 13:36:43,932  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-03-02 13:36:44,326  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-03-02 13:36:44,656  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-03-02 13:37:02,293  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-03-02 13:37:02,294  -  INFO:__main__:__init__: - Starting LLC
+2021-03-02 13:37:17,672  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-03-02 13:37:17,673  -  INFO:__main__:__init__: - Starting LLC
+2021-03-02 13:37:17,912  -  INFO:__main__:connect_drives: - Drives Connected
+2021-03-02 13:37:19,548  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-03-02 13:37:19,562  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-03-02 13:37:19,579  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614645439.5794728
+2021-03-02 13:38:59,048  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-03-02 13:38:59,090  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-03-02 13:40:12,105  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-03-02 13:40:12,106  -  INFO:__main__:__init__: - Starting LLC
+2021-03-02 13:40:12,348  -  INFO:__main__:connect_drives: - Drives Connected
+2021-03-02 13:40:14,005  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-03-02 13:40:14,016  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-03-02 13:40:14,032  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614645614.0321367
+2021-03-02 13:40:56,811  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-03-02 13:40:56,854  -  INFO:__main__:stop_loop: - LLC in idle state
+2021-03-02 13:41:12,237  -  INFO:root:__init__: - New Initialisation of logger 
+
+2021-03-02 13:41:12,238  -  INFO:__main__:__init__: - Starting LLC
+2021-03-02 13:41:12,491  -  INFO:__main__:connect_drives: - Drives Connected
+2021-03-02 13:41:14,148  -  INFO:__main__:prepare_drives: - Drives started and ready
+2021-03-02 13:41:14,164  -  INFO:__main__:start_loop: - Starting LLC Loop
+2021-03-02 13:41:14,179  -  WARNING:__main__:update_odometry: - Odometry Warning: Time since last update: 1614645674.1792243
+2021-03-02 13:42:08,183  -  WARNING:__main__:check_errors:axis_BL: - Error detected on axis
+2021-03-02 13:42:08,186  -  ERROR:__main__:check_errors:axis_BL: - Axis Error: 2
+2021-03-02 13:42:08,193  -  WARNING:__main__:check_errors:axis_BR: - Error detected on axis
+2021-03-02 13:42:08,196  -  ERROR:__main__:check_errors:axis_BR: - Axis Error: 2
+2021-03-02 13:42:08,199  -  ERROR:__main__:check_state: - State check failed
+2021-03-02 13:42:08,211  -  WARNING:__main__:main_loop: - LLC Loop Error: State check unsucessful. Loop aborting
+2021-03-02 13:42:08,212  -  INFO:__main__:main_loop: - LLC loop shutting down
+2021-03-02 13:42:08,254  -  WARNING:__main__:check_errors:axis_FL: - Error detected on axis
+2021-03-02 13:42:08,256  -  ERROR:__main__:check_errors:axis_FL: - Axis Error: 2
+2021-03-02 13:42:08,261  -  WARNING:__main__:check_errors:axis_FR: - Error detected on axis
+2021-03-02 13:42:08,263  -  ERROR:__main__:check_errors:axis_FR: - Axis Error: 2
