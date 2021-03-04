@@ -4,36 +4,33 @@ from time import sleep
 
 HLC = rp1controller.RP1Controller()
 Target = rp1controller.Target
-speed_linear = 1
+speed_linear = 2
 speed_radial = 0.8
 loop = True
+cont = False
 def fwd():
-    HLC.set_target(Target(speed_linear,0),0)
-    sleep(0.1)
-    HLC.set_target(Target(0,0),0)
+    cont = True
+    HLC.set_target(Target((speed_linear,0),0))
 def bck():
-    HLC.set_target(Target(-speed_linear,0),0)
-    sleep(0.1)
-    HLC.set_target(Target(0,0),0)
+    cont = True
+    HLC.set_target(Target((-speed_linear,0),0))
 def lft():
-    HLC.set_target(Target(0,-speed_linear),0)
-    sleep(0.1)
-    HLC.set_target(Target(0,0),0)
+    cont = True
+    HLC.set_target(Target((0,-speed_linear),0))
 def rgt():
-    HLC.set_target(Target(0,speed_linear),0)
-    sleep(0.1)
-    HLC.set_target(Target(0,0),0)
+    cont = True
+    HLC.set_target(Target((0,speed_linear),0))
 def rot_left():
-    HLC.set_target(Target(0,0),-speed_radial)
-    sleep(0.1)
-    HLC.set_target(Target(0,0),0)
+    cont = True
+    HLC.set_target(Target((0,0),-speed_radial))
 def rot_rgt():
-    HLC.set_target(Target(0,0),speed_radial)
-    sleep(0.1)
-    HLC.set_target(Target(0,0),0)
+    cont = True
+    HLC.set_target(Target((0,0),speed_radial))
 def stp():
-    HLC.set_target(Target(0,0),0)
+    HLC.set_target(Target((0,0),0))
 def shut_down():
+    HLC.set_target(Target((0,0),0))
+    HLC.low_level_interface.stop_loop()
     loop = False
     
 
@@ -48,5 +45,7 @@ keyboard.add_hotkey('r', stp)
 keyboard.add_hotkey('t', shut_down)
 
 while(loop):
-    sleep(1)
+    cont = False
+    sleep(0.1)
+    if not cont : HLC.set_target(Target((0,0),0))
     pass

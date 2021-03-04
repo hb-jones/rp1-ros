@@ -16,7 +16,7 @@ class RP1Controller():
         self.config: RP1Configuration = RP1Configuration()
         #logging.config.fileConfig('logging.conf',disable_existing_loggers=False)#Configure root logger TODO remove as is in __init__ file
         logging.info(" - New Initialisation of logger \n")
-        trajectory_planner = LocalVelocityControl(self)
+        self.trajectory_planner = LocalVelocityControl(self)
         self.low_level_interface = LowLevelInterface(self)
         self.low_level_interface.start_loop()
         
