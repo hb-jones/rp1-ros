@@ -6,10 +6,12 @@ from time import sleep
 
 
 current_target = Target()
+
 speed_linear = 0.5
-speed_radial = 0.3
+speed_radial = 0.8
 loop = True
 cont = False
+
 
 def fwd():
     cont = True
@@ -34,6 +36,16 @@ def stp():
 def shut_down():
     current_target = Target()
     loop = False
+
+def speed_up():
+    global speed_linear
+    speed_linear = speed_linear+0.5
+    print("Speed is {}".format(speed_linear))
+def speed_dn():
+    global speed_linear
+    speed_linear = speed_linear-0.5
+    print("Speed is {}".format(speed_linear))
+
     
 
 keyboard.add_hotkey('w', fwd)
@@ -45,6 +57,9 @@ keyboard.add_hotkey('e', rot_rgt)
 keyboard.add_hotkey(' ', stp)
 keyboard.add_hotkey('r', stp)
 keyboard.add_hotkey('t', shut_down)
+keyboard.add_hotkey(']', speed_up)
+keyboard.add_hotkey('[', speed_dn)
+
 IP_laptop = "192.168.137.1"
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
