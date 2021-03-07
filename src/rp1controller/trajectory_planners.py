@@ -10,7 +10,7 @@ class Target:
     world_pose     = None
     world_pose_dir = None
     
-    def __init__(self, local_velocity: Tuple[float, float] = None, local_angular: float = None):
+    def __init__(self, local_velocity: Tuple[float, float] = (0,0), local_angular: float = 0):
         self.local_velocity = local_velocity
         self.local_angular  = local_angular
         return 
