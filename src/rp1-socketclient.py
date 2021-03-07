@@ -17,7 +17,7 @@ def reset_target():
 target = Target()
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #s.connect((socket.gethostname(), 1066))
-s.connect(("LAPTOP-JST1HTLB", 1066))
+s.connect((IP_laptop, 1066))
 HLC = rp1controller.RP1Controller()
 
 time_last = time.time()

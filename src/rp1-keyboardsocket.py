@@ -45,10 +45,11 @@ keyboard.add_hotkey('e', rot_rgt)
 keyboard.add_hotkey(' ', stp)
 keyboard.add_hotkey('r', stp)
 keyboard.add_hotkey('t', shut_down)
+IP_laptop = "192.168.137.1"
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind((socket.gethostname(), 1066))
-print(socket.gethostname())
+#s.bind((socket.gethostname(), 1066))
+s.bind((IP_laptop, 1066))
 s.listen(5)
 clientsocket, address = s.accept()
 print(f"Connection from {address} has been established.")
