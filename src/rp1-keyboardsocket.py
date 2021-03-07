@@ -63,7 +63,7 @@ while loop:
             current_target = Target()
     else:
         no_input_count = 0
-    sleep(2)
+    sleep(0.1)
     data = pickle.dumps(current_target)
     clientsocket.send(data)
 
