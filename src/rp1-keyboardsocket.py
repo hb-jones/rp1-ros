@@ -48,6 +48,7 @@ keyboard.add_hotkey('t', shut_down)
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((socket.gethostname(), 1066))
+print(socket.gethostname())
 s.listen(5)
 clientsocket, address = s.accept()
 print(f"Connection from {address} has been established.")
