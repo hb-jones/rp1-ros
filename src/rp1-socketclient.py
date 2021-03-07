@@ -11,7 +11,7 @@ def reset_target():
     while(True):
         if ((time.time()-time_last)>1 and not first):
             target = Target()
-            HLC.set_target(target())
+            HLC.set_target(target)
 
 
 target = Target()
