@@ -28,6 +28,9 @@ first = True
 while True:
     msg = s.recv(1024)
     time_last = time.time()
-    target: Target = pickle.loads(msg)
+    try: 
+        target: Target = pickle.loads(msg)
+    except:
+        target = Target()
     first = False
     HLC.set_target(target)
