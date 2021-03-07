@@ -6,8 +6,8 @@ from time import sleep
 
 
 current_target = Target()
-speed_linear = 2
-speed_radial = 0.8
+speed_linear = 0.5
+speed_radial = 0.3
 loop = True
 cont = False
 
