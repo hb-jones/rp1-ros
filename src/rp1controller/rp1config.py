@@ -98,7 +98,7 @@ class RP1Configuration():
     pos_gain = 12
     vel_gain = 0.004
     vel_integrator_gain = 0.021
-    vel_ramp_rate = 2
+    vel_ramp_rate = 100
 
     def __init__(self):
         self.model = KinematicModel(self) #The kinematic model containing robot size, gear ratio etc
