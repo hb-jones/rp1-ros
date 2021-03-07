@@ -9,7 +9,7 @@ IP_laptop = "192.168.137.1"
 
 def reset_target():
     while(True):
-        if ((time.time()-time_last)>1 and not first):
+        if ((time.time()-time_last)>0.2 and not first):
             target = Target()
             HLC.set_target(target)
 
