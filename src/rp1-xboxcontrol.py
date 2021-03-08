@@ -8,7 +8,7 @@ IP_laptop = "192.168.137.1"
 axis_FB = "ABS_Y"
 axis_LR = "ABS_X"
 axis_rot = "ABS_RX"
-axis_deadzone = 3000
+axis_deadzone = 5000
 
 button_UP = "BTN_TR"
 button_DN = "BTN_TL"
@@ -26,7 +26,11 @@ target_rot = 0
 running_flag = True
 
 def curve(input):
-    output = (0.05*20**input)-0.05
+    if input<0:
+        sign = -1
+    else:
+        sign = 1
+    output = ((0.05*20**abs(input))-0.05)*sign
     return output
 
 def linear_FB(value: int):
@@ -47,12 +51,14 @@ def rotation(value: int):
 def shift_speed_up():
     global speed_limit_linear
     speed_limit_linear = speed_limit_linear + speed_limit_step
+    print(f"Speed limit is now {speed_limit_linear}m/s")
 def shift_speed_dn():
     global speed_limit_linear
     if speed_limit_linear - speed_limit_step <0:
         speed_limit_linear = 0
     else:
         speed_limit_linear = speed_limit_linear - speed_limit_step
+    print(f"Speed limit is now {speed_limit_linear}m/s")
 def brake():
     global target_LR, target_FB, target_rot, speed_limit_linear
     target_FB = 0
