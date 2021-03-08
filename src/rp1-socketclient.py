@@ -9,8 +9,9 @@ IP_laptop = "192.168.137.1"
 
 def reset_target():
     while(True):
-        if ((time.time()-time_last)>1 and not first):
-            print("Reset")
+        delay = time.time()-time_last
+        if ((delay)>2 and not first):
+            print(f"Reset {delay} at {time.time()}")
             target = Target()
             HLC.set_target(target)
 
