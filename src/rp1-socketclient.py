@@ -14,6 +14,7 @@ def reset_target():
             print(f"Reset {delay} at {time.time()}")
             target = Target()
             HLC.set_target(target)
+            time_last = time.time()
 
 
 target = Target()
