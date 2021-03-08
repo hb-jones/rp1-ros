@@ -1,7 +1,8 @@
 from typing import no_type_check
 from rp1controller import Target
-import socket, pickle
+import socket, pickle, threading
 import keyboard
+import time
 from time import sleep
 
 
@@ -12,6 +13,21 @@ speed_radial = 0.8
 loop = True
 cont = False
 
+time_last = time.time()
+
+
+
+def send_target(target: Target):
+    data = pickle.dumps(target)
+    clientsocket.send(data)
+    time_last = time.time()
+
+def reset_target():
+    while(True):
+        if ((time.time()-time_last)>0.2):
+            target = Target()
+            data = pickle.dumps(current_target)
+            clientsocket.send(data)
 
 def fwd():
     cont = True
@@ -91,6 +107,8 @@ s.listen(5)
 clientsocket, address = s.accept()
 print(f"Connection from {address} has been established.")
 no_input_count = 0
+while True:
+    pass
 while loop:
     pass
     cont = False
