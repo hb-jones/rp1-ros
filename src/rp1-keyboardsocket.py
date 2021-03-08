@@ -15,26 +15,48 @@ cont = False
 
 def fwd():
     cont = True
+    current_target = Target()
     current_target.local_velocity = (speed_linear,current_target.local_velocity[1])
+    data = pickle.dumps(current_target)
+    clientsocket.send(data)
 def bck():
     cont = True
+    current_target = Target()
     current_target.local_velocity = (-speed_linear,current_target.local_velocity[1])
+    data = pickle.dumps(current_target)
+    clientsocket.send(data)
 def lft():
     cont = True
+    current_target = Target()
     current_target.local_velocity = (current_target.local_velocity[0], -speed_linear)
+    data = pickle.dumps(current_target)
+    clientsocket.send(data)
 def rgt():
     cont = True
+    current_target = Target()
     current_target.local_velocity = (current_target.local_velocity[0], speed_linear)
+    data = pickle.dumps(current_target)
+    clientsocket.send(data)
 def rot_left():
     cont = True
+    current_target = Target()
     current_target.local_angular = -speed_radial
+    data = pickle.dumps(current_target)
+    clientsocket.send(data)
 def rot_rgt():
     cont = True
+    current_target = Target()
     current_target.local_angular = speed_radial
+    data = pickle.dumps(current_target)
+    clientsocket.send(data)
 def stp():
     current_target = Target()
+    data = pickle.dumps(current_target)
+    clientsocket.send(data)
 def shut_down():
     current_target = Target()
+    data = pickle.dumps(current_target)
+    clientsocket.send(data)
     loop = False
 
 def speed_up():
@@ -70,11 +92,11 @@ clientsocket, address = s.accept()
 print(f"Connection from {address} has been established.")
 no_input_count = 0
 while loop:
-    
+    pass
     cont = False
     if not cont: 
         no_input_count = no_input_count+1
-        if no_input_count>20:
+        if no_input_count>200:
             current_target = Target()
     else:
         no_input_count = 0
