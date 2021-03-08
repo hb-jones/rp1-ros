@@ -8,6 +8,7 @@ IP_laptop = "192.168.137.1"
 axis_FB = "ABS_Y"
 axis_LR = "ABS_X"
 axis_rot = "ABS_RX"
+axis_deadzone = 2000
 
 button_UP = "BTN_TR"
 button_DN = "BTN_TL"
@@ -26,14 +27,17 @@ running_flag = True
 
 def linear_FB(value: int):
     global target_LR, target_FB, target_rot
+    if abs(value)<axis_deadzone: value = 0
     target_FB = (value/32000) * speed_limit_linear
     pass
 def linear_LR(value: int):
     global target_LR, target_FB, target_rot
+    if abs(value)<axis_deadzone: value = 0
     target_LR = (value/32000) * speed_limit_linear
     pass
 def rotation(value: int):
     global target_LR, target_FB, target_rot
+    if abs(value)<axis_deadzone: value = 0
     target_rot = (value/32000) * speed_limit_rot
     pass
 def shift_speed_up():
@@ -86,6 +90,7 @@ def setup_socket():
     s.listen(5)
     global clientsocket
     clientsocket, address = s.accept()
+    print(f"Connection from {address} has been established.")
 
 def send_target(target: Target):
     data = pickle.dumps(target)
