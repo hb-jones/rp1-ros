@@ -17,7 +17,7 @@ button_BRK = "BTN_SOUTH"
 
 speed_limit_rot = 1.2
 speed_limit_linear = 1
-speed_limit_step = 0.5
+speed_limit_step = 0.2
 
 target_FB = 0
 target_LR = 0
@@ -64,7 +64,7 @@ def brake():
     target_FB = 0
     target_LR = 0
     target_rot = 0
-    speed_limit_linear = 0.5
+    speed_limit_linear = speed_limit_step
 
 
 def listen_to_gamepad():
