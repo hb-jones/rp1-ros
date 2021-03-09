@@ -46,5 +46,6 @@ while True:
         HLC.set_trajectory_planner(planner)
     elif target == "reset":
         HLC.localisation.reset_localisation()
-    first = False
-    HLC.set_target(target)
+    else:
+        first = False
+        HLC.set_target(target)

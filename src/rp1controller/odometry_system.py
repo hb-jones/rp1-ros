@@ -37,7 +37,7 @@ class LocalisationSystem():
             if self.LLI.odom_updated_time != self.localisation_last_updated_time:
                 loop_counter += 1
                 self.update_localisation()
-                if loop_counter > 100: #TODO maybe log every cycle
+                if loop_counter > 100 or True: #TODO maybe log every cycle
                     loop_counter = 0
                     self.log_localisation()
             time.sleep(0.01) #TODO if this fixes issues then remove
@@ -77,12 +77,14 @@ class LocalisationSystem():
         if self.output_function != None:
             self.output_function(velocitypose)
 
-        return velocitypose
+        return 
 
 
     def log_localisation(self):
         self.telemetry_logger.log(8, self.current_pose)
-        print(f"X: {self.current_pose.world_x_position}, Y: {self.current_pose.world_y_position}, H: {self.current_pose.heading}") #TODO Remove
+        string = f"X: {self.current_pose.world_x_position}, Y: {self.current_pose.world_y_position}, H: {self.current_pose.heading}"
+        print(string) #TODO Remove
+        self.logger.info(string)#TODO Remove as only for debugging
         #TODO console output?
     
     def reset_localisation(self):
@@ -105,7 +107,7 @@ class LocalisationSystem():
             heading = self.current_pose.heading
         xw = linear_velocity_world[0]
         yw = linear_velocity_world[1]
-        xl = xw*cos(-heading) - yw*sin(-heading)
+        xl = xw*cos(-heading) - yw*sin(-heading) #TODO this may be wrong, so might the one above tbh too
         yl = xw*sin(-heading) + yw*cos(-heading)
         return xl, yl
 
