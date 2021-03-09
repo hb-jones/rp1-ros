@@ -83,8 +83,8 @@ class LocalisationSystem():
     def log_localisation(self):
         self.telemetry_logger.log(8, self.current_pose)
         string = f"X: {self.current_pose.world_x_position}, Y: {self.current_pose.world_y_position}, H: {self.current_pose.heading}"
-        print(string) #TODO Remove
-        self.logger.info(string)#TODO Remove as only for debugging
+        #print(string) #TODO Remove
+        #self.logger.info(string)#TODO Remove as only for debugging
         #TODO console output?
     
     def reset_localisation(self):
@@ -107,7 +107,7 @@ class LocalisationSystem():
             heading = self.current_pose.heading
         xw = linear_velocity_world[0]
         yw = linear_velocity_world[1]
-        xl = xw*cos(-heading) - yw*sin(-heading) #TODO this may be wrong, so might the one above tbh too
+        xl = xw*cos(-heading) - yw*sin(-heading) #TODO this may be wrong, so might the one above
         yl = xw*sin(-heading) + yw*cos(-heading)
         return xl, yl
 
