@@ -79,7 +79,6 @@ class LowLevelInterface():
             pos = axis.encoder.pos_estimate #Get current position in revolutions
             motor_pos_current.update({axis_name: pos})
         time_current = time.time()
-        print(f"Odometry updated at {time_current}") #TODO REMOVE
         d_time = time_current-self.odom_updated_time
 
         current_motor_speed_rad = {} #Current motor angular velocity in radians
@@ -96,7 +95,7 @@ class LowLevelInterface():
             self.logger.warning(" - Odometry Warning: Time since last update: {}".format(d_time))
         self.odom_updated_time = time_current
         self.odom_motor_pos_last = motor_pos_current      
-        
+        print(f"Odometry updated at {time_current}. Speed is X:{linear_x}  Y:{linear_y}  R:{angular}") #TODO REMOVE
         return
 
     def set_target(self, linear: tuple, angular: float, log = False): #TODO maybe use custom object or dictionary
