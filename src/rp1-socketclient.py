@@ -8,6 +8,7 @@ import time, threading
 IP_laptop = "192.168.137.1"
 
 def reset_target():
+    global time_last
     while(True):
         delay = time.time()-time_last
         if ((delay)>2 and not first):
