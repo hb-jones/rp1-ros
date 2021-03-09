@@ -31,6 +31,7 @@ class ControlMode:
         from .rp1interface import RP1Controller
         self.hlc: RP1Controller = hlc
         self.logger = logging.getLogger(__name__) #Creates a logger for use with the base logger
+        self.logger.info(" - Trajectory Planner Started")
         return
     def input_target(self, target: Target): 
         """Sets target""" #TODO fix docstring using https://numpydoc.readthedocs.io/en/latest/example.html#example

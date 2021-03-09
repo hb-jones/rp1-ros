@@ -29,11 +29,10 @@ class LowLevelInterface():
     
 
     odom_motor_pos_last = {"axis_FL": 0, "axis_FR": 0, "axis_BL": 0, "axis_BR": 0}  #Targets for each motor in rps
-    odom_time_last = 0
-
+    
+    odom_updated_time = 0
     odom_linear = (0,0)
     odom_angular = 0
-    odom_updated_time = 0
 
     def __init__(self, main_controller: RP1Controller, external_watchdog = False, debug_func = False):
         self.main_controller = main_controller #Parent controller, needed for access to model, configuration etc
@@ -71,7 +70,7 @@ class LowLevelInterface():
         if self.check_state():
             self.drives_started = True #Set system ready if shutdown was successful and no errors reported. 
 
-    def update_odometry(self,log = False):
+    def update_odometry(self):
         """Updates odometry based on wheel position. Position chosen over velocity as it is likely to be more stable and resistant to varying polling times"""
 
         motor_pos_current = {}
@@ -81,7 +80,7 @@ class LowLevelInterface():
             motor_pos_current.update({axis_name: pos})
         time_current = time.time()
 
-        d_time = time_current-self.odom_time_last
+        d_time = time_current-self.odom_updated_time
 
         current_motor_speed_rad = {} #Current motor angular velocity in radians
         for axis_name in self.axes_dict: #get current angular speed of motor
@@ -93,10 +92,9 @@ class LowLevelInterface():
         if(d_time<1):
             self.odom_linear = (linear_x, linear_y)
             self.odom_angular = angular
-            self.odom_updated_time = time_current
         else:
             self.logger.warning(" - Odometry Warning: Time since last update: {}".format(d_time))
-        self.odom_time_last = time_current
+        self.odom_updated_time = time_current
         self.odom_motor_pos_last = motor_pos_current      
         
         return

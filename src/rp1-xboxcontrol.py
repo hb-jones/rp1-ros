@@ -118,6 +118,7 @@ def send_target(target: Target):
     clientsocket.send(data)
 
 def change_mode():
+    global mode
     if mode == "local": #TODO could be handled better
         mode = "world"
     else:

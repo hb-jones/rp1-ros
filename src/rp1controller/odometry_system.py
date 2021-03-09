@@ -15,13 +15,14 @@ class LocalisationSystem():
         self.main_controller = main_controller
         self.LLI = self.main_controller.low_level_interface
         self.telemetry_logger = logging.getLogger('telem') #Setup telemetry logging
+        self.logger = logging.getLogger(__name__)
+        
         self.telemetry_logger.log(8, "")
         self.telemetry_logger.log(8, "Time, Xpos, Ypos, heading, XLvel, YLvel, RLvel")
-        
         self.current_pose = VelocityPose()
-
         self.thread_handle = threading.Thread(target = self.localisation_loop)
         self.thread_handle.start()
+        self.logger.info(" - Localisation System Started")
         return
 
     def __del__(self):
@@ -29,8 +30,6 @@ class LocalisationSystem():
         if self.thread_handle != None:
             self.thread_handle.join()
         
-
-
 
     def localisation_loop(self):
         loop_counter = 0
@@ -41,8 +40,7 @@ class LocalisationSystem():
                 if loop_counter > 100: #TODO maybe log every cycle
                     loop_counter = 0
                     self.log_localisation()
-                
-                pass
+            time.sleep(0.01) #TODO if this fixes issues then remove
 
     def update_localisation(self):
         LLI = self.LLI
