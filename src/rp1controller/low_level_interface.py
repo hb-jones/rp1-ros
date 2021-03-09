@@ -13,8 +13,8 @@ import math
 class LowLevelInterface(): 
     drives_started = False #Flag to indicate if the controller and drives are connected and started
     is_ready = False #Flag to indicate if drives are in closed loop control mode and ready to recieve
+    
     thread_updating = False #Flag to indicate thread is running and odometry is being updated
-
     loop_run_flag = False #Flag for loop to continue running
     loop_complete_flag = False #main_loop() sets this high to indicate it is not hanging
     loop_thread = None #Handle to the loop thread
@@ -41,11 +41,11 @@ class LowLevelInterface():
         self.model = self.main_controller.config.model #Kinematic model of the robot
         self.logger = logging.getLogger(__name__) #Creates a logger for use with the base logger
         if debug_func: #Debug mode to only connect to one drive and axis
-            self.logger.warning(" - Started LLC in debug mode")
+            self.logger.warning(" - Started LLI in debug mode")
             self.connect_drives = debug_func
             self.connect_drives(self) 
         else:
-            self.logger.info(" - Starting LLC")
+            self.logger.info(" - Starting LLI")
             self.connect_drives()
         sleep(1) #TODO debug code, reduce or remove
         self.prepare_drives() 
@@ -55,7 +55,7 @@ class LowLevelInterface():
         while self.loop_run_flag:
             if not self.check_state(): #Checks everything is in correct state etc
                 self.is_ready = False
-                self.logger.warning(" - LLC Loop Error: State check unsucessful. Loop aborting")
+                self.logger.warning(" - LLI Loop Error: State check unsucessful. Loop aborting")
                 break
             
 
@@ -63,7 +63,7 @@ class LowLevelInterface():
 
             self.loop_complete_flag = True
             sleep(0.02) #TODO reduce if this does not cause issues
-        self.logger.info(" - LLC loop shutting down")
+        self.logger.info(" - LLI loop shutting down")
         self.thread_updating = False
         self.is_ready = False
         self.drives_started = False #Indicate closed loop control cannot be started until controller successfully enters an idle state
