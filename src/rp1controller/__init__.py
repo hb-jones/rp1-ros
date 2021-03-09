@@ -3,6 +3,7 @@
 #Set up the root logger
 import logging
 import logging.config
+logging.addLevelName(8, "TELEM")
 logging.config.fileConfig('rp1controller/logging.conf',disable_existing_loggers=False)
 
 from .rp1interface import RP1Controller

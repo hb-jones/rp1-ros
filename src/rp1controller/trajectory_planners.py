@@ -1,3 +1,4 @@
+from math import fabs
 from typing import Tuple
 import logging
 
@@ -40,9 +41,10 @@ class ControlMode:
         if type(target) != Target:
             self.logger.error(" - {} input was not of type Target".format(self.name))
             return False
+        #TODO Add speed limit checking
         return True
 
-    def output_target(self, linear, angular):
+    def set_low_level_interface_target(self, linear, angular):
         """Sends target LV to LLI"""
         self.hlc.low_level_interface.set_target(linear, angular)
         return True
@@ -55,21 +57,35 @@ class LocalVelocityControl(ControlMode):
     def input_target(self, target: Target):
         """Sets target"""
         if not self.check_input(target): return False
-        self.output_target(target.local_velocity, target.local_angular)
+        self.set_low_level_interface_target(target.local_velocity, target.local_angular)
         return True
 
     def check_input(self, target: Target):
-        super().check_input(target)
+        if not super().check_input(target): return False
         if target.local_velocity == None or target.local_angular == None:
-            self.logger.error(" - {}:  input target does not include local_velocity or local_angular".format(self.name))
+            self.logger.error(" - {}:  input target missing local_velocity or local_angular".format(self.name))
             return False
         return True
 
 #World Frame Velocity Controllers
 class WorldVelocityControl(ControlMode):
-    """Takes desired heading and velocity in the world frame"""
-    pass
-class WVTrackPositionControl(WorldVelocityControl):
+    """Takes desired angular velocity and linear velocity in the world frame"""
+    name = "WorldVelocityControl"
+    def input_target(self, target: Target):
+        """Sets target"""
+        if not self.check_input(target): return False
+        self.set_low_level_interface_target(self.hlc.localisation.transform_WV_LV(target.world_velocity),target.local_angular)
+        return True
+
+    def check_input(self, target: Target):
+        if not super().check_input(target): return False
+        if target.world_velocity == None or target.local_angular == None:
+            self.logger.error(" - {}:  input target missing world_velocity or local_angular".format(self.name))
+            return False
+        return True
+
+    
+class WVTrackPositionControl(WorldVelocityControl): #TODO maybe these should not inherit from WVC? Just CM instead
     """WV controller that tracks a target coordinate"""
     pass
 class WVTrackHeadingControl(WorldVelocityControl):
