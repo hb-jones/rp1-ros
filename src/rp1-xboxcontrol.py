@@ -14,6 +14,9 @@ button_UP = "BTN_TR"
 button_DN = "BTN_TL"
 button_STP = "BTN_EAST"
 button_BRK = "BTN_SOUTH"
+button_MODE = "BTN_WEST"
+button_RSTODOM = "BTN_NORTH"
+
 
 speed_limit_rot = 1.2
 speed_limit_linear = 1
@@ -22,6 +25,8 @@ speed_limit_step = 0.2
 target_FB = 0
 target_LR = 0
 target_rot = 0
+
+mode = "local"
 
 running_flag = True
 
@@ -88,10 +93,16 @@ def listen_to_gamepad():
                 shift_speed_dn()
             if event.code == button_BRK:
                 brake()
+            if event.code == button_MODE and event.state == 1:
+                change_mode()
+            if event.code == button_RSTODOM and event.state == 1:
+                reset_odometry()
+
     return
 
 def update_target()-> Target:
     target = Target((target_FB,target_LR),target_rot)
+    target.world_velocity = (target_FB,target_LR)
     return target
 
 def setup_socket():
@@ -106,7 +117,19 @@ def send_target(target: Target):
     data = pickle.dumps(target)
     clientsocket.send(data)
 
+def change_mode():
+    if mode == "local": #TODO could be handled better
+        mode = "world"
+    else:
+        mode = "local"
+    data = pickle.dumps(mode) 
+    clientsocket.send(data)
+    return
 
+def reset_odometry():
+    data = pickle.dumps("reset")
+    clientsocket.send(data)
+    return
 
 def main():
     setup_socket()
@@ -118,23 +141,6 @@ def main():
         send_target(target)
 
         
-
-
-
-
-
-def main_old():
-    while 1:
-        events = get_gamepad()
-        print("New Loop")
-        for event in events:
-            if event.ev_type == "Sync":
-                continue
-            print("Event Type:  {}".format(event.ev_type))
-            print("Event Code:  {}".format(event.code))
-            print("Event State: {}".format(event.state))
-            print()
-
 
 if __name__ == "__main__":
     main()

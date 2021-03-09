@@ -1,4 +1,5 @@
 from rp1controller import Target
+from rp1controller.trajectory_planners import LocalVelocityControl, WorldVelocityControl
 import rp1controller
 import socket, pickle
 import rp1controller
@@ -33,8 +34,17 @@ while True:
     msg = s.recv(1024)
     time_last = time.time()
     try: 
-        target: Target = pickle.loads(msg)
+        target = pickle.loads(msg)
     except:
         target = Target()
+    
+    if target == "local":
+        planner = LocalVelocityControl(HLC)
+        HLC.set_trajectory_planner(planner)
+    elif target == "world":
+        planner = WorldVelocityControl(HLC)
+        HLC.set_trajectory_planner(planner)
+    elif target == "reset":
+        HLC.localisation.reset_localisation()
     first = False
     HLC.set_target(target)
