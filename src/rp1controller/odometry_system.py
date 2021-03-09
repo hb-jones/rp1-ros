@@ -4,7 +4,7 @@ from math import cos, sin
 from .rp1interface import RP1Controller
 
 class LocalisationSystem():
-    loop_run_flag = False
+    loop_run_flag = True
     thread_handle = None
     output_function = None #Function to output telemetry (such as to ROS node). May use polling based system instead as in LLI
 
