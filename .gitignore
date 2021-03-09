@@ -1,5 +1,6 @@
 devel/
 logs/
+log/
 build/
 bin/
 lib/
@@ -24,6 +25,7 @@ devel_isolated/
 # Ignore generated docs
 *.dox
 *.wikidoc
+*.log
 
 # eclipse stuff
 .project
