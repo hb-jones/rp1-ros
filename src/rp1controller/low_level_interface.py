@@ -52,15 +52,17 @@ class LowLevelInterface():
     
     def main_loop(self):
         while self.loop_run_flag:
+            time_start = time.time()
             if not self.check_state(): #Checks everything is in correct state etc
                 self.is_ready = False
                 self.logger.warning(" - LLI Loop Error: State check unsucessful. Loop aborting")
                 break
-            
-            time_start = time.time()
-            self.update_odometry() 
             time_taken = time.time()-time_start
             print(f"Time taken: {time_taken}s")
+            
+            self.update_odometry() 
+            
+            
             self.loop_complete_flag = True
             sleep(0.02) #TODO reduce if this does not cause issues
         self.logger.info(" - LLI loop shutting down")
