@@ -324,13 +324,11 @@ class LowLevelInterface():
         for axis_name in self.axes_dict: #Iterate through axes
             
             axis = self.axes_dict[axis_name]
-            time_start = time.time()
-            axis_error = axis.error #Copy error values only once to reduce polling time
+            axis_error = axis.error #Copy error values only once to reduce polling time TODO that didnt work for some reason
             motor_error = axis.motor.error
             encoder_error = axis.encoder.error
             controller_error = axis.controller.error
-            time_taken = time.time()-time_start
-            print(f"Time taken: {time_taken}s")
+
 
             if (axis_error+motor_error+encoder_error+controller_error>0):
                 error_present = True
