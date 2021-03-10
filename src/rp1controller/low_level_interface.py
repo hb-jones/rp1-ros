@@ -52,14 +52,11 @@ class LowLevelInterface():
     
     def main_loop(self):
         while self.loop_run_flag:
-            time_start = time.time()
             if not self.check_state(): #Checks everything is in correct state etc
                 self.is_ready = False
                 self.logger.warning(" - LLI Loop Error: State check unsucessful. Loop aborting")
                 break
-            time_taken = time.time()-time_start
-            print(f"Time taken: {time_taken}s")
-            
+
             self.update_odometry() 
             
             
@@ -377,10 +374,13 @@ class LowLevelInterface():
             #check if system is in correct state
             #check time since last command, set velocity taget to 0 if too long
             # stop loop if error or problem found
-        
+        time_start = time.time()
+            
         if not self.check_errors():
             self.drives_started = False
             return_val =  False
+        time_taken = time.time()-time_start
+        print(f"Time taken: {time_taken}s")
         if ((not self.drives_started) and (self.is_ready or self.loop_run_flag)):
             return_val =  False
         if return_val:

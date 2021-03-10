@@ -85,7 +85,7 @@ class KinematicModel(): #may have additional ROS functionality or be replaced en
         wheel_velocities = {}
         for wheel_name in motor_velocities:
             motor_vel = motor_velocities[wheel_name]
-            wheel_vel = motor_vel*self.motor_transforms[wheel_name]*1/self.gear_ratio
+            wheel_vel = motor_vel*self.motor_transforms[wheel_name]*self.gear_ratio
             wheel_velocities.update({wheel_name: wheel_vel})        
         return wheel_velocities
 
