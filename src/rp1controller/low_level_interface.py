@@ -95,7 +95,7 @@ class LowLevelInterface():
             self.logger.warning(" - Odometry Warning: Time since last update: {}".format(d_time))
         self.odom_updated_time = time_current
         self.odom_motor_pos_last = motor_pos_current      
-        print(f"Odometry updated at {time_current}. Speed is X:{linear_x}  Y:{linear_y}  R:{angular}") #TODO REMOVE
+        print(f"Odometry updated at {time_current:.2f}. Speed is X:{linear_x:.2f}  Y:{linear_y:.2f}  R:{angular:.2f}") #TODO REMOVE ---------------------
         return
 
     def set_target(self, linear: tuple, angular: float, log = False): #TODO maybe use custom object or dictionary
@@ -322,15 +322,16 @@ class LowLevelInterface():
             self.check_spi_errors()
         error_present = False
         for axis_name in self.axes_dict: #Iterate through axes
-            time_start = time.time()
+            
             axis = self.axes_dict[axis_name]
+            time_start = time.time()
             axis_error = axis.error #Copy error values only once to reduce polling time
             motor_error = axis.motor.error
             encoder_error = axis.encoder.error
             controller_error = axis.controller.error
             time_taken = time.time()-time_start
             print(f"Time taken: {time_taken}s")
-            
+
             if (axis_error+motor_error+encoder_error+controller_error>0):
                 error_present = True
                 self.logger.warning("{}: - Error detected on axis".format(axis_name))
