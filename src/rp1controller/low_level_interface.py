@@ -323,24 +323,26 @@ class LowLevelInterface():
         error_present = False
         for axis_name in self.axes_dict: #Iterate through axes
             axis = self.axes_dict[axis_name]
-            if (axis.error+axis.motor.error+axis.encoder.error+axis.controller.error>0):
+            axis_error = axis.error #Copy error values only once to reduce polling time
+            motor_error = axis.motor.error
+            encoder_error = axis.encoder.error
+            controller_error = axis.controller.error
+            
+            if (axis_error+motor_error+encoder_error+controller_error>0):
                 error_present = True
                 self.logger.warning("{}: - Error detected on axis".format(axis_name))
 
-                if (axis.error>0):
-                    self.logger.error("{name}: - Axis Error: {error}".format(name = axis_name, error = axis.error))
+                if (axis_error>0):
+                    self.logger.error("{name}: - Axis Error: {error}".format(name = axis_name, error = axis_error))
 
-                if (axis.motor.error>0):
-                    self.logger.error("{name}: - Motor Error: {error}".format(name = axis_name, error = axis.motor.error))
+                if (motor_error>0):
+                    self.logger.error("{name}: - Motor Error: {error}".format(name = axis_name, error = motor_error))
 
-                if (axis.encoder.error>0):
-                    encoder_error = axis.encoder.error
-                    self.logger.error("{name}: - Encoder Error: {error}".format(name = axis_name, error = axis.encoder.error))
-                    if((encoder_error == ENCODER_ERROR_ABS_SPI_COM_FAIL or encoder_error == ENCODER_ERROR_ABS_SPI_NOT_READY)): 
-                        self.logger.error("{name}: - Encoder Error: {error}".format(name = axis_name, error = axis.encoder.error))
+                if (encoder_error>0):
+                    self.logger.error("{name}: - Encoder Error: {error}".format(name = axis_name, error = encoder_error))
 
-                if (axis.controller.error>0):
-                    self.logger.error("{name}: - Controller Error:{error}".format(name = axis_name, error = axis.controller.error))
+                if (controller_error>0):
+                    self.logger.error("{name}: - Controller Error:{error}".format(name = axis_name, error = controller_error))
 
         if error_present: return False
         else:
