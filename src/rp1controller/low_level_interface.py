@@ -322,11 +322,14 @@ class LowLevelInterface():
             self.check_spi_errors()
         error_present = False
         for axis_name in self.axes_dict: #Iterate through axes
+            time_start = time.time()
             axis = self.axes_dict[axis_name]
             axis_error = axis.error #Copy error values only once to reduce polling time
             motor_error = axis.motor.error
             encoder_error = axis.encoder.error
             controller_error = axis.controller.error
+            time_taken = time.time()-time_start
+            print(f"Time taken: {time_taken}s")
             
             if (axis_error+motor_error+encoder_error+controller_error>0):
                 error_present = True
@@ -376,13 +379,11 @@ class LowLevelInterface():
             #check if system is in correct state
             #check time since last command, set velocity taget to 0 if too long
             # stop loop if error or problem found
-        time_start = time.time()
+        
             
         if not self.check_errors():
             self.drives_started = False
             return_val =  False
-        time_taken = time.time()-time_start
-        print(f"Time taken: {time_taken}s")
         if ((not self.drives_started) and (self.is_ready or self.loop_run_flag)):
             return_val =  False
         if return_val:
