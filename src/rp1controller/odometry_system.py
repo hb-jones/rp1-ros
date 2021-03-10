@@ -82,7 +82,7 @@ class LocalisationSystem():
 
     def log_localisation(self):
         self.telemetry_logger.log(8, self.current_pose)
-        string = f"X: {self.current_pose.world_x_position}, Y: {self.current_pose.world_y_position}, H: {self.current_pose.heading}"
+        string = f"X: {self.current_pose.world_x_position:.2f}, Y: {self.current_pose.world_y_position:.2f}, H: {self.current_pose.heading:.2f}"
         print(string) #TODO Remove
         #self.logger.info(string)#TODO Remove as only for debugging
         #TODO console output?
