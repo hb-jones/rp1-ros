@@ -1,5 +1,5 @@
 import logging, time, threading
-from math import cos, sin
+from math import cos, pi, sin
 
 from .rp1interface import RP1Controller
 
@@ -52,6 +52,10 @@ class LocalisationSystem():
 
         heading_delta = time_delta*v_angular
         new_heading = self.current_pose.heading+heading_delta
+        while new_heading>2*pi: #TODO inefficent
+            new_heading = new_heading-2*pi
+        while new_heading<0:
+            new_heading = new_heading+2*pi
 
         #Movement based on new heading, may be better to base on halfway between old and new
         world_x_vel, world_y_vel = self.transform_LV_WV(v_linear, new_heading)
@@ -83,12 +87,14 @@ class LocalisationSystem():
     def log_localisation(self):
         self.telemetry_logger.log(8, self.current_pose)
         string = f"X: {self.current_pose.world_x_position:.2f}, Y: {self.current_pose.world_y_position:.2f}, H: {self.current_pose.heading:.2f}"
-        print(string) #TODO Remove
+        #print(string) #TODO Remove
         #self.logger.info(string)#TODO Remove as only for debugging
         #TODO console output?
     
     def reset_localisation(self):
-        self.current_pose = VelocityPose() #TODO test
+        last_timestamp = self.current_pose.timestamp
+        self.current_pose = VelocityPose() #TODO FIX THIS
+        self.current_pose.timestamp = last_timestamp
         pass
 
     def transform_LV_WV(self, linear_velocity_local, heading = None):
@@ -111,8 +117,11 @@ class LocalisationSystem():
         yl = xw*sin(-heading) + yw*cos(-heading)
         return xl, yl
 
+    def get_distance_to_position(self, target = (0,0)):
+        pass
 
-class VelocityPose:
+
+class VelocityPose: #TODO should this be included in target object?
     timestamp = 0
     local_x_velocity = 0 #Local frame, velocity, X direction
     local_y_velocity = 0 #Local frame, velocity, Y direction

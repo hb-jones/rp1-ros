@@ -14,8 +14,8 @@ class KinematicModel(): #may have additional ROS functionality or be replaced en
     #TODO X is forward for the robot
     """
     wheel_radius = 0.098/2 #Radius in metres 
-    wheel_pos_x = 0.198 #Half the distance between wheel centres in x direction in metres
-    wheel_pos_y = 0.140 #TODO x and y may need to be flipped as X is forward
+    wheel_pos_x = 0.276/2 #Half the distance between wheel centres in x direction in metres
+    wheel_pos_y = 0.400/2 #TODO x and y may need to be flipped as X is forward
 
     gear_ratio = 15/80 #TODO
 
@@ -99,6 +99,16 @@ class RP1Configuration():
     vel_gain = 0.004
     vel_integrator_gain = 0.021
     vel_ramp_rate = 100
+
+    acceleration_max = 0.2 #m/s^2 #TODO implement
+    linear_velocity_max = 5 #m/s
+    angular_velocity_max = 2 #rad/s
+
+    safe_linear_velocity = 0.5
+    safe_angular_velocity = 0.6
+
+    linear_velocity_stable_min = 0.2 #TODO Adjust #Minimum speed robot can move and keep stable
+    angular_velocity_stable_min = 0.2
 
     def __init__(self):
         self.model = KinematicModel(self) #The kinematic model containing robot size, gear ratio etc

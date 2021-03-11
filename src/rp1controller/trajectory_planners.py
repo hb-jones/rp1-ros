@@ -97,6 +97,7 @@ class WVTrackHeadingControl(WorldVelocityControl):
 class WorldPoseControl(ControlMode):
     """Parent controller using world pose and max speed/acceleration arguments.
     Moves directly to target pose rotating and translating at the same time"""
+    name = "WorldPoseControl"
     pass
 class WPTurnStraightTurnControl(WorldPoseControl):
     """WP controller that turns, moves forward then turns to final pose."""

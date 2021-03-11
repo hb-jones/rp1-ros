@@ -95,7 +95,7 @@ class LowLevelInterface():
             self.logger.warning(" - Odometry Warning: Time since last update: {}".format(d_time))
         self.odom_updated_time = time_current
         self.odom_motor_pos_last = motor_pos_current      
-        print(f"Odometry updated at {time_current:.2f}. Speed is X:{linear_x:.2f}  Y:{linear_y:.2f}  R:{angular:.2f}") #TODO REMOVE ---------------------
+        #print(f"Odometry updated at {time_current:.2f}. Speed is X:{linear_x:.2f}  Y:{linear_y:.2f}  R:{angular:.2f}") #TODO REMOVE ---------------------
         return
 
     def set_target(self, linear: tuple, angular: float, log = False): #TODO maybe use custom object or dictionary
