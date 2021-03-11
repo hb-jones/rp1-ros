@@ -215,10 +215,10 @@ class LowLevelInterface():
         self.odrvB = get_drive(self.config.odrvB_serial_number)
         
         self.axes_dict: Dict[Axis] = {} #Convenience dictionary for iterating throgh each axis
-        self.axis_FL = get_axis(self.odrvF, 0) ; self.axes_dict.update({"axis_FL" : self.axis_FL}) #Get each axis, assign handle and add to dict
-        self.axis_FR = get_axis(self.odrvF, 1) ; self.axes_dict.update({"axis_FR" : self.axis_FR}) 
-        self.axis_BL = get_axis(self.odrvB, 1) ; self.axes_dict.update({"axis_BL" : self.axis_BL})
-        self.axis_BR = get_axis(self.odrvB, 0) ; self.axes_dict.update({"axis_BR" : self.axis_BR})
+        self.axis_FL = get_axis(self.odrvF, 1) ; self.axes_dict.update({"axis_FL" : self.axis_FL}) #Get each axis, assign handle and add to dict
+        self.axis_FR = get_axis(self.odrvF, 0) ; self.axes_dict.update({"axis_FR" : self.axis_FR}) 
+        self.axis_BL = get_axis(self.odrvB, 0) ; self.axes_dict.update({"axis_BL" : self.axis_BL})
+        self.axis_BR = get_axis(self.odrvB, 1) ; self.axes_dict.update({"axis_BR" : self.axis_BR})
 
         self.logger.info(" - Drives Connected")
         
