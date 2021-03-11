@@ -30,10 +30,10 @@ class KinematicModel(): #may have additional ROS functionality or be replaced en
         self.wheel_transforms.update({"axis_BL": WheelTransform(1,  1, -1)})
         self.wheel_transforms.update({"axis_BR": WheelTransform(1, -1,  1)})
 
-        self.motor_transforms.update({"axis_FL": -1})
-        self.motor_transforms.update({"axis_FR":  1})
-        self.motor_transforms.update({"axis_BL": -1})
-        self.motor_transforms.update({"axis_BR":  1})
+        self.motor_transforms.update({"axis_FL":  1})
+        self.motor_transforms.update({"axis_FR": -1})
+        self.motor_transforms.update({"axis_BL":  1})
+        self.motor_transforms.update({"axis_BR": -1})
         return
 
     def transform_velocity_base_to_motor(self, linear_x, linear_y, angular):
