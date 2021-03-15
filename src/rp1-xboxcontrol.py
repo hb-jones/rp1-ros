@@ -8,7 +8,7 @@ IP_laptop = "192.168.137.1"
 axis_FB = "ABS_Y"
 axis_LR = "ABS_X"
 axis_rot = "ABS_RX"
-axis_deadzone = 5000
+axis_deadzone = 0.2
 
 button_UP = "BTN_TR"
 button_DN = "BTN_TL"
@@ -16,6 +16,17 @@ button_STP = "BTN_EAST"
 button_BRK = "BTN_SOUTH"
 button_MODE = "BTN_WEST"
 button_RSTODOM = "BTN_NORTH"
+
+button_PRP = "ABS_HAT0Y"
+state_PRP_UP = -1
+state_PRP_DN = 1
+
+button_INT = "ABS_HAT0X"
+state_INT_UP = 1
+state_INT_DN = -1
+
+vel_gain = 0.004
+vel_integrator_gain = 0.021
 
 
 speed_limit_rot = 1.2
@@ -31,27 +42,28 @@ mode = "local"
 running_flag = True
 
 def curve(input):
+    input = input/32000
     if input<0:
         sign = -1
     else:
         sign = 1
-    output = ((0.05*20**abs(input))-0.05)*sign
+    output_unsigned = ((0.1*20**(abs(input)-axis_deadzone))-0.1)
+    if abs(input)<axis_deadzone: output_unsigned = 0
+    if output_unsigned >1: output_unsigned = 1
+    output = output_unsigned*sign
     return output
 
 def linear_FB(value: int):
     global target_LR, target_FB, target_rot
-    if abs(value)<axis_deadzone: value = 0
-    target_FB = curve(value/32000) * speed_limit_linear
+    target_FB = curve(value) * speed_limit_linear
     pass
 def linear_LR(value: int):
     global target_LR, target_FB, target_rot
-    if abs(value)<axis_deadzone: value = 0
-    target_LR = curve(value/32000) * speed_limit_linear
+    target_LR = curve(-value) * speed_limit_linear
     pass
 def rotation(value: int):
     global target_LR, target_FB, target_rot
-    if abs(value)<axis_deadzone: value = 0
-    target_rot = curve(value/32000) * speed_limit_rot
+    target_rot = curve(-value) * speed_limit_rot
     pass
 def shift_speed_up():
     global speed_limit_linear
@@ -71,6 +83,23 @@ def brake():
     target_rot = 0
     speed_limit_linear = speed_limit_step
 
+
+def update_PID(parameter, increase):
+    global vel_gain, vel_integrator_gain
+    if parameter == "proportion":
+        if increase:
+            vel_gain = vel_gain * 1.1
+        else:
+            vel_gain = vel_gain * 0.9
+    if parameter == "integrator":
+        if increase:
+            vel_integrator_gain = vel_integrator_gain * 1.1
+        else:
+            vel_integrator_gain = vel_integrator_gain * 0.9
+    pid_config = {"vel_gain": vel_gain, "vel_integrator_gain": vel_integrator_gain}
+    data = pickle.dumps(pid_config)
+    clientsocket.send(data)
+    
 
 def listen_to_gamepad():
     global running_flag
@@ -97,6 +126,17 @@ def listen_to_gamepad():
                 change_mode()
             if event.code == button_RSTODOM and event.state == 1:
                 reset_odometry()
+            if event.code == button_PRP:
+                if event.state == state_PRP_UP:
+                    update_PID("proportional", True) 
+                elif event.state == state_INT_DN:
+                    update_PID("proportional", False) 
+            if event.code == button_INT:
+                if event.state == state_INT_UP:
+                    update_PID("integrator", True) 
+                elif event.state == state_INT_DN:
+                    update_PID("integrator", False) 
+            
 
     return
 

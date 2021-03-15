@@ -19,7 +19,7 @@ def reset_target():
             time_last = time.time()
 
 
-target = Target()
+data = Target()
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #s.connect((socket.gethostname(), 1066))
 s.connect((IP_laptop, 1066))
@@ -34,18 +34,25 @@ while True:
     msg = s.recv(1024)
     time_last = time.time()
     try: 
-        target = pickle.loads(msg)
+        data = pickle.loads(msg)
     except:
-        target = Target()
+        data = Target()
     
-    if target == "local":
+    if data == "local":
         planner = LocalVelocityControl(HLC)
         HLC.set_trajectory_planner(planner)
-    elif target == "world":
+    elif data == "world":
         planner = WorldVelocityControl(HLC)
         HLC.set_trajectory_planner(planner)
-    elif target == "reset":
+    elif data == "reset":
         HLC.localisation.reset_localisation()
+    elif type(data) == dict:
+        if data["vel_gain"] != None and data["vel_integrator_gain"] != None:
+            HLC.config.vel_gain = data["vel_gain"]
+            HLC.config.vel_integrator_gain = data["vel_integrator_gain"]
+            HLC.low_level_interface.update_configuration()
+        else:
+            print("invalid confit dictionary")
     else:
         first = False
-        HLC.set_target(target)
+        HLC.set_target(data)
