@@ -47,8 +47,12 @@ def curve(input):
         sign = -1
     else:
         sign = 1
-    output_unsigned = ((0.1*20**(abs(input)-axis_deadzone))-0.1)
-    if abs(input)<axis_deadzone: output_unsigned = 0
+    input_unsigned = abs(input)
+    if input_unsigned<axis_deadzone:
+        output_unsigned = 0
+    else:
+        output_unsigned = input_unsigned*1/(1-axis_deadzone)-axis_deadzone
+    #output_unsigned = ((0.1*20**(abs(input)-axis_deadzone))-0.1) Old buggy curve
     if output_unsigned >1: output_unsigned = 1
     output = output_unsigned*sign
     return output
@@ -86,7 +90,7 @@ def brake():
 
 def update_PID(parameter, increase):
     global vel_gain, vel_integrator_gain
-    if parameter == "proportion":
+    if parameter == "proportional":
         if increase:
             vel_gain = vel_gain * 1.1
         else:
@@ -96,6 +100,7 @@ def update_PID(parameter, increase):
             vel_integrator_gain = vel_integrator_gain * 1.1
         else:
             vel_integrator_gain = vel_integrator_gain * 0.9
+    print(f"PID updated to:\nvel_gain: {vel_gain}\nvel_integrator_gain: {vel_integrator_gain}\n")
     pid_config = {"vel_gain": vel_gain, "vel_integrator_gain": vel_integrator_gain}
     data = pickle.dumps(pid_config)
     clientsocket.send(data)
@@ -129,7 +134,7 @@ def listen_to_gamepad():
             if event.code == button_PRP:
                 if event.state == state_PRP_UP:
                     update_PID("proportional", True) 
-                elif event.state == state_INT_DN:
+                elif event.state == state_PRP_DN:
                     update_PID("proportional", False) 
             if event.code == button_INT:
                 if event.state == state_INT_UP:

@@ -51,14 +51,10 @@ class LocalisationSystem():
         time_delta = timestamp - self.current_pose.timestamp
 
         heading_delta = time_delta*v_angular
-        new_heading = self.current_pose.heading+heading_delta
-        while new_heading>2*pi: #TODO inefficent
-            new_heading = new_heading-2*pi
-        while new_heading<0:
-            new_heading = new_heading+2*pi
+        new_heading = self.convert_angle_to_bearing(self.current_pose.heading+heading_delta)
 
         #Movement based on new heading, may be better to base on halfway between old and new
-        world_x_vel, world_y_vel = self.transform_LV_WV(v_linear, new_heading)
+        world_x_vel, world_y_vel = self.transform_LV_to_WV(v_linear, new_heading)
 
         x_delta = world_x_vel*time_delta
         new_x_pos = x_delta+self.current_pose.world_x_position
@@ -87,7 +83,7 @@ class LocalisationSystem():
     def log_localisation(self):
         self.telemetry_logger.log(8, self.current_pose)
         string = f"X: {self.current_pose.world_x_position:.2f}, Y: {self.current_pose.world_y_position:.2f}, H: {self.current_pose.heading:.2f}"
-        #print(string) #TODO Remove
+        print(string) #TODO Remove
         #self.logger.info(string)#TODO Remove as only for debugging
         #TODO console output?
     
@@ -97,7 +93,7 @@ class LocalisationSystem():
         self.current_pose.timestamp = last_timestamp
         pass
 
-    def transform_LV_WV(self, linear_velocity_local, heading = None):
+    def transform_LV_to_WV(self, linear_velocity_local, heading = None):
         """Transforms Local Velocity to World Velocity""" #TODO Fix documentation
         if heading == None:
             heading = self.current_pose.heading
@@ -107,7 +103,7 @@ class LocalisationSystem():
         yw = xl*sin(heading) + yl*cos(heading)
         return xw, yw
     
-    def transform_WV_LV(self, linear_velocity_world, heading = None):
+    def transform_WV_to_LV(self, linear_velocity_world, heading = None):
         """Transforms World Velocity to Local Velocity""" #TODO Fix documentation
         if heading == None:
             heading = self.current_pose.heading
@@ -117,9 +113,37 @@ class LocalisationSystem():
         yl = xw*sin(-heading) + yw*cos(-heading)
         return xl, yl
 
-    def get_distance_to_position(self, target = (0,0)):
-        pass
+    def get_distance_to_point(self, point = (0,0)):
+        x,y = self.get_relative_position_of_point(point)
+        return (x**2+y**2)**0.5
 
+    def get_relative_position_of_point(self, point = (0,0)):
+        x = point[0] - self.current_pose.world_x_position
+        y = point[1] - self.current_pose.world_y_position
+        return (x,y)
+
+    def get_absolute_bearing_of_point(self, point = (0,0)):
+        return 0
+        
+    def get_relative_heading_of_point(self, point = (0,0)):
+        """Returns smallest delta angle to target angle"""
+        absolute_bearing = self.get_absolute_bearing_of_point(point)
+        relative_bearing = self.convert_absolute_bearing_to_relative_bearing(absolute_bearing)
+        return relative_bearing
+
+    def convert_absolute_bearing_to_relative_bearing(self, absolute_bearing):
+        """Returns the smallest relative bearing between the robot heading and an absolute bearing"""
+        bearing_a = self.current_pose.heading - absolute_bearing
+        bearing_b = self.current_pose.heading + absolute_bearing
+        return 
+
+    def convert_angle_to_bearing(self, angle):
+        """Converts an angle of over 2PI or less than 0 to a direction from 0 to 2PI"""
+        while angle>=2*pi: #TODO inefficent 
+            angle = angle-2*pi
+        while angle<0:
+            angle = angle+2*pi
+        return angle
 
 class VelocityPose: #TODO should this be included in target object?
     timestamp = 0

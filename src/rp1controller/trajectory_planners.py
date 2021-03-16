@@ -9,7 +9,7 @@ class Target:
     world_velocity = None
     world_heading  = None
     world_pose     = None
-    world_pose_dir = None
+    world_pose_facing = None #Coordinate for platform to face
     
     def __init__(self, local_velocity: Tuple[float, float] = (0,0), local_angular: float = 0):
         self.local_velocity = local_velocity
@@ -75,7 +75,7 @@ class WorldVelocityControl(ControlMode):
     def input_target(self, target: Target):
         """Sets target"""
         if not self.check_input(target): return False
-        self.set_low_level_interface_target(self.hlc.localisation.transform_WV_LV(target.world_velocity),target.local_angular)
+        self.set_low_level_interface_target(self.hlc.localisation.transform_WV_to_LV(target.world_velocity),target.local_angular)
         return True
 
     def check_input(self, target: Target):
@@ -98,7 +98,21 @@ class WorldPoseControl(ControlMode):
     """Parent controller using world pose and max speed/acceleration arguments.
     Moves directly to target pose rotating and translating at the same time"""
     name = "WorldPoseControl"
-    pass
+    def input_target(self, target: Target):
+        if not self.check_input(target): return False
+        #Generate desired X and Y speed based on current speed and acceleration limits
+
+        #Find angular speed based on rotational error, angular velocity and max angular acceleration.
+
+        self.set_low_level_interface_target()
+    def check_input(self, target: Target):
+        if not super().check_input(target): return False
+        if target.world_pose == None or target.local_angular == None:
+            self.logger.error(" - {}:  input target missing world_velocity or local_angular".format(self.name))
+            return False
+        return True
+
+
 class WPTurnStraightTurnControl(WorldPoseControl):
     """WP controller that turns, moves forward then turns to final pose."""
     pass
