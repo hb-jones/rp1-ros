@@ -163,7 +163,10 @@ class WorldPoseControl(ControlMode):
                     target_world_y = self.accelerate_linear_step(self.current_target_linear_velocity[1], target_velocity_max[1])
 
                 #Angular #TODO
+                
 
+                self.current_target_linear_velocity(target_world_x,target_world_y)
+                self.current_target_angular_velocity = target_angular
                 #FINAL ERROR CHECKING
                 target_local_x, target_local_y = self.localisation_system.transform_WV_to_LV((target_world_x, target_world_y))
                 if abs(target_local_x)>max_linear_velocity: target_local_x = copysign(max_linear_velocity, target_local_x)
