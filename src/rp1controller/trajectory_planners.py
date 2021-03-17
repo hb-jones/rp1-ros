@@ -103,7 +103,7 @@ class WorldPoseControl(ControlMode):
     thread_handle = None 
     target: Target = None #Replace with coordinate and heading? TODO
 
-    delay_time = 0.1
+    delay_time = 0.5
 
     current_target_linear_velocity = (0,0)
     current_target_angular_velocity = 0
@@ -162,6 +162,8 @@ class WorldPoseControl(ControlMode):
                 else:
                     target_world_y = self.accelerate_linear_step(self.current_target_linear_velocity[1], target_velocity_max[1])
 
+                print(f"Target WX: {target_world_x} target WY: {target_world_y}")
+
                 #Angular #TODO
                 
 
@@ -174,6 +176,7 @@ class WorldPoseControl(ControlMode):
                 if abs(target_angular)>max_angular_velocity: target_angular = copysign(max_angular_velocity, target_angular)
                 
                 print(f"Output is X: {target_local_x}, Y: {target_local_y}, A: {target_angular}")
+                print()
 
                 self.set_low_level_interface_target((target_local_x, target_local_y),target_angular)
                 sleep(self.delay_time) #TODO change this to something to account for processing time
