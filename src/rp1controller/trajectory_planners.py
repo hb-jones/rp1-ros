@@ -112,7 +112,7 @@ class WorldPoseControl(ControlMode):
         super().__init__(hlc)
         self.localisation_system = self.hlc.localisation
         self.loop_run_flag = True
-        self.thread_handle = threading.Thread(target = self.trajectory_loop, daemon= True)
+        self.thread_handle = threading.Thread(target = self.trajectory_loop, daemon= False)
         self.thread_handle.start()
         self.logger.info(" - Position Controller System Started")
 
@@ -229,7 +229,8 @@ class WorldPoseControl(ControlMode):
 
     def get_stopping_distance_linear(self, velocity):
         speed = abs(velocity)
-        stopping_distance = (speed**2)/(2*self.hlc.config.acceleration_max)
+        tuning_modifier = 1.1 #TODO remove or update
+        stopping_distance = (speed**2)/(2*self.hlc.config.acceleration_max)*tuning_modifier
         return stopping_distance
 
 
