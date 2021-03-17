@@ -193,7 +193,9 @@ class WorldPoseControl(ControlMode):
         return copysign(abs(velocity)-step_size, velocity) #Decrease magnitude of speed by step size
 
     def input_target(self, target: Target):
-        if not self.check_input(target): return False
+        if not self.check_input(target): 
+            self.target = None
+            return False
         self.target = target
         return True
 
