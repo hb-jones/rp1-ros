@@ -170,7 +170,7 @@ def change_mode():
     global mode
     if mode == "local": #TODO could be handled better
         mode = "world"
-    if mode == "world":
+    elif mode == "world":
         mode = "pose"
     else:
         mode = "local"

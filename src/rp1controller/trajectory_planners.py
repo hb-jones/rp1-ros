@@ -192,9 +192,6 @@ class WorldPoseControl(ControlMode):
 
     def input_target(self, target: Target):
         if not self.check_input(target): return False
-
-        linear_target = self.get_linear_speed_target(target)
-        angular_target = self.get_angular_speed_target(target)
         self.target = target
         return True
 
