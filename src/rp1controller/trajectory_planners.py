@@ -145,29 +145,29 @@ class WorldPoseControl(ControlMode):
                 if abs(error_position[0])<self.hlc.config.max_error_position and abs(current_pose.world_x_velocity)<self.hlc.config.max_error_velocity:
                     target_world_x = 0
                     print("Close Enough!")
-                elif abs(error_velocity[0])<abs(target_velocity_max[0]):
-                    stopping_distance = self.get_stopping_distance_linear(current_pose.world_x_velocity)
-                    if stopping_distance>abs(error_position[0]):
-                        target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
-                        print("Decelerating to target")
-                elif abs(current_pose.world_x_velocity)>max_linear_velocity or self.current_target_linear_velocity[0]>max_linear_velocity:
-                    target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
-                    print("Overspeed")
                 else:
-                    target_world_x = self.accelerate_linear_step(self.current_target_linear_velocity[0], target_velocity_max[0])
-                    print("Accelerating!")
+                    stopping_distance = self.get_stopping_distance_linear(current_pose.world_x_velocity)
+                    if stopping_distance>abs(error_position[0]) and error_velocity[0]<target_velocity_max[0]:
+                            target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
+                            print("Decelerating to target")
+                    elif abs(current_pose.world_x_velocity)>max_linear_velocity or self.current_target_linear_velocity[0]>max_linear_velocity:
+                        target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
+                        print("Overspeed")
+                    else:
+                        target_world_x = self.accelerate_linear_step(self.current_target_linear_velocity[0], target_velocity_max[0])
+                        print("Accelerating!")
 
                 #Y
                 if abs(error_position[1])<self.hlc.config.max_error_position and abs(current_pose.world_y_velocity)<self.hlc.config.max_error_velocity:
                     target_world_y = 0
-                elif abs(error_velocity[1])<abs(target_velocity_max[1]):
-                    stopping_distance = self.get_stopping_distance_linear(current_pose.world_y_velocity)
-                    if stopping_distance>abs(error_position[1]):
-                        target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
-                elif abs(current_pose.world_y_velocity)>max_linear_velocity or self.current_target_linear_velocity[1]>max_linear_velocity:
-                    target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
                 else:
-                    target_world_y = self.accelerate_linear_step(self.current_target_linear_velocity[1], target_velocity_max[1])
+                    stopping_distance = self.get_stopping_distance_linear(current_pose.world_y_velocity)
+                    if stopping_distance>abs(error_position[1]) and error_velocity[1]<target_velocity_max[1]:
+                            target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
+                    elif abs(current_pose.world_y_velocity)>max_linear_velocity or self.current_target_linear_velocity[1]>max_linear_velocity:
+                        target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
+                    else:
+                        target_world_y = self.accelerate_linear_step(self.current_target_linear_velocity[1], target_velocity_max[1])
 
                 print(f"Target WX: {target_world_x} target WY: {target_world_y}")
 
