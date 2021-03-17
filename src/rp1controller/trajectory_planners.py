@@ -1,19 +1,19 @@
-from math import fabs
+from math import copysign, fabs
+from time import sleep
 from typing import Tuple
-import logging
+import logging, threading
 
-#TODO Target struct, potentially replace with dictionary, using typing.NewType?
 class Target:
-    local_velocity = None
-    local_angular  = None
-    world_velocity = None
-    world_heading  = None
-    world_pose     = None
-    world_pose_facing = None #Coordinate for platform to face
+    local_velocity = None #Linear velocity in local frame
+    angular_velocity  = None # angular velocity
+    world_velocity = None #linear velocity target in world frame
+    world_bearing  = None #Bearing to face
+    world_point     = None #Coordinate to move to
+    world_point_facing = None #Coordinate for platform to face
     
     def __init__(self, local_velocity: Tuple[float, float] = (0,0), local_angular: float = 0):
         self.local_velocity = local_velocity
-        self.local_angular  = local_angular
+        self.angular_velocity  = local_angular
         return 
     
 
@@ -58,12 +58,12 @@ class LocalVelocityControl(ControlMode):
     def input_target(self, target: Target):
         """Sets target"""
         if not self.check_input(target): return False
-        self.set_low_level_interface_target(target.local_velocity, target.local_angular)
+        self.set_low_level_interface_target(target.local_velocity, target.angular_velocity)
         return True
 
     def check_input(self, target: Target):
         if not super().check_input(target): return False
-        if target.local_velocity == None or target.local_angular == None:
+        if target.local_velocity == None or target.angular_velocity == None:
             self.logger.error(" - {}:  input target missing local_velocity or local_angular".format(self.name))
             return False
         return True
@@ -75,12 +75,12 @@ class WorldVelocityControl(ControlMode):
     def input_target(self, target: Target):
         """Sets target"""
         if not self.check_input(target): return False
-        self.set_low_level_interface_target(self.hlc.localisation.transform_WV_to_LV(target.world_velocity),target.local_angular)
+        self.set_low_level_interface_target(self.hlc.localisation.transform_WV_to_LV(target.world_velocity),target.angular_velocity)
         return True
 
     def check_input(self, target: Target):
         if not super().check_input(target): return False
-        if target.world_velocity == None or target.local_angular == None:
+        if target.world_velocity == None or target.angular_velocity == None:
             self.logger.error(" - {}:  input target missing world_velocity or local_angular".format(self.name))
             return False
         return True
@@ -98,19 +98,118 @@ class WorldPoseControl(ControlMode):
     """Parent controller using world pose and max speed/acceleration arguments.
     Moves directly to target pose rotating and translating at the same time"""
     name = "WorldPoseControl"
+
+    loop_run_flag = False
+    thread_handle = None 
+    target: Target = None #Replace with coordinate and heading? TODO
+
+    delay_time = 0.1
+
+    def __init__(self, hlc):
+        super().__init__(hlc)
+        self.localisation_system = self.hlc.localisation
+        self.loop_run_flag = True
+        self.thread_handle = threading.Thread(target = self.trajectory_loop, daemon= True)
+        self.thread_handle.start()
+        self.logger.info(" - Position Controller System Started")
+
+    def __del__(self):
+        self.loop_run_flag = False
+        self.thread_handle.join()
+        super().__del__()
+
+    def trajectory_loop(self): #TODO this is just gonna accelerate it whatever direction
+        while self.loop_run_flag:
+            if self.target != None:
+                self.configure_target()
+                
+                max_linear_velocity = self.hlc.config.linear_velocity_max
+                max_angular_velocity = self.hlc.config.angular_velocity_max
+                current_pose = self.localisation_system.current_pose
+
+                error_position = self.localisation_system.get_relative_position_of_point(self.target.world_point)
+                target_velocity_max = (copysign(max_linear_velocity, error_position[0]), copysign(max_linear_velocity, error_position[1]))
+                error_velocity = (target_velocity_max[0] - current_pose.world_x_velocity ,target_velocity_max[1] - current_pose.world_y_velocity)
+
+                target_world_x = 0
+                target_world_y = 0
+                target_angular = 0
+
+                #X
+                if abs(error_position[0])<self.hlc.config.max_error_position and abs(current_pose.world_x_velocity)<self.hlc.config.max_error_velocity:
+                    target_world_x = 0
+                elif abs(error_velocity[0])<abs(target_velocity_max[0]):
+                    stopping_distance = self.get_stopping_distance_linear(current_pose.world_x_velocity)
+                    if stopping_distance>abs(error_position[0]):
+                        target_world_x = self.decelerate_linear_step(current_pose.world_x_velocity)
+                elif abs(current_pose.world_x_velocity)>max_linear_velocity:
+                    target_world_x = self.decelerate_linear_step(current_pose.world_x_velocity)
+                else:
+                    target_world_x = self.accelerate_linear_step(current_pose.world_x_velocity, target_velocity_max[0])
+
+                #Y
+                if abs(error_position[1])<self.hlc.config.max_error_position and abs(current_pose.world_y_velocity)<self.hlc.config.max_error_velocity:
+                    target_world_y = 0
+                elif abs(error_velocity[1])<abs(target_velocity_max[1]):
+                    stopping_distance = self.get_stopping_distance_linear(current_pose.world_y_velocity)
+                    if stopping_distance>abs(error_position[1]):
+                        target_world_y = self.decelerate_linear_step(current_pose.world_y_velocity)
+                elif abs(current_pose.world_y_velocity)>max_linear_velocity:
+                    target_world_y = self.decelerate_linear_step(current_pose.world_y_velocity)
+                else:
+                    target_world_y = self.accelerate_linear_step(current_pose.world_y_velocity, target_velocity_max[1])
+
+                #Angular #TODO
+
+                #FINAL ERROR CHECKING
+                target_local_x, target_local_y = self.localisation_system.transform_WV_to_LV((target_world_x, target_world_y))
+                if abs(target_local_x)>max_linear_velocity: target_local_x = copysign(max_linear_velocity, target_local_x)
+                if abs(target_local_y)>max_linear_velocity: target_local_y = copysign(max_linear_velocity, target_local_y)
+                if abs(target_ang)>max_angular_velocity: target_ang = copysign(max_angular_velocity, target_ang)
+
+                self.set_low_level_interface_target((target_local_x, target_local_y),target_ang)
+                sleep(self.delay_time) #TODO change this to something to account for processing time
+
+            else:
+                self.set_low_level_interface_target((0,0),0) #Stop if no valid target found
+        return
+
+    def configure_target(self): #Fixes the target for future TMS
+        return
+
+    def accelerate_linear_step(self, velocity, target_velocity):
+        acceleration_limit = self.hlc.config.acceleration_max
+        step_size = acceleration_limit*self.delay_time
+
+        stepped_velocity = velocity+step_size*copysign(1,target_velocity)
+        return stepped_velocity
+
+
+    def decelerate_linear_step(self, velocity):
+        acceleration_limit = self.hlc.config.acceleration_max
+        step_size = acceleration_limit*self.delay_time
+        return copysign(abs(velocity)-step_size, velocity) #Decrease magnitude of speed by step size
+
     def input_target(self, target: Target):
         if not self.check_input(target): return False
-        #Generate desired X and Y speed based on current speed and acceleration limits
 
-        #Find angular speed based on rotational error, angular velocity and max angular acceleration.
+        linear_target = self.get_linear_speed_target(target)
+        angular_target = self.get_angular_speed_target(target)
+        self.target = target
+        return True
 
-        self.set_low_level_interface_target()
+
     def check_input(self, target: Target):
         if not super().check_input(target): return False
-        if target.world_pose == None or target.local_angular == None:
-            self.logger.error(" - {}:  input target missing world_velocity or local_angular".format(self.name))
+        if target.world_point == None or target.world_bearing == None:
+            self.logger.error(" - {}:  input target missing world_velocity or world_bearing".format(self.name))
             return False
         return True
+
+    def get_stopping_distance_linear(self, velocity):
+        speed = abs(velocity)
+        stopping_distance = (speed**2)/(2*self.hlc.config.acceleration_max)
+        return stopping_distance
 
 
 class WPTurnStraightTurnControl(WorldPoseControl):

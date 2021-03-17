@@ -70,6 +70,9 @@ class LocalisationSystem():
         velocitypose.world_x_position = new_x_pos
         velocitypose.world_y_position = new_y_pos
         velocitypose.heading = new_heading
+        velocitypose.world_x_velocity = world_x_vel
+        velocitypose.world_y_velocity = world_y_vel
+
 
         self.current_pose = velocitypose
         self.localisation_last_updated_time = timestamp
@@ -145,13 +148,15 @@ class LocalisationSystem():
             angle = angle+2*pi
         return angle
 
-class VelocityPose: #TODO should this be included in target object?
+class VelocityPose: 
     timestamp = 0
     local_x_velocity = 0 #Local frame, velocity, X direction
     local_y_velocity = 0 #Local frame, velocity, Y direction
     angular_velocity = 0 #Local frame, velocity, Rotational
     world_x_position = 0 
     world_y_position = 0
+    world_x_velocity = 0
+    world_y_velocity = 0
     heading = 0 #RADIANS
 
     def __init__(self):

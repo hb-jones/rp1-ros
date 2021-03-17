@@ -1,5 +1,5 @@
 from rp1controller import Target
-from rp1controller.trajectory_planners import LocalVelocityControl, WorldVelocityControl
+from rp1controller.trajectory_planners import LocalVelocityControl, WorldVelocityControl, WorldPoseControl
 import rp1controller
 import socket, pickle
 import rp1controller
@@ -43,6 +43,9 @@ while True:
         HLC.set_trajectory_planner(planner)
     elif data == "world":
         planner = WorldVelocityControl(HLC)
+        HLC.set_trajectory_planner(planner)
+    elif data == "pose":
+        planner = WorldPoseControl(HLC)
         HLC.set_trajectory_planner(planner)
     elif data == "reset":
         HLC.localisation.reset_localisation()

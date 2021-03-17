@@ -16,10 +16,10 @@ class RP1Controller():
         self.logger = logging.getLogger(__name__) #Creates a logger for use with the base logger
         self.config: RP1Configuration = RP1Configuration()
         self.logger.info(" - New Initialisation of logger \n")
-        self.trajectory_planner = LocalVelocityControl(self)
         self.low_level_interface = LowLevelInterface(self)
         self.low_level_interface.start_loop()
         self.localisation = LocalisationSystem(self)
+        self.trajectory_planner = LocalVelocityControl(self)
         
         return
 

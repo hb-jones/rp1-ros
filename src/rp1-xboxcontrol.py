@@ -29,7 +29,7 @@ vel_gain = 0.004
 vel_integrator_gain = 0.021
 
 
-speed_limit_rot = 1.2
+speed_limit_rot = 1
 speed_limit_linear = 1
 speed_limit_step = 0.2
 
@@ -40,6 +40,9 @@ target_rot = 0
 mode = "local"
 
 running_flag = True
+
+course = [(0,0),(2,0),(2,0.5),(0,0.5)]
+course_index = 0
 
 def curve(input):
     input = input/32000
@@ -130,7 +133,8 @@ def listen_to_gamepad():
             if event.code == button_MODE and event.state == 1:
                 change_mode()
             if event.code == button_RSTODOM and event.state == 1:
-                reset_odometry()
+                #reset_odometry()
+                advance_course()
             if event.code == button_PRP:
                 if event.state == state_PRP_UP:
                     update_PID("proportional", True) 
@@ -166,8 +170,12 @@ def change_mode():
     global mode
     if mode == "local": #TODO could be handled better
         mode = "world"
+    if mode == "world":
+        mode = "pose"
     else:
         mode = "local"
+    print(f"Mode is currently: {mode}")
+
     data = pickle.dumps(mode) 
     clientsocket.send(data)
     return
@@ -177,14 +185,30 @@ def reset_odometry():
     clientsocket.send(data)
     return
 
+def advance_course():
+    if mode != "pose":
+        return
+    global course_index, course
+    course_index += 1
+    if course_index >= len(course):
+        course_index = 0
+    print(f"Moving to position: {course_index} at: {course[course_index]}")
+    
+
 def main():
     setup_socket()
     gp_listen = threading.Thread(target=listen_to_gamepad)
     gp_listen.start()
     while running_flag:
         sleep(0.05) #Needs to be at the start of loop so exit is handled gracefully 
-        target = update_target()
-        send_target(target)
+        if mode != "pose":
+            target = update_target()
+            send_target(target)
+        else:
+            target = Target()
+            target.world_bearing = 0
+            target.world_point = course[course_index]
+            send_target(target)
 
         
 

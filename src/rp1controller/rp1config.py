@@ -101,14 +101,18 @@ class RP1Configuration():
     vel_ramp_rate = 100
 
     acceleration_max = 0.2 #m/s^2 #TODO implement
-    linear_velocity_max = 5 #m/s
-    angular_velocity_max = 2 #rad/s
+    linear_velocity_max = 1 #m/s
+    angular_velocity_max = 1 #rad/s
 
     safe_linear_velocity = 0.5
     safe_angular_velocity = 0.6
 
     linear_velocity_stable_min = 0.2 #TODO Adjust #Minimum speed robot can move and keep stable
     angular_velocity_stable_min = 0.2
+
+    max_error_position = 0.1
+    max_error_velocity = 0.1
+    max_error_bearing = 0.1
 
     def __init__(self):
         self.model = KinematicModel(self) #The kinematic model containing robot size, gear ratio etc
