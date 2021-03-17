@@ -229,8 +229,7 @@ class WorldPoseControl(ControlMode):
 
     def get_stopping_distance_linear(self, velocity):
         speed = abs(velocity)
-        tuning_modifier = 1.1 #TODO remove or update
-        stopping_distance = (speed**2)/(2*self.hlc.config.acceleration_max)*tuning_modifier
+        stopping_distance = (speed**2)/(2*self.hlc.config.acceleration_max)
         return stopping_distance
 
 
