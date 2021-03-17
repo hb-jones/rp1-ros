@@ -105,6 +105,9 @@ class WorldPoseControl(ControlMode):
 
     delay_time = 0.1
 
+    current_target_linear_velocity = (0,0)
+    current_target_angular_velocity = 0
+
     def __init__(self, hlc):
         super().__init__(hlc)
         self.localisation_system = self.hlc.localisation
@@ -141,11 +144,11 @@ class WorldPoseControl(ControlMode):
                 elif abs(error_velocity[0])<abs(target_velocity_max[0]):
                     stopping_distance = self.get_stopping_distance_linear(current_pose.world_x_velocity)
                     if stopping_distance>abs(error_position[0]):
-                        target_world_x = self.decelerate_linear_step(current_pose.world_x_velocity)
-                elif abs(current_pose.world_x_velocity)>max_linear_velocity:
-                    target_world_x = self.decelerate_linear_step(current_pose.world_x_velocity)
+                        target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
+                elif abs(current_pose.world_x_velocity)>max_linear_velocity or self.current_target_linear_velocity[0]>max_linear_velocity:
+                    target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
                 else:
-                    target_world_x = self.accelerate_linear_step(current_pose.world_x_velocity, target_velocity_max[0])
+                    target_world_x = self.accelerate_linear_step(self.current_target_linear_velocity[0], target_velocity_max[0])
 
                 #Y
                 if abs(error_position[1])<self.hlc.config.max_error_position and abs(current_pose.world_y_velocity)<self.hlc.config.max_error_velocity:
@@ -153,11 +156,11 @@ class WorldPoseControl(ControlMode):
                 elif abs(error_velocity[1])<abs(target_velocity_max[1]):
                     stopping_distance = self.get_stopping_distance_linear(current_pose.world_y_velocity)
                     if stopping_distance>abs(error_position[1]):
-                        target_world_y = self.decelerate_linear_step(current_pose.world_y_velocity)
-                elif abs(current_pose.world_y_velocity)>max_linear_velocity:
-                    target_world_y = self.decelerate_linear_step(current_pose.world_y_velocity)
+                        target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
+                elif abs(current_pose.world_y_velocity)>max_linear_velocity or self.current_target_linear_velocity[1]>max_linear_velocity:
+                    target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
                 else:
-                    target_world_y = self.accelerate_linear_step(current_pose.world_y_velocity, target_velocity_max[1])
+                    target_world_y = self.accelerate_linear_step(self.current_target_linear_velocity[1], target_velocity_max[1])
 
                 #Angular #TODO
 
@@ -197,6 +200,8 @@ class WorldPoseControl(ControlMode):
             self.target = None
             return False
         self.target = target
+        self.current_target_linear_velocity = (self.localisation_system.current_pose.world_x_velocity, self.localisation_system.current_pose.world_y_velocity)
+        self.current_target_angular_velocity = self.localisation_system.current_pose.angular_velocity
         return True
 
 

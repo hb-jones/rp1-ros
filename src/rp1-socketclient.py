@@ -37,8 +37,9 @@ while True:
         data = pickle.loads(msg)
     except:
         data = Target()
-    
-    if data == "local":
+    if data == "watchdog":
+        pass
+    elif data == "local":
         planner = LocalVelocityControl(HLC)
         HLC.set_trajectory_planner(planner)
     elif data == "world":

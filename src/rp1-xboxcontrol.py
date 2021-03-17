@@ -193,6 +193,10 @@ def advance_course():
     if course_index >= len(course):
         course_index = 0
     print(f"Moving to position: {course_index} at: {course[course_index]}")
+    target = Target()
+    target.world_bearing = 0
+    target.world_point = course[course_index]
+    send_target(target)
     
 
 def main():
@@ -205,10 +209,8 @@ def main():
             target = update_target()
             send_target(target)
         else:
-            target = Target()
-            target.world_bearing = 0
-            target.world_point = course[course_index]
-            send_target(target)
+            data = pickle.dumps("watchdog") 
+            clientsocket.send(data)
 
         
 
