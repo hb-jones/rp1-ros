@@ -122,7 +122,7 @@ class WorldPoseControl(ControlMode):
         while self.loop_run_flag:
             if self.target != None:
                 self.configure_target()
-                
+                print(f"Target currently at position: {self.target.world_point}, bearing: {self.target.world_bearing}")
                 max_linear_velocity = self.hlc.config.linear_velocity_max
                 max_angular_velocity = self.hlc.config.angular_velocity_max
                 current_pose = self.localisation_system.current_pose
@@ -166,6 +166,8 @@ class WorldPoseControl(ControlMode):
                 if abs(target_local_x)>max_linear_velocity: target_local_x = copysign(max_linear_velocity, target_local_x)
                 if abs(target_local_y)>max_linear_velocity: target_local_y = copysign(max_linear_velocity, target_local_y)
                 if abs(target_angular)>max_angular_velocity: target_angular = copysign(max_angular_velocity, target_angular)
+                
+                print(f"Output is X: {target_local_x}, Y: {target_local_y}, A: {target_angular}")
 
                 self.set_low_level_interface_target((target_local_x, target_local_y),target_angular)
                 sleep(self.delay_time) #TODO change this to something to account for processing time
