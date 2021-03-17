@@ -147,7 +147,8 @@ class WorldPoseControl(ControlMode):
                     #print("Close Enough!")
                 else:
                     stopping_distance = self.get_stopping_distance_linear(current_pose.world_x_velocity)
-                    if stopping_distance>abs(error_position[0]) and error_velocity[0]<target_velocity_max[0]:
+                    print(f"Distance to target: {error_position[0]}, stopping distance: {stopping_distance}")
+                    if stopping_distance>abs(error_position[0]) and abs(error_velocity[0])<abs(target_velocity_max[0]):
                             target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
                             #print("Decelerating to target")
                     elif abs(current_pose.world_x_velocity)>max_linear_velocity or self.current_target_linear_velocity[0]>max_linear_velocity:
@@ -162,7 +163,7 @@ class WorldPoseControl(ControlMode):
                     target_world_y = 0
                 else:
                     stopping_distance = self.get_stopping_distance_linear(current_pose.world_y_velocity)
-                    if stopping_distance>abs(error_position[1]) and error_velocity[1]<target_velocity_max[1]:
+                    if stopping_distance>abs(error_position[1]) and abs(error_velocity[1])<abs(target_velocity_max[1]):
                             target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
                     elif abs(current_pose.world_y_velocity)>max_linear_velocity or self.current_target_linear_velocity[1]>max_linear_velocity:
                         target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
