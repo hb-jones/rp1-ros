@@ -165,7 +165,7 @@ class WorldPoseControl(ControlMode):
                 #Angular #TODO
                 
 
-                self.current_target_linear_velocity(target_world_x,target_world_y)
+                self.current_target_linear_velocity = (target_world_x,target_world_y)
                 self.current_target_angular_velocity = target_angular
                 #FINAL ERROR CHECKING
                 target_local_x, target_local_y = self.localisation_system.transform_WV_to_LV((target_world_x, target_world_y))
