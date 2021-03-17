@@ -165,9 +165,9 @@ class WorldPoseControl(ControlMode):
                 target_local_x, target_local_y = self.localisation_system.transform_WV_to_LV((target_world_x, target_world_y))
                 if abs(target_local_x)>max_linear_velocity: target_local_x = copysign(max_linear_velocity, target_local_x)
                 if abs(target_local_y)>max_linear_velocity: target_local_y = copysign(max_linear_velocity, target_local_y)
-                if abs(target_ang)>max_angular_velocity: target_ang = copysign(max_angular_velocity, target_ang)
+                if abs(target_angular)>max_angular_velocity: target_angular = copysign(max_angular_velocity, target_angular)
 
-                self.set_low_level_interface_target((target_local_x, target_local_y),target_ang)
+                self.set_low_level_interface_target((target_local_x, target_local_y),target_angular)
                 sleep(self.delay_time) #TODO change this to something to account for processing time
 
             else:
