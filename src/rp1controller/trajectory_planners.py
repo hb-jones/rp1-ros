@@ -103,7 +103,7 @@ class WorldPoseControl(ControlMode):
     thread_handle = None 
     target: Target = None #Replace with coordinate and heading? TODO
 
-    delay_time = 0.02
+    delay_time = 0.2
 
     current_target_linear_velocity = (0,0)
     current_target_angular_velocity = 0
