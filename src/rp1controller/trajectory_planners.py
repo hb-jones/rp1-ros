@@ -103,7 +103,7 @@ class WorldPoseControl(ControlMode):
     thread_handle = None 
     target: Target = None #Replace with coordinate and heading? TODO
 
-    delay_time = 0.1
+    delay_time = 0.02
 
     current_target_linear_velocity = (0,0)
     current_target_angular_velocity = 0
@@ -126,9 +126,9 @@ class WorldPoseControl(ControlMode):
             sleep(self.delay_time) #TODO change this to something to account for processing time
             if self.target != None:
                 self.configure_target()
-                print("\n\n\n")
-                print(f"Target currently at position: {self.target.world_point}, bearing: {self.target.world_bearing}")
-                print(f"Robot Currently at position:  {(self.localisation_system.current_pose.world_x_position,self.localisation_system.current_pose.world_y_position)}, bearing: {self.target.world_bearing}")
+                #print("\n\n\n")
+                #print(f"Target currently at position: {self.target.world_point}, bearing: {self.target.world_bearing}")
+                #print(f"Robot Currently at position:  {(self.localisation_system.current_pose.world_x_position,self.localisation_system.current_pose.world_y_position)}, bearing: {self.target.world_bearing}")
                 max_linear_velocity = self.hlc.config.linear_velocity_max
                 max_angular_velocity = self.hlc.config.angular_velocity_max
                 current_pose = self.localisation_system.current_pose
@@ -136,7 +136,7 @@ class WorldPoseControl(ControlMode):
                 error_position = self.localisation_system.get_relative_position_of_point(self.target.world_point)
                 target_velocity_max = (copysign(max_linear_velocity, error_position[0]), copysign(max_linear_velocity, error_position[1]))
                 error_velocity = (target_velocity_max[0] - current_pose.world_x_velocity ,target_velocity_max[1] - current_pose.world_y_velocity)
-                print(f"Positional error: {error_position}, Target Velocity Max: {target_velocity_max}, Velocity error: {error_velocity}")
+                #print(f"Positional error: {error_position}, Target Velocity Max: {target_velocity_max}, Velocity error: {error_velocity}")
                 target_world_x = 0
                 target_world_y = 0
                 target_angular = 0
@@ -144,18 +144,18 @@ class WorldPoseControl(ControlMode):
                 #X
                 if abs(error_position[0])<self.hlc.config.max_error_position and abs(current_pose.world_x_velocity)<self.hlc.config.max_error_velocity:
                     target_world_x = 0
-                    print("Close Enough!")
+                    #print("Close Enough!")
                 else:
                     stopping_distance = self.get_stopping_distance_linear(current_pose.world_x_velocity)
                     if stopping_distance>abs(error_position[0]) and error_velocity[0]<target_velocity_max[0]:
                             target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
-                            print("Decelerating to target")
+                            #print("Decelerating to target")
                     elif abs(current_pose.world_x_velocity)>max_linear_velocity or self.current_target_linear_velocity[0]>max_linear_velocity:
                         target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
-                        print("Overspeed")
+                        #print("Overspeed")
                     else:
                         target_world_x = self.accelerate_linear_step(self.current_target_linear_velocity[0], target_velocity_max[0])
-                        print("Accelerating!")
+                        #print("Accelerating!")
 
                 #Y
                 if abs(error_position[1])<self.hlc.config.max_error_position and abs(current_pose.world_y_velocity)<self.hlc.config.max_error_velocity:
@@ -169,7 +169,7 @@ class WorldPoseControl(ControlMode):
                     else:
                         target_world_y = self.accelerate_linear_step(self.current_target_linear_velocity[1], target_velocity_max[1])
 
-                print(f"Target WX: {target_world_x} target WY: {target_world_y}")
+                #print(f"Target WX: {target_world_x} target WY: {target_world_y}")
 
                 #Angular #TODO
                 
@@ -182,8 +182,8 @@ class WorldPoseControl(ControlMode):
                 if abs(target_local_y)>max_linear_velocity: target_local_y = copysign(max_linear_velocity, target_local_y)
                 if abs(target_angular)>max_angular_velocity: target_angular = copysign(max_angular_velocity, target_angular)
                 
-                print(f"Output is X: {target_local_x}, Y: {target_local_y}, A: {target_angular}")
-                print()
+                #print(f"Output is X: {target_local_x}, Y: {target_local_y}, A: {target_angular}")
+                #print()
 
                 self.set_low_level_interface_target((target_local_x, target_local_y),target_angular)
                 
