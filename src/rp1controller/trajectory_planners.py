@@ -1,5 +1,6 @@
 from math import copysign, fabs
 from time import sleep
+import time
 from typing import Tuple
 import logging, threading
 
@@ -126,6 +127,7 @@ class WorldPoseControl(ControlMode):
             sleep(self.delay_time) #TODO change this to something to account for processing time
             if self.target != None:
                 self.configure_target()
+                time_start = time.time()
                 #print("\n\n\n")
                 #print(f"Target currently at position: {self.target.world_point}, bearing: {self.target.world_bearing}")
                 #print(f"Robot Currently at position:  {(self.localisation_system.current_pose.world_x_position,self.localisation_system.current_pose.world_y_position)}, bearing: {self.target.world_bearing}")
@@ -147,11 +149,11 @@ class WorldPoseControl(ControlMode):
                     #print("Close Enough!")
                 else:
                     stopping_distance = self.get_stopping_distance_linear(current_pose.world_x_velocity)
-                    print(f"\nTarget Velocity: {self.current_target_linear_velocity[0]}, Measured Velocity: {current_pose.world_x_velocity}")
-                    print(f"Distance to target: {error_position[0]}, stopping distance: {stopping_distance}")
+                    #print(f"\nTarget Velocity: {self.current_target_linear_velocity[0]}, Measured Velocity: {current_pose.world_x_velocity}")
+                    #print(f"Distance to target: {error_position[0]}, stopping distance: {stopping_distance}")
                     if stopping_distance>abs(error_position[0]) and abs(error_velocity[0])<abs(target_velocity_max[0]):
                             target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
-                            print("Decelerating to target")
+                            #print("Decelerating to target")
                     elif abs(current_pose.world_x_velocity)>max_linear_velocity or self.current_target_linear_velocity[0]>max_linear_velocity:
                         target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
                         #print("Overspeed")
@@ -189,7 +191,8 @@ class WorldPoseControl(ControlMode):
 
                 self.set_low_level_interface_target((target_local_x, target_local_y),target_angular)
                 
-
+                time_taken = time.time()-time_start
+                print(f"Time taken: {time_taken}")
             else:
                 self.set_low_level_interface_target((0,0),0) #Stop if no valid target found
         return
