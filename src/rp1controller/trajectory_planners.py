@@ -127,7 +127,7 @@ class WorldPoseControl(ControlMode):
             sleep(self.delay_time) #TODO change this to something to account for processing time
             if self.target != None:
                 self.configure_target()
-                time_start = time.time()
+                time_start = time.perf_counter()
                 #print("\n\n\n")
                 #print(f"Target currently at position: {self.target.world_point}, bearing: {self.target.world_bearing}")
                 #print(f"Robot Currently at position:  {(self.localisation_system.current_pose.world_x_position,self.localisation_system.current_pose.world_y_position)}, bearing: {self.target.world_bearing}")
@@ -142,7 +142,7 @@ class WorldPoseControl(ControlMode):
                 target_world_x = 0
                 target_world_y = 0
                 target_angular = 0
-
+                time_a = time.perf_counter()-time_start
                 #X
                 if abs(error_position[0])<self.hlc.config.max_error_position and abs(current_pose.world_x_velocity)<self.hlc.config.max_error_velocity:
                     target_world_x = 0
@@ -160,7 +160,7 @@ class WorldPoseControl(ControlMode):
                     else:
                         target_world_x = self.accelerate_linear_step(self.current_target_linear_velocity[0], target_velocity_max[0])
                         #print("Accelerating!")
-
+                time_b = time.perf_counter()-time_start-time_a
                 #Y
                 if abs(error_position[1])<self.hlc.config.max_error_position and abs(current_pose.world_y_velocity)<self.hlc.config.max_error_velocity:
                     target_world_y = 0
@@ -177,7 +177,7 @@ class WorldPoseControl(ControlMode):
 
                 #Angular #TODO
                 
-
+                time_c = time.perf_counter()-time_start-time_a-time_b
                 self.current_target_linear_velocity = (target_world_x,target_world_y)
                 self.current_target_angular_velocity = target_angular
                 #FINAL ERROR CHECKING
@@ -188,11 +188,11 @@ class WorldPoseControl(ControlMode):
                 
                 #print(f"Output is X: {target_local_x}, Y: {target_local_y}, A: {target_angular}")
                 #print()
-
+                time_d = time.perf_counter()-time_start-time_a-time_b-time_c
                 self.set_low_level_interface_target((target_local_x, target_local_y),target_angular)
-                
-                time_taken = time.time()-time_start
-                print(f"Time taken: {time_taken}")
+                time_e = time.perf_counter()-time_start-time_a-time_b-time_c-time_d
+                time_taken = time.perf_counter()-time_start
+                print(f"Total: {time_taken:.2f}, Setup: {time_a:.2f}, X: {time_b:.2f}, Y: {time_c:.2f}, Error Check: {time_d:.2f}, Set Target: {time_e:.2f}")
             else:
                 self.set_low_level_interface_target((0,0),0) #Stop if no valid target found
         return
