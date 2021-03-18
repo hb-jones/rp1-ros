@@ -151,7 +151,7 @@ class WorldPoseControl(ControlMode):
                     print(f"Distance to target: {error_position[0]}, stopping distance: {stopping_distance}")
                     if stopping_distance>abs(error_position[0]) and abs(error_velocity[0])<abs(target_velocity_max[0]):
                             target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
-                            #print("Decelerating to target")
+                            print("Decelerating to target")
                     elif abs(current_pose.world_x_velocity)>max_linear_velocity or self.current_target_linear_velocity[0]>max_linear_velocity:
                         target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
                         #print("Overspeed")
