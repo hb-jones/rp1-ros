@@ -104,7 +104,8 @@ class WorldPoseControl(ControlMode):
     thread_handle = None 
     target: Target = None #Replace with coordinate and heading? TODO
 
-    delay_time = 0.2
+    delay_time_target = 0.2 #Ideal Delay time for system to acheive
+    delay_time_last = 0 #The last delay time, used when system is too slow.
 
     current_target_linear_velocity = (0,0)
     current_target_angular_velocity = 0
@@ -124,7 +125,6 @@ class WorldPoseControl(ControlMode):
 
     def trajectory_loop(self): #TODO this is just gonna accelerate it whatever direction
         while self.loop_run_flag:
-            sleep(self.delay_time) #TODO change this to something to account for processing time
             if self.target != None:
                 self.configure_target()
                 time_start = time.perf_counter()
@@ -142,7 +142,7 @@ class WorldPoseControl(ControlMode):
                 target_world_x = 0
                 target_world_y = 0
                 target_angular = 0
-                time_a = time.perf_counter()-time_start
+
                 #X
                 if abs(error_position[0])<self.hlc.config.max_error_position and abs(current_pose.world_x_velocity)<self.hlc.config.max_error_velocity:
                     target_world_x = 0
@@ -160,7 +160,6 @@ class WorldPoseControl(ControlMode):
                     else:
                         target_world_x = self.accelerate_linear_step(self.current_target_linear_velocity[0], target_velocity_max[0])
                         #print("Accelerating!")
-                time_b = time.perf_counter()-time_start-time_a
                 #Y
                 if abs(error_position[1])<self.hlc.config.max_error_position and abs(current_pose.world_y_velocity)<self.hlc.config.max_error_velocity:
                     target_world_y = 0
@@ -177,7 +176,7 @@ class WorldPoseControl(ControlMode):
 
                 #Angular #TODO
                 
-                time_c = time.perf_counter()-time_start-time_a-time_b
+
                 self.current_target_linear_velocity = (target_world_x,target_world_y)
                 self.current_target_angular_velocity = target_angular
                 #FINAL ERROR CHECKING
@@ -188,11 +187,12 @@ class WorldPoseControl(ControlMode):
                 
                 #print(f"Output is X: {target_local_x}, Y: {target_local_y}, A: {target_angular}")
                 #print()
-                time_d = time.perf_counter()-time_start-time_a-time_b-time_c
                 self.set_low_level_interface_target((target_local_x, target_local_y),target_angular)
-                time_e = time.perf_counter()-time_start-time_a-time_b-time_c-time_d
-                time_taken = time.perf_counter()-time_start
-                print(f"Total: {time_taken:.2f}, Setup: {time_a:.2f}, X: {time_b:.2f}, Y: {time_c:.2f}, Error Check: {time_d:.2f}, Set Target: {time_e:.2f}")
+                self.delay_time_last = time.perf_counter()-time_start
+                
+                if self.delay_time_last<self.delay_time_target: #If time taken was less than target then wait the rest of the time.
+                    sleep(self.delay_time_target-self.delay_time_last)
+                    self.delay_time_last = self.delay_time_target
             else:
                 self.set_low_level_interface_target((0,0),0) #Stop if no valid target found
         return
@@ -202,7 +202,7 @@ class WorldPoseControl(ControlMode):
 
     def accelerate_linear_step(self, velocity, target_velocity):
         acceleration_limit = self.hlc.config.acceleration_max
-        step_size = acceleration_limit*self.delay_time
+        step_size = acceleration_limit*self.delay_time_last
 
         stepped_velocity = velocity+step_size*copysign(1,target_velocity)
         return stepped_velocity
@@ -210,7 +210,7 @@ class WorldPoseControl(ControlMode):
 
     def decelerate_linear_step(self, velocity):
         acceleration_limit = self.hlc.config.acceleration_max
-        step_size = acceleration_limit*self.delay_time
+        step_size = acceleration_limit*self.delay_time_last
         return copysign(abs(velocity)-step_size, velocity) #Decrease magnitude of speed by step size
 
     def input_target(self, target: Target):
