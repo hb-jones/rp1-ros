@@ -125,13 +125,15 @@ class LowLevelInterface():
             if log: self.logger.debug("{name}: - Setting target to {tar}".format(name = axis_name, tar = target_rps))
             start_time = time.perf_counter()
             axis.controller.input_vel = target_rps #Sets driver target
-            print(f"controller.input_vel time: {time.perf_counter()-start_time}")
+            end_time = time.perf_counter()-start_time
+            print(f"controller.input_vel time: {end_time}")
             self.target_motor[axis_name] = target_rps
             start_time = time.perf_counter()
             if (abs(axis.controller.input_vel) > abs(target_rps)+0.1 or abs(axis.controller.input_vel) < abs(target_rps) - 0.1):
                 self.logger.error("{name} - Target Error: Unexpected velocity input. Expected: {t}, currently: {c}".format(name = axis_name, t = target_rps, c = axis.controller.input_vel))
                 successful = False
-            print(f"input vel check time: {time.perf_counter()-start_time}")
+            end_time = time.perf_counter()-start_time
+            print(f"input vel check time: {end_time}")
         return successful
    
     
