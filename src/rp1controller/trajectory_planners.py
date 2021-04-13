@@ -48,7 +48,9 @@ class ControlMode:
 
     def set_low_level_interface_target(self, linear, angular):
         """Sends target LV to LLI"""
+        start_time = time.perf_counter()
         self.hlc.low_level_interface.set_target(linear, angular)
+        print(f"Time taken: {time.perf_counter()-start_time}")
         return True
 
 #Local Frame Velocity Controllers
