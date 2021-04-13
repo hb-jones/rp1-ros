@@ -107,7 +107,9 @@ class LowLevelInterface():
         self.target_changed_flag = True
         self.target_updated_flag = True 
         if self.axis_state == AXIS_STATE_CLOSED_LOOP_CONTROL:
+            start_time = time.perf_counter()
             self.set_motor_target(log) #If new target then set motors
+            print(f"set_motor_target time: {time.perf_counter()-start_time}")
         return
 
     def set_motor_target(self, log = False): 
