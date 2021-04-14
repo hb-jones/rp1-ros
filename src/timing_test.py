@@ -5,8 +5,11 @@ import threading
 
 thread_active = True
 
+serial_a = "208239904D4D" #String containing front ODrive's serial number in hex format all capitals
+serial_b = "206039994D4D" #String containing back  ODrive's serial number in hex format all capitals
 
-odrv = odrive.find_any()
+odrv = odrive.find_any(serial_number=serial_a)
+odrv_b= odrive.find_any(serial_number=serial_b)
 axis = odrv.axis0
 axis_thread = odrv.axis0
 
@@ -21,7 +24,7 @@ def thread_test():
         x=2
         axis_thread.controller.input_vel = x
         measured = axis_thread.controller.input_vel
-        loops+=1
+        loops+=2
     thread_average_time_taken = (time.perf_counter()-thread_start_time)/loops
     print(f"Thread performed {loops} loops with average of {thread_average_time_taken}s")
 
@@ -133,6 +136,20 @@ thread.join()
 print(f"Average time taken 1000 loops with obstruction thread is: {taken}s")
 print()
 
+
+axis_thread = odrv_b.axis0
+thread_active = True
+thread = threading.Thread(target=thread_test)
+thread.start()
+start = time.perf_counter()
+for i in range(1000):
+    axis.controller.input_vel = i/1000
+    measured = axis.controller.input_vel
+taken = (time.perf_counter()-start)/1000
+thread_active = False
+thread.join()
+print(f"Average time taken 1000 loops with obstruction thread on other drive is: {taken}s")
+print()
 
 
 
