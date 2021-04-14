@@ -61,7 +61,7 @@ class LowLevelInterface():
             
             
             self.loop_complete_flag = True
-            sleep(0.05) #TODO reduce if this does not cause issues
+            sleep(1.05) #TODO reduce if this does not cause issues TODO MASSIVELY INCREASED LOOP DELAY, REMOVE AFTER TESTS
         self.logger.info(" - LLI loop shutting down")
         self.thread_updating = False
         self.is_ready = False
