@@ -106,7 +106,7 @@ start = time.perf_counter()
 for i in range(1000):
     axis.controller.input_vel = i/1000
     measured = axis.controller.input_vel
-taken = (time.perf_counter()-start)/1000
+taken = (time.perf_counter()-start)/2000
 print(f"Average time taken 1000 loops is: {taken}s")
 print() 
 
@@ -116,7 +116,7 @@ start = time.perf_counter()
 for i in range(1000):
     axis.controller.input_vel = i/1000
     measured = axis.controller.input_vel
-taken = (time.perf_counter()-start)/1000
+taken = (time.perf_counter()-start)/2000
 thread_active = False
 thread.join()
 print(f"Average time taken 1000 loops with obstruction thread is: {taken}s")
@@ -130,7 +130,7 @@ start = time.perf_counter()
 for i in range(1000):
     axis.controller.input_vel = i/1000
     measured = axis.controller.input_vel
-taken = (time.perf_counter()-start)/1000
+taken = (time.perf_counter()-start)/2000
 thread_active = False
 thread.join()
 print(f"Average time taken 1000 loops with obstruction thread is: {taken}s")
@@ -145,11 +145,38 @@ start = time.perf_counter()
 for i in range(1000):
     axis.controller.input_vel = i/1000
     measured = axis.controller.input_vel
-taken = (time.perf_counter()-start)/1000
+taken = (time.perf_counter()-start)/2000
 thread_active = False
 thread.join()
 print(f"Average time taken 1000 loops with obstruction thread on other drive is: {taken}s")
 print()
+
+
+start = time.perf_counter()
+for i in range(1000):
+    axis = odrv.axis0
+    axis.controller.input_vel = i/1000
+    measured = axis.controller.input_vel
+
+    axis = odrv_b.axis0
+    axis.controller.input_vel = i/1000
+    measured = axis.controller.input_vel
+
+    axis = odrv.axis1
+    axis.controller.input_vel = i/1000
+    measured = axis.controller.input_vel
+
+    axis = odrv_b.axis1
+    axis.controller.input_vel = i/1000
+    measured = axis.controller.input_vel
+
+taken = (time.perf_counter()-start)/8000
+print(f"Average time taken 1000 changing drive loops is: {taken}s")
+print() 
+
+
+
+
 
 
 
