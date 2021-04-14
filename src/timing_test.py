@@ -175,6 +175,28 @@ print(f"Average time taken 1000 changing drive loops is: {taken}s")
 print() 
 
 
+start = time.perf_counter()
+for i in range(1000):
+    axis = odrv.axis0
+    axis.controller.input_vel = i/1000
+    measured = axis.controller.input_vel
+
+    axis = odrv.axis1
+    axis.controller.input_vel = i/1000
+    measured = axis.controller.input_vel
+
+    axis = odrv_b.axis0
+    axis.controller.input_vel = i/1000
+    measured = axis.controller.input_vel
+
+    axis = odrv_b.axis1
+    axis.controller.input_vel = i/1000
+    measured = axis.controller.input_vel
+
+taken = (time.perf_counter()-start)/8000
+print(f"Average time taken 1000 changing drive loops alternative order is: {taken}s")
+print() 
+
 
 
 
