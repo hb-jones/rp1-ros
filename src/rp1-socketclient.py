@@ -60,5 +60,3 @@ while True:
     else:
         first = False
         HLC.set_target(data)
-
-    time.sleep(0.1) #TODO temp delay for debugging
