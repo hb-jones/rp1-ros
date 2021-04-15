@@ -54,13 +54,12 @@ class LowLevelInterface():
     
     def main_loop(self):
         while self.loop_run_flag:
-            #if not self.check_state(): #Checks everything is in correct state etc
-                #self.is_ready = False
-                #self.logger.warning(" - LLI Loop Error: State check unsucessful. Loop aborting")
-                #break
+            if not self.check_state(): #Checks everything is in correct state etc
+                self.is_ready = False
+                self.logger.warning(" - LLI Loop Error: State check unsucessful. Loop aborting")
+                break
 
-            #self.update_odometry() 
-            #TODO Uncomment above
+            self.update_odometry() 
             
             self.loop_complete_flag = True
             sleep(0.05) #TODO reduce if this does not cause issues
