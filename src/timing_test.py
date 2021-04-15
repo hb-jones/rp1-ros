@@ -11,34 +11,33 @@ from rp1controller import Target
 
 HLC = rp1controller.RP1Controller()
 
-
 time.sleep(0.1)
 target = Target((1,0),0)
-HLC.set_target(target)
+HLC.low_level_interface.set_target(target)
 
-time.sleep(0.5)
+time.sleep(2)
 target = Target((-1,0),0)
-HLC.set_target(target)
+HLC.low_level_interface.set_target(target)
 
-time.sleep(0.5)
+time.sleep(2)
 target = Target((1,0),0)
-HLC.set_target(target)
+HLC.low_level_interface.set_target(target)
 
-time.sleep(0.5)
+time.sleep(2)
 target = Target((-1,0),0)
-HLC.set_target(target)
+HLC.low_level_interface.set_target(target)
 
-time.sleep(0.5)
+time.sleep(2)
 target = Target((1,0),0)
-HLC.set_target(target)
+HLC.low_level_interface.set_target(target)
 
-time.sleep(0.5)
+time.sleep(2)
 target = Target((-1,0),0)
-HLC.set_target(target)
+HLC.low_level_interface.set_target(target)
 
-time.sleep(0.5)
+time.sleep(2)
 target = Target((0,0),0)
-HLC.set_target(target)
+HLC.low_level_interface.set_target(target)
 
 
 # thread_active = True
