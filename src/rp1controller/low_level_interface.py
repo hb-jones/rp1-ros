@@ -10,6 +10,7 @@ from time import sleep
 import logging
 import threading
 import math
+from concurrent.futures import ThreadPoolExecutor, wait, as_completed
     
 class LowLevelInterface(): 
     drives_started = False #Flag to indicate if the controller and drives are connected and started
@@ -112,37 +113,34 @@ class LowLevelInterface():
         return
 
     def set_motor_target(self, log = False): 
-        
-        successful = True
-
         t_linear = self.target_linear
         t_angular = self.target_angular
         t_motors = self.model.transform_velocity_base_to_motor(t_linear[0], t_linear[1], t_angular)
 
+        executor_pool = ThreadPoolExecutor(4)
+        futures = []
+        start_time = time.perf_counter()
         for axis_name in self.axes_dict:
             axis: Axis = self.axes_dict[axis_name]
             target_rad = t_motors[axis_name]
             target_rps = self.radians_to_rps(target_rad)
             if log: self.logger.debug("{name}: - Setting target to {tar}".format(name = axis_name, tar = target_rps))
-            start_time = time.perf_counter()
-            axis.controller.input_vel = target_rps #Sets driver target
-            end_time = time.perf_counter()-start_time
-            print(f"controller.input_vel time: {end_time}")
             self.target_motor[axis_name] = target_rps
-            start_time = time.perf_counter()
-            measured_abs_input_vel = abs(axis.controller.input_vel)
-            if (measured_abs_input_vel > abs(target_rps) + 0.1 or measured_abs_input_vel < abs(target_rps) - 0.1):
-                self.logger.error("{name} - Target Error: Unexpected velocity input. Expected: {t}, currently: {c}".format(name = axis_name, t = target_rps, c = axis.controller.input_vel))
-                successful = False
-            end_time = time.perf_counter()-start_time
-            print(f"input vel check time: {end_time}")
-        return successful
+            futures.append(executor_pool.submit(self.apply_target_to_axis, axis, axis_name, target_rps))
+        
+        return_val = True
+        for future in as_completed(futures):
+            return_val = return_val and future.result()
+
+        time_taken = (time.perf_counter() - start_time)/4 #Divide by 4 for estimate of single read write performance
+        print(f"Time taken: {time_taken}s")
+        return return_val
    
     def apply_target_to_axis(self, axis: Axis, axis_name, target_rps):
         axis.controller.input_vel = target_rps
         measured_abs_input_vel = abs(axis.controller.input_vel)
         if (measured_abs_input_vel > abs(target_rps) + 0.1 or measured_abs_input_vel < abs(target_rps) - 0.1):
-            self.logger.error("{name} - Target Error: Unexpected velocity input. Expected: {t}, currently: {c}".format(name = axis_name, t = target_rps, c = axis.controller.input_vel))
+            self.logger.error("{name} - Target Error: Unexpected velocity input. Expected: {t}, currently: {c}".format(name = axis_name, t = target_rps, c = measured_abs_input_vel))
             return False
         return True
 
