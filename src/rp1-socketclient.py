@@ -59,4 +59,6 @@ while True:
             print("invalid confit dictionary")
     else:
         first = False
-        HLC.set_target(data)
+        data: Target
+        HLC.low_level_interface.set_target(data.local_velocity, data.angular_velocity) #TODO test code
+        #HLC.set_target(data)
