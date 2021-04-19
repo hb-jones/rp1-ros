@@ -26,7 +26,7 @@ class RP1Controller():
     def set_trajectory_planner(self, planner: ControlMode):
         """Sets trajectory planner. Planner must be an initialised Control Mode"""
         self.logger.info(f" - Changing trajectory planner to {planner.name}")
-        self.trajectory_planner = planner #TODO perhaps should construct object here
+        self.trajectory_planner = planner #TODO perhaps should construct object here, and prevent old planner from setting targets
         
     def set_target(self, target):
         target: Target
