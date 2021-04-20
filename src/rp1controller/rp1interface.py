@@ -18,7 +18,7 @@ class RP1Controller():
         self.logger.info(" - New Initialisation of logger \n")
         self.low_level_interface = LowLevelInterface(self)
         self.low_level_interface.start_loop()
-        #self.localisation = LocalisationSystem(self)
+        self.localisation = LocalisationSystem(self)
         self.trajectory_planner = LocalVelocityControl(self)
         
         return

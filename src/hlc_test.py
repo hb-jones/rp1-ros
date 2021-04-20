@@ -6,7 +6,7 @@ from time import sleep
 #Test script to find problem class
 
 hlc = rp1controller.RP1Controller()
-hlc.localisation.loop_run_flag = False
+#hlc.localisation.loop_run_flag = False
 
 t0 = Target((0,0),0)
 t1 = Target((1,0),0)
