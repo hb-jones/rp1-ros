@@ -41,7 +41,6 @@ class LocalisationSystem():
                     loop_counter = 0
                     self.log_localisation()
             time.sleep(0.25) #TODO if this fixes issues then remove 
-            self.loop_run_flag = False #TODO DEBUG CODE REMOVE
     def update_localisation(self):
         LLI = self.LLI
         timestamp = LLI.odom_updated_time
