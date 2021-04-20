@@ -40,7 +40,7 @@ class LocalisationSystem():
                 if loop_counter > 100 or True: #TODO maybe log every cycle
                     loop_counter = 0
                     self.log_localisation()
-            time.sleep(0.01) #TODO if this fixes issues then remove
+            time.sleep(0.225) #TODO if this fixes issues then remove 
 
     def update_localisation(self):
         LLI = self.LLI
