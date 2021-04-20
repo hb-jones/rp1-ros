@@ -26,8 +26,8 @@ s.connect((IP_laptop, 1066))
 HLC = rp1controller.RP1Controller()
 
 time_last = time.time()
-watchdog = threading.Thread(target=reset_target)
-watchdog.start()
+#watchdog = threading.Thread(target=reset_target)
+#watchdog.start() #TODO reenable
 first = True
 
 while True:
@@ -60,4 +60,3 @@ while True:
     else:
         first = False
         HLC.set_target(data)
-    time.sleep(0.2) #TODO limiting bandwidth
