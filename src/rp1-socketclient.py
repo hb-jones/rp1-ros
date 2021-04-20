@@ -60,3 +60,4 @@ while True:
     else:
         first = False
         HLC.set_target(data)
+    time.sleep(0.2) #TODO limiting bandwidth
