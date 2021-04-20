@@ -190,7 +190,6 @@ class WorldPoseControl(ControlMode):
                 self.set_low_level_interface_target((target_local_x, target_local_y),target_angular)
                 
                 self.delay_time_last = time.perf_counter()-time_start
-                print(f"Delay time: {self.delay_time_last}")
                 if self.delay_time_last<self.delay_time_target: #If time taken was less than target then wait the rest of the time.
                     sleep(self.delay_time_target-self.delay_time_last)
                     self.delay_time_last = self.delay_time_target
