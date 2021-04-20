@@ -40,7 +40,7 @@ class LocalisationSystem():
                 if loop_counter > 100 or True: #TODO maybe log every cycle
                     loop_counter = 0
                     self.log_localisation()
-            time.sleep(0.25) #TODO if this fixes issues then remove 
+            time.sleep(0.01) #TODO if this fixes issues then remove 
     def update_localisation(self):
         LLI = self.LLI
         timestamp = LLI.odom_updated_time
@@ -85,8 +85,7 @@ class LocalisationSystem():
     def log_localisation(self):
         self.telemetry_logger.log(8, self.current_pose)
         string = f"X: {self.current_pose.world_x_position:.2f}, Y: {self.current_pose.world_y_position:.2f}, H: {self.current_pose.heading:.2f}"
-        #print(string) #TODO Remove
-        #self.logger.info(string)#TODO Remove as only for debugging
+        print(string) #TODO Remove
         #TODO console output?
     
     def reset_localisation(self):
