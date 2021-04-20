@@ -123,7 +123,7 @@ class WorldPoseControl(ControlMode):
         self.thread_handle.join()
         super().__del__()
 
-    def trajectory_loop(self): #TODO this is just gonna accelerate it whatever direction
+    def trajectory_loop(self):
         while self.loop_run_flag:
             if self.target != None:
                 self.configure_target()
