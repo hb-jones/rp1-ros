@@ -77,16 +77,10 @@ class LowLevelInterface():
             axis: Axis = self.axes_dict[axis_name]
             target_rps = self.target_motor[axis_name]
             if log: self.logger.debug("{name}: - Setting target to {tar}".format(name = axis_name, tar = target_rps))
-            start_time = time.perf_counter()
             axis.controller.input_vel = target_rps #Sets driver target
-            end_time = time.perf_counter()-start_time
-            print(f"controller.input_vel time: {end_time}")
-            start_time = time.perf_counter()
             measured_abs_input_vel = abs(axis.controller.input_vel)
             if (measured_abs_input_vel > abs(target_rps)+0.1 or measured_abs_input_vel < abs(target_rps) - 0.1):
                 self.logger.error("{name} - Target Error: Unexpected velocity input. Expected: {t}, currently: {c}".format(name = axis_name, t = target_rps, c = axis.controller.input_vel))
-            end_time = time.perf_counter()-start_time
-            print(f"input vel check time: {end_time}")
         return
 
     def update_odometry(self):
