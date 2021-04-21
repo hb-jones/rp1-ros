@@ -100,8 +100,8 @@ class RP1Configuration():
     vel_integrator_gain = 0.021
     vel_ramp_rate = 100
 
-    acceleration_max = 0.3 #m/s^2
-    linear_velocity_max = 0.5 #m/s
+    acceleration_max = 0.5 #m/s^2
+    linear_velocity_max = 0.3 #m/s
     angular_velocity_max = 1 #rad/s
 
     safe_linear_velocity = 0.5

@@ -5,7 +5,7 @@ from .typings import Odrive as Odrv, Axis #For type checking etc
 import odrive
 from odrive.enums import *
 import time
-from time import sleep
+from time import perf_counter, sleep
 import logging
 import threading
 import math
@@ -52,6 +52,7 @@ class LowLevelInterface():
     
     def main_loop(self):
         while self.loop_run_flag:
+            time_start = perf_counter()
             if not self.check_state(): #Checks everything is in correct state etc
                 self.is_ready = False
                 self.logger.warning(" - LLI Loop Error: State check unsucessful. Loop aborting")
@@ -59,9 +60,13 @@ class LowLevelInterface():
 
             self.update_odometry() 
             
-            
             self.loop_complete_flag = True
-            sleep(1.05) #TODO reduce if this does not cause issues TODO MASSIVELY INCREASED LOOP DELAY, REMOVE AFTER TESTS
+            if self.target_changed_flag:
+                self.apply_motor_targets()
+            self.target_changed_flag = False 
+            time_taken = perf_counter()-time_start
+            print(f"Time taken for LLI loop: {time_taken}")
+            sleep(0.05) #TODO reduce if this does not cause issues 
         self.logger.info(" - LLI loop shutting down")
         self.thread_updating = False
         self.is_ready = False
@@ -69,6 +74,17 @@ class LowLevelInterface():
         self.axis_set_state(AXIS_STATE_IDLE)# set axis.state to idle
         if self.check_state():
             self.drives_started = True #Set system ready if shutdown was successful and no errors reported. 
+
+    def apply_motor_targets(self, log = False):
+        for axis_name in self.axes_dict:
+            axis: Axis = self.axes_dict[axis_name]
+            target_rps = self.target_motor[axis_name]
+            if log: self.logger.debug("{name}: - Setting target to {tar}".format(name = axis_name, tar = target_rps))
+            axis.controller.input_vel = target_rps #Sets driver target
+            measured_abs_input_vel = abs(axis.controller.input_vel)
+            if (measured_abs_input_vel > abs(target_rps)+0.1 or measured_abs_input_vel < abs(target_rps) - 0.1):
+                self.logger.error("{name} - Target Error: Unexpected velocity input. Expected: {t}, currently: {c}".format(name = axis_name, t = target_rps, c = axis.controller.input_vel))
+        return
 
     def update_odometry(self):
         """Updates odometry based on wheel position. Position chosen over velocity as it is likely to be more stable and resistant to varying polling times"""
@@ -111,9 +127,6 @@ class LowLevelInterface():
         return
 
     def set_motor_target(self, log = False): 
-        
-        successful = True
-
         t_linear = self.target_linear
         t_angular = self.target_angular
         t_motors = self.model.transform_velocity_base_to_motor(t_linear[0], t_linear[1], t_angular)
@@ -122,23 +135,11 @@ class LowLevelInterface():
             axis = self.axes_dict[axis_name]
             target_rad = t_motors[axis_name]
             target_rps = self.radians_to_rps(target_rad)
-            if log: self.logger.debug("{name}: - Setting target to {tar}".format(name = axis_name, tar = target_rps))
-            start_time = time.perf_counter()
-            axis.controller.input_vel = target_rps #Sets driver target
-            end_time = time.perf_counter()-start_time
-            print(f"controller.input_vel time: {end_time}")
             self.target_motor[axis_name] = target_rps
-            start_time = time.perf_counter()
-            measured_abs_input_vel = abs(axis.controller.input_vel)
-            if (measured_abs_input_vel > abs(target_rps)+0.1 or measured_abs_input_vel < abs(target_rps) - 0.1):
-                self.logger.error("{name} - Target Error: Unexpected velocity input. Expected: {t}, currently: {c}".format(name = axis_name, t = target_rps, c = axis.controller.input_vel))
-                successful = False
-            end_time = time.perf_counter()-start_time
-            print(f"input vel check time: {end_time}")
-        return successful
+        return True
    
     
-    def set_motor_target_direct(self,targ_motor: Dict[str, float]):
+    def set_motor_target_direct(self,targ_motor: Dict[str, float]): #TODO remove?
         """Test function for direct control of motors. Inputs for each motor in rotations per second"""
         self.logger.debug(" - Setting target in Debug Mode to {}".format(targ_motor))
         if self.target_motor == targ_motor:

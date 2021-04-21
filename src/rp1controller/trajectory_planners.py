@@ -123,7 +123,7 @@ class WorldPoseControl(ControlMode):
         self.thread_handle.join()
         super().__del__()
 
-    def trajectory_loop(self): #TODO this is just gonna accelerate it whatever direction
+    def trajectory_loop(self):
         while self.loop_run_flag:
             if self.target != None:
                 self.configure_target()
@@ -190,7 +190,6 @@ class WorldPoseControl(ControlMode):
                 self.set_low_level_interface_target((target_local_x, target_local_y),target_angular)
                 
                 self.delay_time_last = time.perf_counter()-time_start
-                
                 if self.delay_time_last<self.delay_time_target: #If time taken was less than target then wait the rest of the time.
                     sleep(self.delay_time_target-self.delay_time_last)
                     self.delay_time_last = self.delay_time_target
