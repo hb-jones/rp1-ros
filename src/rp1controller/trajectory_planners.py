@@ -1,5 +1,6 @@
 from math import copysign, fabs
 from time import sleep
+import numpy as np
 import time
 from typing import Tuple
 import logging, threading
@@ -17,8 +18,6 @@ class Target:
         self.angular_velocity  = local_angular
         return 
     
-
-
 
 
 
@@ -110,6 +109,13 @@ class WorldPoseControl(ControlMode):
     current_target_linear_velocity = (0,0)
     current_target_angular_velocity = 0
 
+    x_polypath = None
+    x_polypath_index = 0
+    y_polypath = None
+    y_polypath_index = 0
+    a_polypath = None
+    a_polypath_index = 0
+
     def __init__(self, hlc):
         super().__init__(hlc)
         self.localisation_system = self.hlc.localisation
@@ -143,15 +149,30 @@ class WorldPoseControl(ControlMode):
                 target_world_y = 0
                 target_angular = 0
 
+
+
                 #X
-                if abs(error_position[0])<self.hlc.config.max_error_position and abs(current_pose.world_x_velocity)<self.hlc.config.max_error_velocity:
+                if self.x_polypath is not None:
+                    target_world_x = self.x_polypath[self.x_polypath_index]
+                    self.x_polypath_index += 1
+                    if self.x_polypath_index<=len(self.x_polypath_index):
+                        self.x_polypath = None
+                        self.x_polypath_index = 0
+                
+                elif abs(error_position[0])<self.hlc.config.max_error_position and abs(current_pose.world_x_velocity)<self.hlc.config.max_error_velocity:
                     target_world_x = 0
                     #print("Close Enough!")
+                elif (abs(error_position[0])<self.hlc.config.polypath_distance) and (abs(current_pose.world_x_velocity)<self.hlc.config.polypath_max_speed):
+                    #Create polynomial path
+                    #may have issues with signs on velocity when going backwards near target TODO
+                    self.x_polypath = self.generate_poly_path(self.hlc.config.polypath_time, 0, abs(error_position[0]), current_pose.world_x_velocity)
+                    target_world_x = self.x_polypath[0]
+                    self.x_polypath_index = 1
+                
                 else:
                     stopping_distance = self.get_stopping_distance_linear(current_pose.world_x_velocity)
-                    #print(f"\nTarget Velocity: {self.current_target_linear_velocity[0]}, Measured Velocity: {current_pose.world_x_velocity}")
-                    #print(f"Distance to target: {error_position[0]}, stopping distance: {stopping_distance}")
-                    if stopping_distance>abs(error_position[0]) and abs(error_velocity[0])<abs(target_velocity_max[0]):
+                    
+                    if stopping_distance>abs(error_position[0])-self.hlc.config.max_error_position and abs(error_velocity[0])<abs(target_velocity_max[0]):
                             target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
                             #print("Decelerating to target")
                     elif abs(current_pose.world_x_velocity)>max_linear_velocity or self.current_target_linear_velocity[0]>max_linear_velocity:
@@ -165,7 +186,7 @@ class WorldPoseControl(ControlMode):
                     target_world_y = 0
                 else:
                     stopping_distance = self.get_stopping_distance_linear(current_pose.world_y_velocity)
-                    if stopping_distance>abs(error_position[1]) and abs(error_velocity[1])<abs(target_velocity_max[1]):
+                    if stopping_distance>abs(error_position[1])-self.hlc.config.max_error_position and abs(error_velocity[1])<abs(target_velocity_max[1]):
                             target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
                     elif abs(current_pose.world_y_velocity)>max_linear_velocity or self.current_target_linear_velocity[1]>max_linear_velocity:
                         target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
@@ -197,6 +218,34 @@ class WorldPoseControl(ControlMode):
                 self.set_low_level_interface_target((0,0),0) #Stop if no valid target found
         return
 
+    def generate_poly_path(self, duration, position_start, position_end, speed_start, speed_end = 0, log = False):
+        log = True #DEBUG TODO
+        
+        q0 = position_start
+        qf = position_end
+        v0 = speed_start
+        vf = speed_end
+
+        tf = duration
+        t0 = 0
+
+        a0 = q0
+        a1 = v0
+        a2 = (3*(qf-q0)-(2*v0+vf)*tf)/(tf**2)
+        a3 = (-2*(qf-q0)+(v0-vf)*tf)/(tf**3)
+
+        T = np.arange(t0,tf,self.delay_time_target)
+        V = []
+        for t in T:
+            v = a1+2*a2*t+3*a3*t**2
+            V.append(v)
+        path = V
+
+        if log:
+            self.logger.info(f"Generated path with max speed of {max(V)}m/s")
+        return path
+
+
     def configure_target(self): #Fixes the target for future TMS
         return
 
@@ -220,6 +269,7 @@ class WorldPoseControl(ControlMode):
         self.target = target
         self.current_target_linear_velocity = (self.localisation_system.current_pose.world_x_velocity, self.localisation_system.current_pose.world_y_velocity)
         self.current_target_angular_velocity = self.localisation_system.current_pose.angular_velocity
+        self.x_polypath = None, self.y_polypath = None, self.a_polypath = None #Reset paths to be recalculated
         return True
 
 

@@ -114,5 +114,11 @@ class RP1Configuration():
     max_error_velocity = 0.1
     max_error_bearing = 0.1
 
+    polypath_time = 0.5 #How long should final path to position take
+    polypath_distance = 0.5 #How far from target should path start
+    polypath_max_speed = 0.3 #How fast robot can be going to trigger polypath
+    
+
+
     def __init__(self):
         self.model = KinematicModel(self) #The kinematic model containing robot size, gear ratio etc
