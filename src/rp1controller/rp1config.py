@@ -101,20 +101,14 @@ class RP1Configuration():
     vel_ramp_rate = 100
 
     acceleration_max = 0.5 #m/s^2
-    linear_velocity_max = 0.3 #m/s
+    linear_velocity_max = 0.8 #m/s
     angular_velocity_max = 1 #rad/s
-
-    safe_linear_velocity = 0.5
-    safe_angular_velocity = 0.6
-
-    linear_velocity_stable_min = 0.2 #TODO Adjust #Minimum speed robot can move and keep stable
-    angular_velocity_stable_min = 0.2
 
     max_error_position = 0.2
     max_error_velocity = 0.2
     max_error_bearing = 0.1
 
-    polypath_time = 1.0 #How long should final path to position take
+    polypath_time = 0.5 #How long should final path to position take
     polypath_distance = 0.5 #How far from target should path start
     polypath_max_speed = 0.3 #How fast robot can be going to trigger polypath
     
