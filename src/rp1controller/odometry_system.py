@@ -1,5 +1,5 @@
 import logging, time, threading
-from math import cos, pi, sin
+from math import cos, pi, sin, atan2
 
 from .rp1interface import RP1Controller
 
@@ -87,6 +87,13 @@ class LocalisationSystem():
         string = f"X: {self.current_pose.world_x_position:.2f}, Y: {self.current_pose.world_y_position:.2f}, H: {self.current_pose.heading:.2f}"
         if print_to_console:
             print(string)
+            #TODO debug code
+            origin = (0,0)
+            rel_pos = self.get_relative_position_of_point(origin)
+            dist = self.get_distance_to_point(origin)
+            abs_bear = self.get_absolute_bearing_of_point(origin)
+            rel_bear = self.get_relative_bearing_of_point(origin)
+            print(f"Relative position of origin {rel_pos}, distance {dist}, absolute bearing {abs_bear}, relative bearing {rel_bear}")
         #TODO console output?
     
     def reset_localisation(self):
@@ -125,9 +132,11 @@ class LocalisationSystem():
         return (x,y)
 
     def get_absolute_bearing_of_point(self, point = (0,0)):
-        return 0
+        relative_position = self.get_relative_position_of_point(point)
+        bearing = atan2(relative_position[1],relative_position[0])
+        return bearing
         
-    def get_relative_heading_of_point(self, point = (0,0)):
+    def get_relative_bearing_of_point(self, point = (0,0)):
         """Returns smallest delta angle to target angle"""
         absolute_bearing = self.get_absolute_bearing_of_point(point)
         relative_bearing = self.convert_absolute_bearing_to_relative_bearing(absolute_bearing)
@@ -135,9 +144,15 @@ class LocalisationSystem():
 
     def convert_absolute_bearing_to_relative_bearing(self, absolute_bearing):
         """Returns the smallest relative bearing between the robot heading and an absolute bearing"""
-        bearing_a = self.current_pose.heading - absolute_bearing
-        bearing_b = self.current_pose.heading + absolute_bearing
-        return 
+        bearing_a =  absolute_bearing - self.current_pose.heading
+        if bearing_a<0:
+            bearing_b = bearing_a + 2*pi
+        else:
+            bearing_b = bearing_a - 2*pi
+        if abs(bearing_a) < abs(bearing_b):
+            return bearing_a
+        else:
+            return bearing_b
 
     def convert_angle_to_bearing(self, angle):
         """Converts an angle of over 2PI or less than 0 to a direction from 0 to 2PI"""
