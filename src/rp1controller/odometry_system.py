@@ -88,12 +88,12 @@ class LocalisationSystem():
         if print_to_console:
             print(string)
             #TODO debug code
-            origin = (0,0)
-            rel_pos = self.get_relative_position_of_point(origin)
-            dist = self.get_distance_to_point(origin)
-            abs_bear = self.get_absolute_bearing_of_point(origin)
-            rel_bear = self.get_relative_bearing_of_point(origin)
-            print(f"Relative position of origin {rel_pos}, distance {dist}, absolute bearing {abs_bear}, relative bearing {rel_bear}")
+            #origin = (0,0)
+            #rel_pos = self.get_relative_position_of_point(origin)
+            #dist = self.get_distance_to_point(origin)
+            #abs_bear = self.get_absolute_bearing_of_point(origin)
+            #rel_bear = self.get_relative_bearing_of_point(origin)
+            #print(f"Relative position of origin {rel_pos}, distance {dist}, absolute bearing {abs_bear}, relative bearing {rel_bear}")
         #TODO console output?
     
     def reset_localisation(self):
