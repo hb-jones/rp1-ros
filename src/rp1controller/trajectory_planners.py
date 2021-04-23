@@ -103,8 +103,8 @@ class WorldPoseControl(ControlMode):
     thread_handle = None 
     target: Target = None #Replace with coordinate and heading? TODO
 
-    delay_time_target = 0.3 #Ideal Delay time for system to acheive
-    delay_time_last = 0.3 #The last delay time, used when system is too slow.
+    delay_time_target = 0.02 #Ideal Delay time for system to acheive
+    delay_time_last = 0.02 #The last delay time, used when system is too slow.
 
     current_target_linear_velocity = (0,0)
     current_target_angular_velocity = 0
@@ -214,6 +214,8 @@ class WorldPoseControl(ControlMode):
                 self.set_low_level_interface_target((target_local_x, target_local_y),target_angular)
                 
                 self.delay_time_last = time.perf_counter()-time_start
+                if self.delay_time_last > self.delay_time_target*1.1:
+                    print(f"Last delay time {self.delay_time_last}s")
                 if self.delay_time_last<self.delay_time_target: #If time taken was less than target then wait the rest of the time.
                     sleep(self.delay_time_target-self.delay_time_last)
                     self.delay_time_last = self.delay_time_target
