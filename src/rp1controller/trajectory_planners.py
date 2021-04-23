@@ -167,7 +167,7 @@ class WorldPoseControl(ControlMode):
                     #Create polynomial path
                     #may have issues with signs on velocity when going backwards near target TODO
                     print("Generating path")
-                    self.x_polypath = self.generate_poly_path(self.hlc.config.polypath_time, 0, abs(error_position[0]), current_pose.world_x_velocity)
+                    self.x_polypath = self.generate_poly_path(self.hlc.config.polypath_time, 0, error_position[0], current_pose.world_x_velocity)
                     target_world_x = self.x_polypath[0]
                     self.x_polypath_index = 1
                 
