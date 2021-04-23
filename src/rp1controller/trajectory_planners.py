@@ -132,6 +132,7 @@ class WorldPoseControl(ControlMode):
     def trajectory_loop(self):
         while self.loop_run_flag:
             if self.target != None:
+                #TODO check if still active TMS
                 self.configure_target()
                 time_start = time.perf_counter()
                 #print("\n\n\n")
