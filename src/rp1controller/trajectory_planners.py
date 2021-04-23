@@ -155,7 +155,7 @@ class WorldPoseControl(ControlMode):
                 if self.x_polypath is not None:
                     target_world_x = self.x_polypath[self.x_polypath_index]
                     self.x_polypath_index += 1
-                    if self.x_polypath_index<=len(self.x_polypath_index):
+                    if self.x_polypath_index<=len(self.x_polypath):
                         self.x_polypath = None
                         self.x_polypath_index = 0
                 
