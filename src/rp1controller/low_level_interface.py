@@ -52,7 +52,7 @@ class LowLevelInterface():
     
     def main_loop(self):
         while self.loop_run_flag:
-            time_start = perf_counter()
+            #time_start = perf_counter()
             if not self.check_state(): #Checks everything is in correct state etc
                 self.is_ready = False
                 self.logger.warning(" - LLI Loop Error: State check unsucessful. Loop aborting")
@@ -64,8 +64,8 @@ class LowLevelInterface():
             if self.target_changed_flag:
                 self.apply_motor_targets()
             self.target_changed_flag = False 
-            time_taken = perf_counter()-time_start
-            print(f"Time taken for LLI loop: {time_taken}")
+            #time_taken = perf_counter()-time_start
+            #print(f"Time taken for LLI loop: {time_taken}")
             sleep(0.05) #TODO reduce if this does not cause issues 
         self.logger.info(" - LLI loop shutting down")
         self.thread_updating = False

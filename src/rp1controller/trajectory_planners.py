@@ -165,6 +165,7 @@ class WorldPoseControl(ControlMode):
                 elif (abs(error_position[0])<self.hlc.config.polypath_distance) and (abs(current_pose.world_x_velocity)<self.hlc.config.polypath_max_speed):
                     #Create polynomial path
                     #may have issues with signs on velocity when going backwards near target TODO
+                    print("Generating path")
                     self.x_polypath = self.generate_poly_path(self.hlc.config.polypath_time, 0, abs(error_position[0]), current_pose.world_x_velocity)
                     target_world_x = self.x_polypath[0]
                     self.x_polypath_index = 1
@@ -228,7 +229,8 @@ class WorldPoseControl(ControlMode):
 
         tf = duration
         t0 = 0
-
+        
+        print(f"q0: {q0}, qf: {qf}, v0: {v0}, vf: {vf}, tf: {tf}")
         a0 = q0
         a1 = v0
         a2 = (3*(qf-q0)-(2*v0+vf)*tf)/(tf**2)
