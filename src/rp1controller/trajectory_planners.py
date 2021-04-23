@@ -109,11 +109,11 @@ class WorldPoseControl(ControlMode):
     current_target_linear_velocity = (0,0)
     current_target_angular_velocity = 0
 
-    x_polypath = 0
+    x_polypath = None
     x_polypath_index = 0
-    y_polypath = 0
+    y_polypath = None
     y_polypath_index = 0
-    a_polypath = 0
+    a_polypath = None
     a_polypath_index = 0
 
     def __init__(self, hlc):
@@ -152,11 +152,11 @@ class WorldPoseControl(ControlMode):
 
 
                 #X
-                if self.x_polypath is not 0:
+                if self.x_polypath is not None:
                     target_world_x = self.x_polypath[self.x_polypath_index]
                     self.x_polypath_index += 1
                     if self.x_polypath_index<=len(self.x_polypath_index):
-                        self.x_polypath = 0
+                        self.x_polypath = None
                         self.x_polypath_index = 0
                 
                 elif abs(error_position[0])<self.hlc.config.max_error_position and abs(current_pose.world_x_velocity)<self.hlc.config.max_error_velocity:
@@ -269,7 +269,9 @@ class WorldPoseControl(ControlMode):
         self.target = target
         self.current_target_linear_velocity = (self.localisation_system.current_pose.world_x_velocity, self.localisation_system.current_pose.world_y_velocity)
         self.current_target_angular_velocity = self.localisation_system.current_pose.angular_velocity
-        self.x_polypath = 0, self.y_polypath = 0, self.a_polypath = 0 #Reset paths to be recalculated
+        self.x_polypath = None
+        self.y_polypath = None
+        self.a_polypath = None #Reset paths to be recalculated
         return True
 
 
