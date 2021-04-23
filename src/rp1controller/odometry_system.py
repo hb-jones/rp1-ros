@@ -82,10 +82,11 @@ class LocalisationSystem():
         return 
 
 
-    def log_localisation(self):
+    def log_localisation(self, print_to_console = False):
         self.telemetry_logger.log(8, self.current_pose)
         string = f"X: {self.current_pose.world_x_position:.2f}, Y: {self.current_pose.world_y_position:.2f}, H: {self.current_pose.heading:.2f}"
-        #print(string) #TODO Remove
+        if print_to_console:
+            print(string)
         #TODO console output?
     
     def reset_localisation(self):

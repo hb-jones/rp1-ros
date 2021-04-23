@@ -161,7 +161,8 @@ class WorldPoseControl(ControlMode):
                 
                 elif abs(error_position[0])<self.hlc.config.max_error_position and abs(current_pose.world_x_velocity)<self.hlc.config.max_error_velocity:
                     target_world_x = 0
-                    #print("Close Enough!")
+                    self.hlc.localisation.log_localisation(True)
+                    print("Close Enough!")
                 elif (abs(error_position[0])<self.hlc.config.polypath_distance) and (abs(current_pose.world_x_velocity)<self.hlc.config.polypath_max_speed):
                     #Create polynomial path
                     #may have issues with signs on velocity when going backwards near target TODO
