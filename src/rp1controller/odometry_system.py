@@ -39,8 +39,8 @@ class LocalisationSystem():
                 self.update_localisation()
                 if loop_counter > 100 or True: #TODO maybe log every cycle
                     loop_counter = 0
-                    self.log_localisation()
-            time.sleep(0.01) #TODO if this fixes issues then remove 
+                    self.log_localisation(True)
+            time.sleep(0.02) #TODO if this fixes issues then remove 
     def update_localisation(self):
         LLI = self.LLI
         timestamp = LLI.odom_updated_time

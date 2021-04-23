@@ -162,12 +162,12 @@ class WorldPoseControl(ControlMode):
                 
                 elif abs(error_position[0])<self.hlc.config.max_error_position and abs(current_pose.world_x_velocity)<self.hlc.config.max_error_velocity:
                     target_world_x = 0
-                    self.hlc.localisation.log_localisation(True)
-                    print("Close Enough!")
+                    #self.hlc.localisation.log_localisation(True)
+                    #print("Close Enough!")
                 elif (abs(error_position[0])<self.hlc.config.polypath_distance) and (abs(current_pose.world_x_velocity)<self.hlc.config.polypath_max_speed):
                     #Create polynomial path
                     #may have issues with signs on velocity when going backwards near target TODO
-                    print("Generating path")
+                    print("Generating path X")
                     self.x_polypath = self.generate_poly_path(self.hlc.config.polypath_time, 0, error_position[0], current_pose.world_x_velocity)
                     target_world_x = self.x_polypath[0]
                     self.x_polypath_index = 1
@@ -185,8 +185,21 @@ class WorldPoseControl(ControlMode):
                         target_world_x = self.accelerate_linear_step(self.current_target_linear_velocity[0], target_velocity_max[0])
                         #print("Accelerating!")
                 #Y
-                if abs(error_position[1])<self.hlc.config.max_error_position and abs(current_pose.world_y_velocity)<self.hlc.config.max_error_velocity:
+                if self.y_polypath is not None:
+                    target_world_y = self.y_polypath[self.y_polypath_index]
+                    self.y_polypath_index += 1
+                    if self.y_polypath_index>=len(self.y_polypath):
+                        self.y_polypath = None
+                        self.y_polypath_index = 0
+                elif abs(error_position[1])<self.hlc.config.max_error_position and abs(current_pose.world_y_velocity)<self.hlc.config.max_error_velocity:
                     target_world_y = 0
+                elif (abs(error_position[1])<self.hlc.config.polypath_distance) and (abs(current_pose.world_y_velocity)<self.hlc.config.polypath_max_speed):
+                    #Create polynomial path
+                    #may have issues with signs on velocity when going backwards near target TODO
+                    print("Generating path Y")
+                    self.y_polypath = self.generate_poly_path(self.hlc.config.polypath_time, 0, error_position[1], current_pose.world_y_velocity)
+                    target_world_y = self.y_polypath[0]
+                    self.y_polypath_index = 1
                 else:
                     stopping_distance = self.get_stopping_distance_linear(current_pose.world_y_velocity)
                     if stopping_distance>abs(error_position[1])-self.hlc.config.max_error_position and abs(error_velocity[1])<abs(target_velocity_max[1]):
