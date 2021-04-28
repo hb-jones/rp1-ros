@@ -1,3 +1,4 @@
+from math import pi
 from inputs import get_gamepad
 from rp1controller import Target
 import socket, pickle, threading
@@ -42,7 +43,10 @@ mode = "local"
 running_flag = True
 
 #course = [(0,0),(2,0),(2,-0.5),(0,-0.5),(0,0),(1,-0.5)]
-course = [(0,0),(4,0),(2,0),(1.5,-0.5),(1,0)]
+#course = [(0,0),(4,0),(2,0),(1.5,-0.5),(1,0)]
+course = [(0,0),(0,0),(0,0),(0,0),(0,0)]
+#course_rot = [0,0,0,0,0]
+course_rot = [0,pi/2,pi,0,pi*1.5]
 course_index = 0
 
 def curve(input):
@@ -189,13 +193,13 @@ def reset_odometry():
 def advance_course():
     if mode != "pose":
         return
-    global course_index, course
+    global course_index, course, course_rot
     course_index += 1
     if course_index >= len(course):
         course_index = 0
-    print(f"Moving to position: {course_index} at: {course[course_index]}")
+    print(f"Moving to position: {course_index} at: {course[course_index]}, angle: {course_rot[course_index]}")
     target = Target()
-    target.world_bearing = 0
+    target.world_bearing = course_rot[course_index]
     target.world_point = course[course_index]
     send_target(target)
     

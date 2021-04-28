@@ -139,10 +139,10 @@ class LocalisationSystem():
     def get_relative_bearing_of_point(self, point = (0,0)):
         """Returns smallest delta angle to target angle"""
         absolute_bearing = self.get_absolute_bearing_of_point(point)
-        relative_bearing = self.convert_absolute_bearing_to_relative_bearing(absolute_bearing)
+        relative_bearing = self.get_relative_bearing_from_absolute_bearing(absolute_bearing)
         return relative_bearing
 
-    def convert_absolute_bearing_to_relative_bearing(self, absolute_bearing):
+    def get_relative_bearing_from_absolute_bearing(self, absolute_bearing):
         """Returns the smallest relative bearing between the robot heading and an absolute bearing"""
         bearing_a =  absolute_bearing - self.current_pose.heading
         if bearing_a<0:

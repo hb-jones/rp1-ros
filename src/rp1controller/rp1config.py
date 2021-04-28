@@ -102,14 +102,16 @@ class RP1Configuration():
 
     acceleration_max = 2 #m/s^2
     linear_velocity_max = 4 #m/s
+    angular_acceleration_max = 0.5 #rad/s^2
     angular_velocity_max = 1 #rad/s
 
     max_error_position = 0.2
     max_error_velocity = 0.2
     max_error_bearing = 0.1
+    max_error_angular_velocity = 0.4
 
     
-    polypath_distance = 0.5 #How far from target should path start
+    polypath_distance = 0.8 #How far from target should path start
     polypath_max_speed = 2 #How fast robot can be going to trigger polypath
     polypath_time = polypath_max_speed/acceleration_max #How long should final path to position take
     

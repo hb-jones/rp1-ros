@@ -146,6 +146,12 @@ class WorldPoseControl(ControlMode):
                 target_velocity_max = (copysign(max_linear_velocity, error_position[0]), copysign(max_linear_velocity, error_position[1]))
                 error_velocity = (target_velocity_max[0] - current_pose.world_x_velocity ,target_velocity_max[1] - current_pose.world_y_velocity)
                 #print(f"Positional error: {error_position}, Target Velocity Max: {target_velocity_max}, Velocity error: {error_velocity}")
+                
+                #TODO add look at point support here or in configure_target()
+                error_angle = self.localisation_system.get_relative_bearing_from_absolute_bearing(self.target.world_bearing)
+                target_angular_velocity_max = copysign(max_angular_velocity, error_angle)
+                error_angular_velocity = target_angular_velocity_max-current_pose.angular_velocity
+                                
                 target_world_x = 0
                 target_world_y = 0
                 target_angular = 0
@@ -195,7 +201,6 @@ class WorldPoseControl(ControlMode):
                     target_world_y = 0
                 elif (abs(error_position[1])<self.hlc.config.polypath_distance) and (abs(current_pose.world_y_velocity)<self.hlc.config.polypath_max_speed):
                     #Create polynomial path
-                    #may have issues with signs on velocity when going backwards near target TODO
                     print("Generating path Y")
                     self.y_polypath = self.generate_poly_path(self.hlc.config.polypath_time, 0, error_position[1], current_pose.world_y_velocity)
                     target_world_y = self.y_polypath[0]
@@ -203,7 +208,7 @@ class WorldPoseControl(ControlMode):
                 else:
                     stopping_distance = self.get_stopping_distance_linear(current_pose.world_y_velocity)
                     if stopping_distance>abs(error_position[1])-self.hlc.config.max_error_position and abs(error_velocity[1])<abs(target_velocity_max[1]):
-                            target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
+                        target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
                     elif abs(current_pose.world_y_velocity)>max_linear_velocity or self.current_target_linear_velocity[1]>max_linear_velocity:
                         target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
                     else:
@@ -211,8 +216,37 @@ class WorldPoseControl(ControlMode):
 
                 #print(f"Target WX: {target_world_x} target WY: {target_world_y}")
 
-                #Angular #TODO
-                
+                #Angular
+                if self.a_polypath is not None:
+                    #If there is a polynomial path
+                    target_angular = self.a_polypath[self.a_polypath_index]
+                    self.a_polypath_index += 1
+                    if self.a_polypath_index>=len(self.a_polypath):
+                        #End of path
+                        self.a_polypath = None
+                        self.a_polypath_index = 0
+                elif abs(error_angle)<self.hlc.config.max_error_bearing and abs(current_pose.angular_velocity)<self.hlc.config.max_error_angular_velocity:
+                    #Close enough to target
+                    target_angular = 0
+                elif (abs(error_angle)<self.hlc.config.polypath_distance) and (abs(current_pose.angular_velocity)<self.hlc.config.polypath_max_speed):
+                    #Create polynomial path
+                    print("Generating path A") #TODO add specific angular configs
+                    self.a_polypath = self.generate_poly_path(self.hlc.config.polypath_time, 0, error_angle, current_pose.angular_velocity)
+                    target_angular = self.a_polypath[0]
+                    self.a_polypath_index = 1
+                else:
+                    stopping_distance = self.get_stopping_distance_angular(current_pose.angular_velocity)
+                    if stopping_distance>abs(error_angle)-self.hlc.config.max_error_bearing and abs(error_angular_velocity)<abs(target_angular_velocity_max):
+                        #Decelerate
+                        target_angular = self.decelerate_angular_step(self.current_target_angular_velocity)
+                    elif abs(current_pose.angular_velocity)>max_angular_velocity or self.current_target_angular_velocity>max_angular_velocity: 
+                        #Stay below max speed
+                        target_angular = self.decelerate_angular_step(self.current_target_angular_velocity)
+                    else:
+                        #Accelerate
+                        target_angular = self.accelerate_angular_step(self.current_target_angular_velocity, target_angular_velocity_max)
+
+
 
                 self.current_target_linear_velocity = (target_world_x,target_world_y)
                 self.current_target_angular_velocity = target_angular
@@ -281,6 +315,17 @@ class WorldPoseControl(ControlMode):
         step_size = acceleration_limit*self.delay_time_last
         return copysign(abs(velocity)-step_size, velocity) #Decrease magnitude of speed by step size
 
+    def accelerate_angular_step(self, angular_velocity, target_angular_velocity):
+        acceleration_limit = self.hlc.config.angular_acceleration_max
+        step_size = acceleration_limit*self.delay_time_last
+        stepped_velocity = angular_velocity+step_size*copysign(1,target_angular_velocity)
+        return stepped_velocity
+
+    def decelerate_angular_step(self, angular_velocity):
+        acceleration_limit = self.hlc.config.angular_acceleration_max
+        step_size = acceleration_limit*self.delay_time_last
+        return copysign(abs(angular_velocity)-step_size, angular_velocity) #Decrease magnitude of speed by step size
+
     def input_target(self, target: Target):
         if not self.check_input(target): 
             self.target = None
@@ -304,6 +349,11 @@ class WorldPoseControl(ControlMode):
     def get_stopping_distance_linear(self, velocity):
         speed = abs(velocity)
         stopping_distance = (speed**2)/(2*self.hlc.config.acceleration_max)
+        return stopping_distance
+
+    def get_stopping_distance_angular(self, angular_velocity):
+        angular_speed = abs(angular_velocity)
+        stopping_distance = (angular_speed**2)/(2*self.hlc.config.angular_acceleration_max)
         return stopping_distance
 
 
