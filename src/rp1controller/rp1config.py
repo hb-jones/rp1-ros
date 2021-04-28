@@ -107,8 +107,8 @@ class RP1Configuration():
 
     max_error_position = 0.2
     max_error_velocity = 0.2
-    max_error_bearing = 0.1
-    max_error_angular_velocity = 0.4
+    max_error_bearing = 0.05
+    max_error_angular_velocity = 0.2
 
     
     polypath_distance = 1 #How far from target should path start
