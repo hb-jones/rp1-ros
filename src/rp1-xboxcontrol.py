@@ -43,10 +43,10 @@ mode = "local"
 running_flag = True
 
 #course = [(0,0),(2,0),(2,-0.5),(0,-0.5),(0,0),(1,-0.5)]
-#course = [(0,0),(4,0),(2,0),(1.5,-0.5),(1,0)]
-course = [(0,0),(0,0),(0,0),(0,0),(0,0)]
-#course_rot = [0,0,0,0,0]
-course_rot = [0,pi/2,pi,0,pi*1.5]
+course = [(0,0),(4,0),(2,0),(1.5,-0.5),(1,0)]
+#course = [(0,0),(0,0),(0,0),(0,0),(0,0)]
+course_rot = [0,0,0,0,0]
+#course_rot = [0,pi/2,pi,0,pi*1.5]
 course_index = 0
 
 def curve(input):
