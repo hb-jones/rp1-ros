@@ -286,7 +286,6 @@ class WorldPoseControl(ControlMode):
         a1 = v0
         a2 = (3*(qf-q0)-(2*v0+vf)*tf)/(tf**2)
         a3 = (-2*(qf-q0)+(v0-vf)*tf)/(tf**3)
-
         T = np.arange(t0,tf,self.delay_time_target)
         V = []
         for t in T:

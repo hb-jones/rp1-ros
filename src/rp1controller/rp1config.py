@@ -98,7 +98,7 @@ class RP1Configuration():
     pos_gain = 12
     vel_gain = 0.004
     vel_integrator_gain = 0.021
-    vel_ramp_rate = 100
+    vel_ramp_rate = 100 #TODO increase
 
     acceleration_max = 2 #m/s^2
     linear_velocity_max = 4 #m/s
