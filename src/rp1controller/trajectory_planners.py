@@ -132,6 +132,11 @@ class WorldPoseControl(ControlMode):
     def trajectory_loop(self):
         while self.loop_run_flag:
             if self.target != None:
+                if self.hlc.trajectory_planner != self:
+                    print(f"Disabling planner: {self.name}")#TODO DEBUG PRINT
+                    self.loop_run_flag = False
+                    self.set_low_level_interface_target((0,0),0)
+                    break
                 #TODO check if still active TMS
                 self.configure_target()
                 time_start = time.perf_counter()
