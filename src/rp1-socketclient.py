@@ -65,8 +65,10 @@ while True:
             HLC.low_level_interface.update_configuration()
         elif "acceleration" in data:
             HLC.config.acceleration_max = data["acceleration"]
+            print(f"Amax: {HLC.config.acceleration_max}")
         elif "speed_max" in data:
             HLC.config.linear_velocity_max = data["speed_max"]
+            print(f"Smax: {HLC.config.linear_velocity_max}")
         else:
             print("invalid config dictionary")
     else:
