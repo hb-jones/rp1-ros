@@ -172,9 +172,11 @@ def send_target(target: Target):
     data = pickle.dumps(target)
     clientsocket.send(data)
 
-def change_mode():
+def change_mode(new_mode = ""):
     global mode
-    if mode == "local": 
+    if new_mode != "":
+        mode = new_mode
+    elif mode == "local": 
         mode = "world"
     elif mode == "world":
         mode = "pose"
@@ -215,13 +217,19 @@ def get_odom():
         data = pickle.loads(msg)
     except:
         print("Odom Request Failed")
+        return VelocityPose()
     if type(data)!= VelocityPose:
         print("Odom of Incorrect Type")
+        return VelocityPose()
     else:
         pose: VelocityPose = data
         print(f"x:{pose.world_x_position} y:{pose.world_y_position}, a:{pose.heading}")
-    return
+        pose.local_x_velocity
+        return pose 
 
+
+def set_config_accel(acceleration):
+    return #TODO
 
 def main():
     setup_socket()
