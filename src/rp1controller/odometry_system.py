@@ -39,7 +39,7 @@ class LocalisationSystem():
                 self.update_localisation()
                 if loop_counter > 100 or True: #TODO maybe log every cycle
                     loop_counter = 0
-                    self.log_localisation(True)
+                    self.log_localisation(False) #Set tp true for console logging
             time.sleep(0.02) #TODO if this fixes issues then remove 
     def update_localisation(self):
         LLI = self.LLI
