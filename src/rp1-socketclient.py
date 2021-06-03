@@ -1,3 +1,4 @@
+from rp1controller.odometry_system import VelocityPose
 from rp1controller import Target
 from rp1controller.trajectory_planners import LocalVelocityControl, WorldVelocityControl, WorldPoseControl
 import rp1controller
@@ -50,6 +51,13 @@ while True:
         HLC.set_trajectory_planner(planner)
     elif data == "reset":
         HLC.localisation.reset_localisation()
+    elif data == "odom_report":
+        odom: VelocityPose = HLC.localisation.current_pose
+        if odom == None:
+            send_data = pickle.dumps("Bad Odom")
+        else:
+            send_data = pickle.dumps(odom)
+        s.send(send_data)
     elif type(data) == dict:
         if data["vel_gain"] != None and data["vel_integrator_gain"] != None:
             HLC.config.vel_gain = data["vel_gain"]
