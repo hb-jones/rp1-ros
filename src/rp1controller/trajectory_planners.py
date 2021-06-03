@@ -346,7 +346,7 @@ class WorldPoseControl(ControlMode):
     def check_input(self, target: Target):
         if not super().check_input(target): return False
         if target.world_point == None or target.world_bearing == None:
-            self.logger.error(" - {}:  input target missing world_velocity or world_bearing".format(self.name))
+            self.logger.error(" - {}:  input target missing world_point or world_bearing".format(self.name))
             return False
         return True
 
