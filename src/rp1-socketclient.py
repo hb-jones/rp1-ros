@@ -59,13 +59,13 @@ while True:
             send_data = pickle.dumps(odom)
         s.send(send_data)
     elif type(data) == dict:
-        if data["vel_gain"] != None and data["vel_integrator_gain"] != None:
+        if "vel_gain" in data and "vel_integrator_gain" in data:
             HLC.config.vel_gain = data["vel_gain"]
             HLC.config.vel_integrator_gain = data["vel_integrator_gain"]
             HLC.low_level_interface.update_configuration()
-        elif data["acceleration"] != None:
+        elif "acceleration" in data:
             HLC.config.acceleration_max = data["acceleration"]
-        elif data["speed_max"] != None:
+        elif "speed_max" in data:
             HLC.config.linear_velocity_max = data["speed_max"]
         else:
             print("invalid config dictionary")

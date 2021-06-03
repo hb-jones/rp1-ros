@@ -32,6 +32,7 @@ def repeatability_test():
     server.start()
     time.sleep(10)
     rp1.change_mode("pose")
+    rp1.set_config_speed(0.2)
     #Set speed and accel
     time.sleep(0.2)
     for position in positions:
@@ -52,15 +53,6 @@ def repeatability_test():
         print(f"At pose {pose}")
 
 
-
-
-    print("RESETING ODOM")
-    rp1.reset_odometry() #TODO after here is just debug
-    time.sleep(0.1)
-    pose = rp1.get_odom()
-    print(f"At position {position}")
-    print(f"At pose {pose}")
-    print()
 
 
         
