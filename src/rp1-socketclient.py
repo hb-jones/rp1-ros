@@ -63,8 +63,12 @@ while True:
             HLC.config.vel_gain = data["vel_gain"]
             HLC.config.vel_integrator_gain = data["vel_integrator_gain"]
             HLC.low_level_interface.update_configuration()
+        elif data["acceleration"] != None:
+            HLC.config.acceleration_max = data["acceleration"]
+        elif data["speed_max"] != None:
+            HLC.config.linear_velocity_max = data["speed_max"]
         else:
-            print("invalid confit dictionary")
+            print("invalid config dictionary")
     else:
         first = False
         HLC.set_target(data)

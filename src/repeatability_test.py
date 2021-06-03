@@ -5,6 +5,7 @@ import time
 from rp1controller import Target
 accelerations = [0.5, 1, 2, 3, 4, 5] #Accelerations to test in m/s^2
 positions = [(0.5,0),(0.5,-0.5),(0,0)] #Coordinates of test positions, measurements are taken at final position
+speed_max = 2 #m/s
 
 
 
@@ -14,7 +15,10 @@ def server_thread():
     rp1.main()
 
 def check_at_pos(position, pose):
-    if abs(pose.local_x_velocity) > 0.1 or abs(pose.local_y_velocity) > 0.1:
+    if pose == False:
+        print("Invalid Pose")
+        return False
+    if abs(pose.local_x_velocity) > 0.02 or abs(pose.local_y_velocity) > 0.02:
         return False
     if (abs(pose.world_x_position) - abs(position[0])) < 0.2:
         if (abs(pose.world_y_position) - abs(position[1])) < 0.2:
@@ -38,11 +42,26 @@ def repeatability_test():
         time.sleep(0.5)
         pose = rp1.get_odom()
         while not check_at_pos(position, pose):
-            print(f"Velocity X{pose.local_x_velocity}, Y{pose.local_y_velocity}")
+            if pose!= False:
+                print(f"Velocity X{pose.local_x_velocity}, Y{pose.local_y_velocity}")
             time.sleep(0.5)
             pose = rp1.get_odom()
         time.sleep(1)
+        pose = rp1.get_odom()
         print(f"At position {position}")
+        print(f"At pose {pose}")
+
+
+
+
+    print("RESETING ODOM")
+    rp1.reset_odometry() #TODO after here is just debug
+    time.sleep(0.1)
+    pose = rp1.get_odom()
+    print(f"At position {position}")
+    print(f"At pose {pose}")
+    print()
+
 
         
 

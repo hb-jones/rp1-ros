@@ -100,7 +100,8 @@ class LocalisationSystem():
         last_timestamp = self.current_pose.timestamp
         self.current_pose = VelocityPose() #TODO FIX THIS
         self.current_pose.timestamp = last_timestamp
-        pass
+        self.localisation_last_updated_time = last_timestamp
+        return
 
     def transform_LV_to_WV(self, linear_velocity_local, heading = None):
         """Transforms Local Velocity to World Velocity""" #TODO Fix documentation

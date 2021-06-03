@@ -43,11 +43,11 @@ mode = "local"
 
 running_flag = True
 
-#course = [(0,0),(2,0),(2,-0.5),(0,-0.5),(0,0),(1,-0.5)]
+course = [(0,0),(2,0),(2,-0.5),(0,-0.5),(1,-0.5)]
 #course = [(0,0),(4,0),(2,0),(1.5,-0.5),(1,0)]
-course = [(0,0),(0,0),(0,0),(0,0),(0,0)]
-#course_rot = [0,0,0,0,0]
-course_rot = [0,pi/2,pi,0,pi*1.5]
+#course = [(0,0),(0,0),(0,0),(0,0),(0,0)]
+course_rot = [0,0,0,0,0]
+#course_rot = [0,pi/2,pi,0,pi*1.5]
 course_index = 0
 
 def curve(input):
@@ -166,6 +166,7 @@ def setup_socket():
     s.listen(5)
     global clientsocket
     clientsocket, address = s.accept()
+    clientsocket.setblocking(False) #TODO maybe remove
     print(f"Connection from {address} has been established.")
 
 def send_target(target: Target):
@@ -212,24 +213,39 @@ def get_odom():
     global clientsocket
     data = pickle.dumps("odom_report")
     clientsocket.send(data)
-    msg = clientsocket.recv(1024)
-    try: 
+
+    clientsocket.settimeout(1.0)
+    try:
+        msg = clientsocket.recv(1024)
         data = pickle.loads(msg)
     except:
+        clientsocket.settimeout(5.0)
         print("Odom Request Failed")
-        return VelocityPose()
+        return False
+    clientsocket.settimeout(5.0)
     if type(data)!= VelocityPose:
         print("Odom of Incorrect Type")
-        return VelocityPose()
+        return False
     else:
         pose: VelocityPose = data
-        print(f"x:{pose.world_x_position} y:{pose.world_y_position}, a:{pose.heading}")
+        #print(f"x:{pose.world_x_position} y:{pose.world_y_position}, a:{pose.heading}")
         pose.local_x_velocity
         return pose 
 
 
-def set_config_accel(acceleration):
-    return #TODO
+def set_config_accel(acceleration): #max accel
+    global clientsocket
+    accel_config = {"acceleration": acceleration}
+    data = pickle.dumps(accel_config)
+    clientsocket.send(data)
+    return
+
+def set_config_speed(speed): #max speed
+    global clientsocket
+    speed_config = {"speed_max": speed}
+    data = pickle.dumps(speed_config)
+    clientsocket.send(data)
+    return
 
 def main():
     setup_socket()
