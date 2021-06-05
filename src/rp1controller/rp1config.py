@@ -11,13 +11,13 @@ class KinematicModel(): #may have additional ROS functionality or be replaced en
     """Based on Kinematic Model of a Four Mecanum Wheeled Mobile Robot, H. Taheri, B. Qiao, N. Ghaeminezhad
     at       https://research.ijcaonline.org/volume113/number3/pxc3901586.pdf
     but also https://onlinelibrary.wiley.com/doi/full/10.1002/zamm.201900173
-    #TODO X is forward for the robot
+    #X is forward for the robot
     """
-    wheel_radius = 0.098/2 #Radius in metres 
-    wheel_pos_y = 0.276/2 #Half the distance between wheel centres in x direction in metres
-    wheel_pos_x = 0.400/2 #TODO x and y may need to be flipped as X is forward
+    wheel_radius = 0.04002 #0.096/2 #Radius in metres 35.44 mm
+    wheel_pos_x = 0.280/2 #Half the distance between wheel centres in x direction in metres
+    wheel_pos_y = 0.400/2 
 
-    gear_ratio = 15/80 #TODO
+    gear_ratio = 15/79 
 
     wheel_transforms = {}
     motor_transforms = {}

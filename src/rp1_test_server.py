@@ -43,11 +43,11 @@ mode = "local"
 
 running_flag = True
 
-course = [(0,0),(2,0),(2,-0.5),(0,-0.5),(1,-0.5)]
+#course = [(0,0),(2,0),(2,-0.5),(0,-0.5),(1,-0.5)]
 #course = [(0,0),(4,0),(2,0),(1.5,-0.5),(1,0)]
-#course = [(0,0),(0,0),(0,0),(0,0),(0,0)]
-course_rot = [0,0,0,0,0]
-#course_rot = [0,pi/2,pi,0,pi*1.5]
+course = [(0,0),(0,0),(0,0),(0,0),(0,0)]
+#course_rot = [0,0,0,0,0]
+course_rot = [0,pi/2,pi,0,pi*1.5]
 course_index = 0
 
 def curve(input):
@@ -140,7 +140,7 @@ def listen_to_gamepad():
                 change_mode()
             if event.code == button_ADVANCE and event.state == 1:
                 advance_course()
-                get_odom()
+                get_odom(True)
             if event.code == button_PRP:
                 if event.state == state_PRP_UP:
                     update_PID("proportional", True) 
@@ -209,7 +209,7 @@ def advance_course():
     send_target(target)
     
 
-def get_odom():
+def get_odom(print_response = False):
     global clientsocket
     data = pickle.dumps("odom_report")
     clientsocket.send(data)
@@ -228,7 +228,8 @@ def get_odom():
         return False
     else:
         pose: VelocityPose = data
-        #print(f"x:{pose.world_x_position} y:{pose.world_y_position}, a:{pose.heading}")
+        if print_response:
+            print(f"x:{pose.world_x_position} y:{pose.world_y_position}, a:{pose.heading}")
         pose.local_x_velocity
         return pose 
 
