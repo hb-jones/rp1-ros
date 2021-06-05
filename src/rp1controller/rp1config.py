@@ -14,8 +14,8 @@ class KinematicModel(): #may have additional ROS functionality or be replaced en
     #TODO X is forward for the robot
     """
     wheel_radius = 0.098/2 #Radius in metres 
-    wheel_pos_x = 0.276/2 #Half the distance between wheel centres in x direction in metres
-    wheel_pos_y = 0.400/2 #TODO x and y may need to be flipped as X is forward
+    wheel_pos_y = 0.276/2 #Half the distance between wheel centres in x direction in metres
+    wheel_pos_x = 0.400/2 #TODO x and y may need to be flipped as X is forward
 
     gear_ratio = 15/80 #TODO
 
