@@ -59,6 +59,8 @@ class LowLevelInterface():
                 break
 
             self.update_odometry() 
+
+            self.axis_feed_watchdog()
             
             self.loop_complete_flag = True
             if self.target_changed_flag:
@@ -243,7 +245,8 @@ class LowLevelInterface():
         self.axis_set_control_mode(CONTROL_MODE_VELOCITY_CONTROL) #Puts control mode into direct drive mode
         self.axis_set_input_mode(INPUT_MODE_VEL_RAMP) #Turn on direct velocity control
         
-            
+        self.axis_enable_watchdog()
+        self.axis_feed_watchdog()
         self.axis_set_state(AXIS_STATE_CLOSED_LOOP_CONTROL) #change axes states 
         
 
@@ -254,6 +257,23 @@ class LowLevelInterface():
         self.drives_started = True
         self.logger.info(" - Drives started and ready")
         return True
+
+    def axis_enable_watchdog(self):
+        for axis_name in self.axes_dict:
+            axis: Axis = self.axes_dict[axis_name]
+            watchdog_timeout = 2
+            axis.config.watchdog_timeout = watchdog_timeout #Time in seconds until watchdog expires, only affects if odrive is disconnected from PC or code hangs
+            axis.config.enable_watchdog = True
+
+            if axis.config.watchdog_timeout != watchdog_timeout or not axis.config.enable_watchdog:
+                self.logger.error("{name}: - Watchdog Error: Watchdog was not successfully enabled".format(name = axis_name))
+        return
+
+    def axis_feed_watchdog(self):
+        for axis_name in self.axes_dict:
+            axis: Axis = self.axes_dict[axis_name]
+            axis.watchdog_feed()
+        return
 
     def axis_set_state(self, state = AXIS_STATE_IDLE):
         """Changes each axis state. Returns true if successful"""
