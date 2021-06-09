@@ -4,11 +4,11 @@ import rp1_test_server as rp1
 import threading, csv
 from rp1controller import Target
 from rs_localisation import RSLocalisation
-accelerations = [0.5, 1] #Accelerations to test in m/s^2
-positions = [(0.5,0),(0.5,-0.5),(0,0)] #Coordinates of test positions, measurements are taken at final position
+accelerations = [0.5, 1, 2, 3] #Accelerations to test in m/s^2
+positions = [(1,0),(1,0.5),(0,0)] #Coordinates of test positions, measurements are taken at final position
 speed_max = 2 #m/s
-repeats = 2
-mass = 8500 #g, for logging
+repeats = 3
+mass = 8200 #g, for logging
 mechanical_configuration = "single_wheel"
 
 filename = f"test_data/repeatability_{mechanical_configuration}_{mass}g.csv"
@@ -39,14 +39,19 @@ def log_setup():
     with open(filename, 'a', newline='') as csvfile:
         result_logger = csv.writer(csvfile, delimiter=',',
                                 quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        result_logger.writerow(["mass(g)", "repeat", "acceleration_limit", "x_loc", "y_loc", "x_rs", "y_rs"])
+        result_logger.writerow(["mass(g)", "repeat", "acceleration_limit", "x_loc", "y_loc", "x_rs", "y_rs", "d_loc", "d_rs", "error"])
     return
 
 def log_result(mass, repeat, acceleration, rp1_x, rp1_y, rs_x, rs_y):
     with open(filename, 'a', newline='') as csvfile:
         result_logger = csv.writer(csvfile, delimiter=',',
                                 quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        result_logger.writerow([mass, repeat, acceleration, rp1_x, rp1_y, rs_x, rs_y])
+        
+        d_loc = (rp1_x**2+rp1_y**2)**0.5
+        d_rs = (rs_x**2+rs_y**2)**0.5
+
+        err = abs(d_loc-d_rs)
+        result_logger.writerow([mass, repeat, acceleration, rp1_x, rp1_y, rs_x, rs_y, d_loc, d_rs, err])
 
     
     return
