@@ -259,6 +259,7 @@ class LowLevelInterface():
         return True
 
     def axis_enable_watchdog(self):
+        self.axis_feed_watchdog()
         for axis_name in self.axes_dict:
             axis: Axis = self.axes_dict[axis_name]
             watchdog_timeout = 2
