@@ -51,6 +51,8 @@ class LowLevelInterface():
         return
     
     def main_loop(self):
+        self.axis_feed_watchdog()
+        self.axis_enable_watchdog()
         while self.loop_run_flag:
             #time_start = perf_counter()
             if not self.check_state(): #Checks everything is in correct state etc
@@ -245,8 +247,6 @@ class LowLevelInterface():
         self.axis_set_control_mode(CONTROL_MODE_VELOCITY_CONTROL) #Puts control mode into direct drive mode
         self.axis_set_input_mode(INPUT_MODE_VEL_RAMP) #Turn on direct velocity control
         
-        self.axis_enable_watchdog()
-        self.axis_feed_watchdog()
         self.axis_set_state(AXIS_STATE_CLOSED_LOOP_CONTROL) #change axes states 
         
 
