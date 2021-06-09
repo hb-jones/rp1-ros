@@ -188,7 +188,7 @@ class LowLevelInterface():
         self.thread_updating = True
 
         self.axis_feed_watchdog()
-        self.axis_enable_watchdog(disable=True)
+        self.axis_enable_watchdog(disable=False)
 
         self.loop_thread.start()
         return  True
