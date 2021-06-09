@@ -51,8 +51,8 @@ class LowLevelInterface():
         return
     
     def main_loop(self):
-        self.axis_feed_watchdog()
-        self.axis_enable_watchdog()
+        #self.axis_feed_watchdog()
+        self.axis_enable_watchdog(True)
         while self.loop_run_flag:
             #time_start = perf_counter()
             if not self.check_state(): #Checks everything is in correct state etc
@@ -188,6 +188,9 @@ class LowLevelInterface():
         
         self.loop_thread = threading.Thread(target=self.main_loop)
         self.thread_updating = True
+
+        
+
         self.loop_thread.start()
         return  True
     
@@ -258,13 +261,18 @@ class LowLevelInterface():
         self.logger.info(" - Drives started and ready")
         return True
 
-    def axis_enable_watchdog(self):
+    def axis_enable_watchdog(self, disable = False):
         self.axis_feed_watchdog()
         for axis_name in self.axes_dict:
             axis: Axis = self.axes_dict[axis_name]
             watchdog_timeout = 2
-            axis.config.watchdog_timeout = watchdog_timeout #Time in seconds until watchdog expires, only affects if odrive is disconnected from PC or code hangs
-            axis.config.enable_watchdog = True
+            
+            if disable:
+                axis.config.watchdog_timeout = 0 #Time in seconds until watchdog expires, only affects if odrive is disconnected from PC or code hangs
+                axis.config.enable_watchdog = False
+            else:
+                axis.config.watchdog_timeout = watchdog_timeout #Time in seconds until watchdog expires, only affects if odrive is disconnected from PC or code hangs
+                axis.config.enable_watchdog = True
 
             if axis.config.watchdog_timeout != watchdog_timeout or not axis.config.enable_watchdog:
                 self.logger.error("{name}: - Watchdog Error: Watchdog was not successfully enabled".format(name = axis_name))
