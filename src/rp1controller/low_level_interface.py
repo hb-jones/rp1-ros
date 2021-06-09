@@ -188,7 +188,7 @@ class LowLevelInterface():
         self.thread_updating = True
 
         self.axis_feed_watchdog()
-        self.axis_enable_watchdog()
+        self.axis_enable_watchdog(False)
 
         self.loop_thread.start()
         return  True
@@ -245,7 +245,9 @@ class LowLevelInterface():
         if not self.update_configuration(): #Adjsts odrive config based on rp1 config file, max speed etc
             self.drives_started = False
             return False
-        
+
+        self.axis_enable_watchdog(False) #Disable watchdog before enabling later
+
         self.axis_set_control_mode(CONTROL_MODE_VELOCITY_CONTROL) #Puts control mode into direct drive mode
         self.axis_set_input_mode(INPUT_MODE_VEL_RAMP) #Turn on direct velocity control
         
