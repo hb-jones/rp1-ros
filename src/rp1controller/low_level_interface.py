@@ -266,11 +266,11 @@ class LowLevelInterface():
         self.axis_feed_watchdog()
         for axis_name in self.axes_dict:
             axis: Axis = self.axes_dict[axis_name]
-            watchdog_timeout = 200
+            watchdog_timeout = 2 #TODO May need to adust
             
             if disable:
                 axis.config.watchdog_timeout = 0 #Time in seconds until watchdog expires, only affects if odrive is disconnected from PC or code hangs
-                #axis.config.enable_watchdog = False
+                #axis.config.enable_watchdog = False #TODO this likely goes true when the watchdog expires
             else:
                 axis.config.watchdog_timeout = watchdog_timeout #Time in seconds until watchdog expires, only affects if odrive is disconnected from PC or code hangs
                 #axis.config.enable_watchdog = True
