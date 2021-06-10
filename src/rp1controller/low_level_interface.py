@@ -270,10 +270,11 @@ class LowLevelInterface():
             
             if disable:
                 axis.config.watchdog_timeout = 0 #Time in seconds until watchdog expires, only affects if odrive is disconnected from PC or code hangs
-                #axis.config.enable_watchdog = False #TODO this likely goes true when the watchdog expires
+                axis.config.enable_watchdog = False #TODO this likely goes true when the watchdog expires
             else:
                 axis.config.watchdog_timeout = watchdog_timeout #Time in seconds until watchdog expires, only affects if odrive is disconnected from PC or code hangs
-                #axis.config.enable_watchdog = True
+                axis.watchdog_feed()
+                axis.config.enable_watchdog = True
 
                 if axis.config.watchdog_timeout != watchdog_timeout:# or not axis.config.enable_watchdog:
                     self.logger.error("{name}: - Watchdog Error: Watchdog was not successfully enabled".format(name = axis_name))
