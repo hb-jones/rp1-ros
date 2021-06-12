@@ -118,11 +118,17 @@ def update_PID(parameter, increase):
 def listen_to_gamepad():
     global running_flag
     while running_flag:
-        events = get_gamepad()
+        try:
+            events = get_gamepad()
+        except:
+            print("Gamepad Disconnected")
+            running_flag = False
+            brake()
         for event in events:
             if event.code == button_STP: #Emergency stop
                 running_flag = False
                 brake()
+                print("EMERGENCY BRAKE")
                 return
             if event.code == axis_FB:
                 linear_FB(event.state)
@@ -249,6 +255,7 @@ def set_config_speed(speed): #max speed
     return
 
 def main():
+    global running_flag, clientsocket
     setup_socket()
     gp_listen = threading.Thread(target=listen_to_gamepad)
     gp_listen.start()
@@ -260,6 +267,8 @@ def main():
         else:
             data = pickle.dumps("watchdog") 
             clientsocket.send(data)
+    print("Closing Socket")
+    clientsocket.close()
 
         
 

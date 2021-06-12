@@ -5,10 +5,10 @@ import threading, csv
 from rp1controller import Target
 from rs_localisation import RSLocalisation
 accelerations = [0.5, 1, 2, 3] #Accelerations to test in m/s^2
-positions = [(1,0),(1,0.5),(0,0)] #Coordinates of test positions, measurements are taken at final position
-speed_max = 2 #m/s
-repeats = 3
-mass = 8200 #g, for logging
+positions = [(1.5,0),(1.5,-0.5),(0,0)] #Coordinates of test positions, measurements are taken at final position
+speed_max = 1 #m/s
+repeats = 20
+mass = 9000 #g, for logging
 mechanical_configuration = "single_wheel"
 
 filename = f"test_data/repeatability_{mechanical_configuration}_{mass}g.csv"
@@ -17,12 +17,13 @@ def server_thread():
 
 def check_at_pos(position, pose):
     if pose == False:
-        print("Invalid Pose")
+        print("Invalid pose from RP1")
         return False
     if abs(pose.local_x_velocity) > 0.02 or abs(pose.local_y_velocity) > 0.02:
         return False
-    if (abs(pose.world_x_position) - abs(position[0])) < 0.2:
-        if (abs(pose.world_y_position) - abs(position[1])) < 0.2:
+    if abs(pose.world_x_position - position[0]) < 0.2:
+        if abs(pose.world_y_position - position[1]) < 0.2:
+            print(f"At position ({pose.world_x_position},{pose.world_y_position})")
             return True
     return False
 
@@ -30,7 +31,7 @@ def get_realsense_estimate(rs):
     rs_pose = rs.get_robot_position()
     if rs_pose is False:
         rs_pose = rs.get_robot_position()
-        print("Pose failed")
+        print("RS pose failed")
         time.sleep(0.5)
     return rs_pose
 
@@ -80,8 +81,9 @@ def repeatability_test():
 
         for repeat in range(repeats):
             rp1.reset_odometry()
-            time.sleep(1)
+            time.sleep(1.5)
             for position in positions:
+                print(f"moving to pos: {position}")
                 target = Target()
                 target.world_bearing = 0
                 target.world_point = position

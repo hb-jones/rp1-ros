@@ -83,12 +83,12 @@ class RSLocalisation():
 
 
         #Calibration code
-        #masked_frame = cv2.bitwise_and(colour_image,colour_image, mask= mask)
-        #cv2.circle(masked_frame,(300,300),2,(0,0,255),3)
-        #cv2.namedWindow('Test', cv2.WINDOW_NORMAL)
-        #cv2.imshow('Test', masked_frame)
-        #hsv_val = hsv_frame[300,300]
-        #print(f"HSV at point: {hsv_val}")
+        # masked_frame = cv2.bitwise_and(colour_image,colour_image, mask= mask)
+        # cv2.circle(masked_frame,(300,300),2,(0,0,255),3)
+        # cv2.namedWindow('Test', cv2.WINDOW_NORMAL)
+        # cv2.imshow('Test', masked_frame)
+        # hsv_val = hsv_frame[300,300]
+        # print(f"HSV at point: {hsv_val}")
 
         return [centroid_X,centroid_Y], True
 

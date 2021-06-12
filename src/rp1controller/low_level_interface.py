@@ -68,7 +68,7 @@ class LowLevelInterface():
             self.target_changed_flag = False 
             #time_taken = perf_counter()-time_start
             #print(f"Time taken for LLI loop: {time_taken}")
-            sleep(0.05) #TODO reduce if this does not cause issues 
+            #sleep(0.05) #TODO reduce if this does not cause issues 
         self.logger.info(" - LLI loop shutting down")
         self.thread_updating = False
         self.is_ready = False
@@ -106,7 +106,7 @@ class LowLevelInterface():
             current_motor_speed_rad.update({axis_name: rad})
         
         linear_x, linear_y, angular = self.model.transform_velocity_motor_to_base(current_motor_speed_rad)
-        if(d_time<1):
+        if(d_time<0.5):
             self.odom_linear = (linear_x, linear_y)
             self.odom_angular = angular
         else:
