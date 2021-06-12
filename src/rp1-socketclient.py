@@ -12,6 +12,7 @@ IP_laptop = "192.168.137.1"
 def reset_target():
     global time_last
     while(True):
+        time.sleep(1)
         delay = time.time()-time_last
         if ((delay)>2 and not first):
             print(f"Reset {delay} at {time.time()}")
