@@ -111,7 +111,7 @@ class RP1Configuration():
     max_error_angular_velocity = 0.2
 
     
-    polypath_distance = 1 #How far from target should path start
+    polypath_distance = 0.5 #How far from target should path start
     polypath_max_speed = 1.5 #How fast robot can be going to trigger polypath
     polypath_time = 1#polypath_max_speed/acceleration_max #How long should final path to position take
     
