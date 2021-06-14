@@ -34,7 +34,8 @@ class ControlMode:
         self.logger.info(" - Trajectory Planner Started")
         return
     def input_target(self, target: Target): 
-        """Sets target""" #TODO fix docstring using https://numpydoc.readthedocs.io/en/latest/example.html#example
+        """Sets target"""
+        self.target = target
         self.logger.warning(" - ControlMode prototype: Unable to set target")
         return
 
