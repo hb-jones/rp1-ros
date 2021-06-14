@@ -304,6 +304,10 @@ class RP1Client(RP1Communications):
         self.rp1socket.settimeout(10.0)
         first  = True
         while self.loop_flag:
+            msg = self.rp1socket.recv(1024) #TODO test code
+            data = pickle.loads(msg)
+            self.handle_data(data)
+            continue
             try:
                 msg = self.rp1socket.recv(1024)
                 data = pickle.loads(msg)
