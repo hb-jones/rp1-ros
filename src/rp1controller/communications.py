@@ -103,6 +103,8 @@ class RP1Server(RP1Communications):
     watchdog_delay = 0.3 #How long between watchdog feeds
     watchdog_loop_flag = False
     watchdog_loop_handle = None
+    watchdog_fail_count = 0
+    watchdog_fail_max = 10
 
     def __init__(self, ip):
         super().__init__(ip=ip)
@@ -154,7 +156,11 @@ class RP1Server(RP1Communications):
     def command_watchdog(self):
         super().command_watchdog()
         watchdog = Command("watchdog")
-        self.send_data(watchdog)
+        if not self.send_data(watchdog):
+            self.watchdog_fail_count += 1
+        if self.watchdog_fail_count>self.watchdog_fail_max:
+            print("Too many failed watchdog requests")
+            self.watchdog_loop_flag = False
 
     def command_set_target(self, target, expect_response = False, log = False):
         success = super().command_set_target(target, expect_response=expect_response, log=log)
@@ -301,31 +307,24 @@ class RP1Client(RP1Communications):
         return
 
     def comms_loop(self):
-        self.rp1socket.settimeout(10.0)
-        first  = True
+        self.rp1socket.settimeout(1.0)
+        unpickle_fail_count = 0
+        unpickle_fail_max = 5
         while self.loop_flag:
-            msg = self.rp1socket.recv(2048) #TODO test code
-            print()
-            print(msg)
-            print()
-            data = pickle.loads(msg)
-            print()
-            print(data)
-            print()
-            self.handle_data(data)
-
-            continue
             try:
                 msg = self.rp1socket.recv(2048)
-                data = pickle.loads(msg)
+                try:
+                    data = pickle.loads(msg)
+                except:
+                    unpickle_fail_count += 1 
+                    print(f"Failed to unpickle: {unpickle_fail_count}")
+                    if unpickle_fail_count>unpickle_fail_max:
+                        self.handle_timeout()
+                        return
                 self.handle_data(data)
             except:
                 self.handle_timeout()
                 return
-
-            if first:#To give extra time for watchdog on startup
-                self.rp1socket.settimeout(1.0)
-            first = False
         return
     
     def handle_data(self, data: Command):
