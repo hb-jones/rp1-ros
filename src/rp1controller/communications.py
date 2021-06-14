@@ -45,7 +45,7 @@ class RP1Communications:
     def get_response(self):
         self.rp1socket.settimeout(1.0)
         try:
-            msg = self.rp1socket.recv(1024)
+            msg = self.rp1socket.recv(2048)
             data = pickle.loads(msg)
             return data
         except:
@@ -139,7 +139,7 @@ class RP1Server(RP1Communications):
     def get_response(self):
         self.clientsocket.settimeout(1.0)
         try:
-            msg = self.clientsocket.recv(1024)
+            msg = self.clientsocket.recv(2048)
             data = pickle.loads(msg)
             return data
         except:
@@ -304,13 +304,19 @@ class RP1Client(RP1Communications):
         self.rp1socket.settimeout(10.0)
         first  = True
         while self.loop_flag:
-            msg = self.rp1socket.recv(1024) #TODO test code
+            msg = self.rp1socket.recv(2048) #TODO test code
+            print()
             print(msg)
+            print()
             data = pickle.loads(msg)
+            print()
+            print(data)
+            print()
             self.handle_data(data)
+
             continue
             try:
-                msg = self.rp1socket.recv(1024)
+                msg = self.rp1socket.recv(2048)
                 data = pickle.loads(msg)
                 self.handle_data(data)
             except:
