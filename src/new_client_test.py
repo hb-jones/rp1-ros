@@ -1,4 +1,4 @@
-from rp1controller.communications import RP1Client
+from rp1controller import RP1Client
 
 ip = "192.168.137.1"
 

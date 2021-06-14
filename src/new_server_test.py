@@ -1,6 +1,6 @@
 from rp1controller import Target
 from rp1controller.trajectory_planners import LocalVelocityControl
-from rp1controller.communications import RP1Server
+from rp1controller import RP1Server
 from time import sleep
 
 ip = "192.168.137.1"

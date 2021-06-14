@@ -1,8 +1,7 @@
-from _typeshed import SupportsItemAccess
-from rp1controller.odometry_system import VelocityPose
+from .odometry_system import VelocityPose
 import socket, pickle, time, threading
-from rp1controller import Target, RP1Controller, VelocityPose
-from rp1controller.trajectory_planners import ControlMode
+from rp1controller import Target, RP1Controller
+from .trajectory_planners import ControlMode
 
 class Command:
     command_name = ""
