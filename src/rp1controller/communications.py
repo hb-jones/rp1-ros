@@ -110,7 +110,7 @@ class RP1Server(RP1Communications):
         super().__init__(ip=ip)
 
         self.watchdog_loop_flag = True
-        self.watchdog_loop_handle = threading.Thread(target=self.watchdog_loop)
+        self.watchdog_loop_handle = threading.Thread(target=self.watchdog_loop, daemon=True)
         self.watchdog_loop_handle.start()
 
     def __del__(self):
@@ -370,7 +370,7 @@ class RP1Client(RP1Communications):
         success = super().command_set_planner(planner, expect_response, log)
  
         if success:
-            self.HLC.set_trajectory_planner(planner)
+            self.HLC.set_trajectory_planner(planner()) #Make sure planner initialises
 
         if expect_response:
             response = type(self.HLC.trajectory_planner)
