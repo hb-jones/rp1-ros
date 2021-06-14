@@ -305,6 +305,7 @@ class RP1Client(RP1Communications):
         first  = True
         while self.loop_flag:
             msg = self.rp1socket.recv(1024) #TODO test code
+            print(msg)
             data = pickle.loads(msg)
             self.handle_data(data)
             continue
