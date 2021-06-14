@@ -113,6 +113,7 @@ class RP1Server(RP1Communications):
 
     def __del__(self):
         print("Stopping Server")
+        self.clientsocket.close()
         self.watchdog_loop_flag = False
         self.watchdog_loop_handle.join()
         return super().__del__()
@@ -125,6 +126,25 @@ class RP1Server(RP1Communications):
         self.clientsocket.setblocking(False)
         print(f"Connection from {address} has been established.")
         return
+
+    def send_data(self, data_to_send):
+        data = pickle.dumps(data_to_send)
+        try:
+            self.clientsocket.send(data)
+            return True
+        except:
+            print("Data was not sent")
+            return False
+
+    def get_response(self):
+        self.clientsocket.settimeout(1.0)
+        try:
+            msg = self.clientsocket.recv(1024)
+            data = pickle.loads(msg)
+            return data
+        except:
+            print("No response recieved")
+            return False
 
     def watchdog_loop(self):
         while self.watchdog_loop_flag:
@@ -199,7 +219,7 @@ class RP1Server(RP1Communications):
             return True
 
     def command_set_acceleration_limit(self, acceleration_limit, expect_response = True, log = False):
-        success = super().command_set_acceleration_limit()
+        success = super().command_set_acceleration_limit(acceleration_limit, expect_response=expect_response, log=log)
 
         if not success:
             return False
@@ -268,7 +288,8 @@ class RP1Client(RP1Communications):
     
     def __del__(self):
         print("Stoping Client")
-        self.HLC.set_target(Target())
+        if self.HLC is not None:
+            self.HLC.set_target(Target())
         self.loop_flag = False
         self.loop_handle.join()
         return super().__del__()
@@ -280,7 +301,8 @@ class RP1Client(RP1Communications):
         return
 
     def comms_loop(self):
-        self.rp1socket.settimeout(1.0)
+        self.rp1socket.settimeout(10.0)
+        first  = True
         while self.loop_flag:
             try:
                 msg = self.rp1socket.recv(1024)
@@ -289,6 +311,10 @@ class RP1Client(RP1Communications):
             except:
                 self.handle_timeout()
                 return
+
+            if first:#To give extra time for watchdog on startup
+                self.rp1socket.settimeout(1.0)
+            first = False
         return
     
     def handle_data(self, data: Command):

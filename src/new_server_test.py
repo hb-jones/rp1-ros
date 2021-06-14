@@ -10,7 +10,7 @@ print("Starting Server")
 
 server = RP1Server(ip)
 
-sleep(3)
+sleep(10) #TODO add check ready
 
 print("Starting test Sequence")
 
