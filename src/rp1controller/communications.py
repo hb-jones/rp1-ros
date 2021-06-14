@@ -370,7 +370,7 @@ class RP1Client(RP1Communications):
         success = super().command_set_planner(planner, expect_response, log)
  
         if success:
-            self.HLC.set_trajectory_planner(planner()) #Make sure planner initialises
+            self.HLC.set_trajectory_planner(planner(self.HLC)) #Make sure planner initialises
 
         if expect_response:
             response = type(self.HLC.trajectory_planner)
