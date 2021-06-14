@@ -181,7 +181,7 @@ class RP1Server(RP1Communications):
             if target != response:
                 print(f"Target not set correctly, expected {target}, instead recieved {response}")
                 return False
-            return response
+            return True
 
     def command_set_planner(self, planner, expect_response = False, log = False): #TODO needs to be tested to make sure it can differnetiate between control modes
         """Planner should be the type of planner to use"""
