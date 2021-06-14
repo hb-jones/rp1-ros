@@ -115,9 +115,9 @@ class RP1Server(RP1Communications):
 
     def __del__(self):
         print("Stopping Server")
-        self.clientsocket.close()
         self.watchdog_loop_flag = False
         self.watchdog_loop_handle.join()
+        self.clientsocket.close()
         return super().__del__()
 
     def setup_socket(self):
@@ -322,7 +322,7 @@ class RP1Client(RP1Communications):
                         self.handle_timeout()
                         return
                 self.handle_data(data)
-            except:
+            except socket.timeout:
                 self.handle_timeout()
                 return
         return
