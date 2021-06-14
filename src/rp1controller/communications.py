@@ -246,7 +246,7 @@ class RP1Server(RP1Communications):
     def command_reset_localisation(self, expect_response = False, log = False):
         success = super().command_reset_localisation(expect_response=expect_response, log=log)
 
-        reset_localisation = Command("reset_localisation", expect_response=expect_response, log=log)
+        reset_localisation = Command("reset_localisation",function=RP1Client.command_reset_localisation, expect_response=expect_response, log=log)
         self.send_data(reset_localisation)
 
         if expect_response:
