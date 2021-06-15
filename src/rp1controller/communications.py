@@ -197,7 +197,7 @@ class RP1Server(RP1Communications):
             response = self.get_response()
             if response == False:
                 return False
-            if not issubclass(type(response),ControlMode):
+            if not issubclass(response,ControlMode):
                 print("Response of incorrect type")
                 return False
             if planner != response:
@@ -262,7 +262,7 @@ class RP1Server(RP1Communications):
     def command_get_location(self, expect_response = True, log = False):
         super().command_get_location(log=log)
 
-        get_location = Command("get_location", expect_response=expect_response, log=log)
+        get_location = Command("get_location", function=RP1Client.command_get_location, expect_response=expect_response, log=log)
         self.send_data(get_location)
 
         if expect_response:

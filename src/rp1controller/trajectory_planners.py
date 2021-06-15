@@ -6,9 +6,9 @@ from typing import Tuple
 import logging, threading
 
 class Target:
-    local_velocity = None #Linear velocity in local frame
-    angular_velocity  = None # angular velocity
-    world_velocity = None #linear velocity target in world frame
+    local_velocity = (0,0) #Linear velocity in local frame
+    angular_velocity  = 0 # angular velocity
+    world_velocity = (0,0) #linear velocity target in world frame
     world_bearing  = None #Bearing to face
     world_point     = None #Coordinate to move to
     world_point_facing = None #Coordinate for platform to face

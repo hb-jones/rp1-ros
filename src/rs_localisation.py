@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 
 class RSLocalisation():
-    origin = [0,0] #TODO
+    origin = [0,0] 
 
     threshold_m00 = 140000
 
@@ -34,7 +34,7 @@ class RSLocalisation():
         print("Closing RS pipeline")
         self.pipeline.stop()
 
-    def get_robot_position(self):
+    def get_robot_position(self, true_position = False):
         frames = self.get_frames()
         colour_frame = frames.get_color_frame()
         depth_frame = frames.get_depth_frame()
@@ -45,7 +45,10 @@ class RSLocalisation():
         
         depth_at_pixel = depth_frame.get_distance(pixel_coordinate[0], pixel_coordinate[1]) #distance to pixel in m
         coordinate_camera_frame = rs.rs2_deproject_pixel_to_point(self.depth_intrinsics, pixel_coordinate, depth_at_pixel)
-        coordinate_robot_frame = self.convert_to_robot_frame(coordinate_camera_frame)
+        if true_position:
+            coordinate_robot_frame = self.convert_to_robot_frame(coordinate_camera_frame, true_position = True)
+        else:
+            coordinate_robot_frame = self.convert_to_robot_frame(coordinate_camera_frame)
         return coordinate_robot_frame
     
     def get_frames(self):
@@ -92,11 +95,12 @@ class RSLocalisation():
 
         return [centroid_X,centroid_Y], True
 
-    def convert_to_robot_frame(self, coord):
+    def convert_to_robot_frame(self, coord, true_position = False):
         #Realsense should face ground with "Up" towards robots X axis (forwards)
         xa = -coord[1]
         ya = -coord[0]
-        
+        if true_position:
+            return [xa, ya]
         x = xa - self.origin[0]
         y = ya - self.origin[1]
         print(f"Xc: {coord[0]:.2f}, Yc: {coord[1]:.2f}, Zc: {coord[2]:.2f},           Xr: {x:.2f}, Yr: {y:.2f}")
