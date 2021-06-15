@@ -1,6 +1,9 @@
+from pickle import TRUE
 from rp1controller.odometry_system import VelocityPose
+from rp1controller.trajectory_planners import LocalVelocityControl, WorldVelocityControl, WorldPoseControl
 import time
-import rp1_test_server as rp1
+from rp1_gamepad import GamepadInput
+from rp1controller.communications import RP1Server
 import threading, csv
 from rp1controller import Target
 from rs_localisation import RSLocalisation
@@ -10,10 +13,9 @@ speed_max = 1 #m/s
 repeats = 20
 mass = 9000 #g, for logging
 mechanical_configuration = "single_wheel"
+paused = False
 
 filename = f"test_data/repeatability_{mechanical_configuration}_{mass}g.csv"
-def server_thread():
-    rp1.main()
 
 def check_at_pos(position, pose):
     if pose == False:
@@ -54,59 +56,74 @@ def log_result(mass, repeat, acceleration, rp1_x, rp1_y, rs_x, rs_y):
         err = abs(d_loc-d_rs)
         print(f"Displacement: {(err*1000):.1f}mm")
         result_logger.writerow([mass, repeat, acceleration, rp1_x, rp1_y, rs_x, rs_y, d_loc, d_rs, err])
-
     
     return
 
-def log_result_test(test):
-    print(test)
-    print()
-    return
 
 def displacement(coord):
     return (coord[0]**2 + coord[1]**2)**0.5
 
+def pause():
+    global pause
+    pause = not pause
+    if pause:
+        print(f"Pausing test at next repeat")
+    else:
+        print(f"Unpaused test")
 
 def repeatability_test():
     log_setup()
-    server = threading.Thread(target=server_thread)
-    server.start()
+    server = RP1Server("192.168.137.1")
+    time.sleep(3)
+    gamepad = GamepadInput(server)
     rs = RSLocalisation()
     time.sleep(1)
     rs_pose = get_realsense_estimate(rs)
     rs.update_robot_origin()
+    time.sleep(5)
 
-    time.sleep(10)
-    rp1.change_mode("pose")
-    time.sleep(1)
-    rp1.set_config_speed(speed_max)
-    time.sleep(1)
-    for acceleration in accelerations:
-        rp1.set_config_accel(acceleration)
-        time.sleep(0.1)
-        rp1.set_config_accel(acceleration)
+    planner_updated = False
+    while not planner_updated:
+        planner_updated = server.command_set_planner(WorldPoseControl, expect_response=True, log=True)
         time.sleep(1)
 
+    speed_updated = False
+    while not speed_updated:
+        speed_updated = server.command_set_speed_limit(speed_max, expect_response=True, log=True)
+        time.sleep(1)
+    
+    for acceleration in accelerations:
+        acceleration_updated = False
+        while not acceleration_updated:
+            acceleration_updated = server.command_set_acceleration_limit(acceleration, expect_response=True, log=True)
+            time.sleep(1)
+        
         for repeat in range(repeats):
-            rp1.reset_odometry()
-            time.sleep(1.5)
+            odom_reset = False
+            while not odom_reset:
+                odom_reset = server.command_reset_localisation(expect_response=True, log=True)
+                time.sleep(1)
+
             for position in positions:
                 print(f"moving to pos: {position}")
                 target = Target()
                 target.world_bearing = 0
                 target.world_point = position
-                rp1.send_target(target)
-                time.sleep(0.5)
-                pose = rp1.get_odom()
+                target_sent = False
+                while not target_sent:
+                    target_sent = server.command_set_target(target, expect_response=True, log=True)
+                    time.sleep(1)
+                pose = server.command_get_location()
                 while not check_at_pos(position, pose):
                     #if pose!= False:
                         #print(f"Velocity X{pose.local_x_velocity}, Y{pose.local_y_velocity}")
                     time.sleep(0.5)
-                    pose = rp1.get_odom()
+                    pose = server.command_get_location()
             time.sleep(1)
-            localisation_pose = rp1.get_odom()
+            localisation_pose = server.command_get_location()
             while localisation_pose == False:
-                localisation_pose = rp1.get_odom()
+                localisation_pose = server.command_get_location()
+                time.sleep(0.5)
             rs_pose = get_realsense_estimate(rs)
             
             #log_result_test(f"A: {acceleration}, RP1: {[localisation_pose.world_x_position, localisation_pose.world_y_position]}, RS: {rs_pose}")
@@ -120,13 +137,16 @@ def repeatability_test():
                 target = Target()
                 target.world_bearing = 0
                 target.world_point = centre_pos
-                rp1.send_target(target)
-                time.sleep(2)
+                target_sent = False
+                while not target_sent:
+                    target_sent = server.command_set_target(target, expect_response=True)
+                    time.sleep(1)
+                time.sleep(1)
 
-                pose = rp1.get_odom()
+                pose = server.command_get_location()
                 while not check_at_pos(centre_pos, pose):
                     time.sleep(1)
-                    pose = rp1.get_odom()
+                    pose = server.command_get_location()
             
             rs.update_robot_origin()
     return
