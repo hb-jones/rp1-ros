@@ -285,6 +285,7 @@ class RP1Server(RP1Communications):
 
 
 class RP1Client(RP1Communications):
+    timeout = 2.0
     loop_flag = False 
     loop_handle = None
     HLC: RP1Controller = None
@@ -313,7 +314,7 @@ class RP1Client(RP1Communications):
         return
 
     def comms_loop(self):
-        self.rp1socket.settimeout(1.0)
+        self.rp1socket.settimeout(self.timeout)
         unpickle_fail_count = 0
         unpickle_fail_max = 5
         while self.loop_flag:
@@ -369,7 +370,6 @@ class RP1Client(RP1Communications):
         self.HLC.set_target(target)
 
         if expect_response:
-            print("Sending response") #TODO debug print
             response = self.HLC.trajectory_planner.target
             self.send_data(response)
 
