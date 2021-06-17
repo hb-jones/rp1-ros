@@ -182,7 +182,7 @@ class WorldPoseControl(ControlMode):
                 elif (abs(error_position[0])<self.hlc.config.polypath_distance) and (abs(current_pose.world_x_velocity)<self.hlc.config.polypath_max_speed):
                     #Create polynomial path
                     #may have issues with signs on velocity when going backwards near target TODO
-                    print("Generating path X")
+                    #print("Generating path X")
                     self.x_polypath = self.generate_poly_path(self.hlc.config.polypath_time, 0, error_position[0], current_pose.world_x_velocity)
                     target_world_x = self.x_polypath[0]
                     self.x_polypath_index = 1
@@ -210,7 +210,7 @@ class WorldPoseControl(ControlMode):
                     target_world_y = 0
                 elif (abs(error_position[1])<self.hlc.config.polypath_distance) and (abs(current_pose.world_y_velocity)<self.hlc.config.polypath_max_speed):
                     #Create polynomial path
-                    print("Generating path Y")
+                    #print("Generating path Y")
                     self.y_polypath = self.generate_poly_path(self.hlc.config.polypath_time, 0, error_position[1], current_pose.world_y_velocity)
                     target_world_y = self.y_polypath[0]
                     self.y_polypath_index = 1
@@ -239,7 +239,7 @@ class WorldPoseControl(ControlMode):
                     target_angular = 0
                 elif (abs(error_angle)<self.hlc.config.polypath_distance) and (abs(current_pose.angular_velocity)<self.hlc.config.polypath_max_speed):
                     #Create polynomial path
-                    print("Generating path A") #TODO add specific angular configs
+                    #print("Generating path A") #TODO add specific angular configs
                     self.a_polypath = self.generate_poly_path(self.hlc.config.polypath_time, 0, error_angle, current_pose.angular_velocity)
                     target_angular = self.a_polypath[0]
                     self.a_polypath_index = 1
@@ -280,7 +280,6 @@ class WorldPoseControl(ControlMode):
         return
 
     def generate_poly_path(self, duration, position_start, position_end, speed_start, speed_end = 0, log = False):
-        log = True #DEBUG TODO
         
         q0 = position_start
         qf = position_end
@@ -290,7 +289,7 @@ class WorldPoseControl(ControlMode):
         tf = duration
         t0 = 0
         
-        print(f"q0: {q0}, qf: {qf}, v0: {v0}, vf: {vf}, tf: {tf}")
+        #print(f"q0: {q0}, qf: {qf}, v0: {v0}, vf: {vf}, tf: {tf}")
         a0 = q0
         a1 = v0
         a2 = (3*(qf-q0)-(2*v0+vf)*tf)/(tf**2)
