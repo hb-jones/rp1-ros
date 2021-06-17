@@ -17,6 +17,9 @@ class Target:
         self.local_velocity = local_velocity
         self.angular_velocity  = local_angular
         return 
+
+    def __str__(self):
+        return f"Local Velocity: {self.local_velocity}, Angular: {self.angular_velocity}, Position: {self.world_point}, Bearing: {self.world_bearing}"
     
 
 
