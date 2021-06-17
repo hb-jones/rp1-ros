@@ -179,15 +179,11 @@ class RP1Server(RP1Communications):
 
         if expect_response:
             response = self.get_response()
-            if response == False:
+            if not response:
+                print("Target not set successfully")
                 return False
-            if type(response) != Target:
-                print("Response of incorrect type")
-                return False
-            if target != response:
-                print(f"Target not set correctly, expected {target}, instead recieved {response}")
-                return False
-            return True
+            else:
+                return True
 
     def command_set_planner(self, planner, expect_response = False, log = False): #TODO needs to be tested to make sure it can differnetiate between control modes
         """Planner should be the type of planner to use"""
@@ -370,7 +366,7 @@ class RP1Client(RP1Communications):
         self.HLC.set_target(target)
 
         if expect_response:
-            response = self.HLC.trajectory_planner.target
+            response = success
             self.send_data(response)
 
     def command_set_planner(self, planner, expect_response = False, log = False):
