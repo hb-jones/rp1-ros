@@ -304,7 +304,7 @@ class RP1Client(RP1Communications):
             self.HLC.set_target(Target())
         self.loop_flag = False
         self.loop_handle.join()
-        return super().__del__()
+        super().__del__()
 
     def setup_socket(self):
         super().setup_socket()
@@ -369,6 +369,7 @@ class RP1Client(RP1Communications):
         self.HLC.set_target(target)
 
         if expect_response:
+            print("Sending response") #TODO debug print
             response = self.HLC.trajectory_planner.target
             self.send_data(response)
 
