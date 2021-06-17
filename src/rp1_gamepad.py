@@ -38,7 +38,7 @@ class GamepadInput():
     control_loop_handle = None
 
     target = Target()
-
+    target_updated = False
     control_modes = [LocalVelocityControl, WorldVelocityControl, WorldPoseControl]
     control_mode_index = 0
 
@@ -136,6 +136,7 @@ class GamepadInput():
 
     def update_target(self, t_axis, value, urgent=False):
         speed = self.curve(value)
+        self.target_updated = True
         if t_axis == "axis_FB":
             lin_speed = speed*self.speed_limit_linear
             LR_speed = self.target.local_velocity[1]
@@ -154,7 +155,9 @@ class GamepadInput():
             self.send_target()
         
     def send_target(self):
-        self.server.command_set_target(self.target, log=self.log)
+        if self.target_updated:
+            self.server.command_set_target(self.target, log=self.log)
+            self.target_updated = False
         return
 
     def brake(self):

@@ -9,9 +9,9 @@ class Target:
     local_velocity = (0,0) #Linear velocity in local frame
     angular_velocity  = 0 # angular velocity
     world_velocity = (0,0) #linear velocity target in world frame
-    world_bearing  = None #Bearing to face
-    world_point     = None #Coordinate to move to
-    world_point_facing = None #Coordinate for platform to face
+    world_bearing  = 0 #Bearing to face
+    world_point     = (0,0) #Coordinate to move to
+    world_point_facing = (0,0) #Coordinate for platform to face
     
     def __init__(self, local_velocity: Tuple[float, float] = (0,0), local_angular: float = 0):
         self.local_velocity = local_velocity

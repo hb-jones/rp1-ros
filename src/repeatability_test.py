@@ -72,10 +72,12 @@ def pause():
         print(f"Unpaused test")
 
 def repeatability_test():
+    global pause
     log_setup()
     server = RP1Server("192.168.137.1")
     time.sleep(3)
     gamepad = GamepadInput(server)
+    gamepad.variable_func = pause
     rs = RSLocalisation()
     time.sleep(1)
     rs_pose = get_realsense_estimate(rs)
@@ -99,6 +101,9 @@ def repeatability_test():
             time.sleep(1)
         
         for repeat in range(repeats):
+            while pause:
+                time.sleep(1)
+                
             odom_reset = False
             while not odom_reset:
                 odom_reset = server.command_reset_localisation(expect_response=True, log=True)
