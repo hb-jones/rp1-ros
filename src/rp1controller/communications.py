@@ -105,6 +105,8 @@ class RP1Server(RP1Communications):
     watchdog_loop_handle = None
     watchdog_fail_count = 0
     watchdog_fail_max = 10
+    
+    last_command_time = 0
 
     def __init__(self, ip):
         super().__init__(ip=ip)
@@ -133,6 +135,7 @@ class RP1Server(RP1Communications):
         data = pickle.dumps(data_to_send)
         try:
             self.clientsocket.send(data)
+            self.last_command_time = time.time()
             return True
         except:
             print("Data was not sent")
@@ -150,8 +153,10 @@ class RP1Server(RP1Communications):
 
     def watchdog_loop(self):
         while self.watchdog_loop_flag:
-            self.command_watchdog()
-            time.sleep(self.watchdog_delay)
+            time_since_last_command = time.time()-self.last_command_time
+            if time_since_last_command>self.watchdog_delay:
+                self.command_watchdog()
+            time.sleep(self.watchdog_delay/4)
 
     def command_watchdog(self):
         super().command_watchdog()
@@ -161,6 +166,7 @@ class RP1Server(RP1Communications):
         if self.watchdog_fail_count>self.watchdog_fail_max:
             print("Too many failed watchdog requests")
             self.watchdog_loop_flag = False
+            self.__del__()
 
     def command_set_target(self, target, expect_response = False, log = False):
         success = super().command_set_target(target, expect_response=expect_response, log=log)
