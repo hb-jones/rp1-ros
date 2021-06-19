@@ -248,6 +248,8 @@ class LowLevelInterface():
 
         self.axis_enable_watchdog(disable=True) #Disable watchdog before enabling later
 
+        self.axis_set_motor_current(self.config.motor_current_limit) #Current limit of motors
+
         self.axis_set_control_mode(CONTROL_MODE_VELOCITY_CONTROL) #Puts control mode into direct drive mode
         self.axis_set_input_mode(INPUT_MODE_VEL_RAMP) #Turn on direct velocity control
         
@@ -332,6 +334,12 @@ class LowLevelInterface():
                 axis.controller.config.vel_ramp_rate = ramp_rate
             
             axis.controller.config.input_mode = mode
+        return
+
+    def axis_set_motor_current(self, motor_current = 10):
+        for axis_name in self.axes_dict:
+            axis: Axis = self.axes_dict[axis_name]
+            axis.motor.config.current_lim = motor_current
         return
     
     def rps_to_radians(self,rps): 
