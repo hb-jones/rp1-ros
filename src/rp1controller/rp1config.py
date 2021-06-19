@@ -110,7 +110,7 @@ class RP1Configuration():
     linear_velocity_safe = 0.5
     angular_velocity_max = 0.2
 
-    max_error_position = 0.2
+    max_error_position = 0.1
     max_error_velocity = 0.2
     max_error_bearing = 0.05
     max_error_angular_velocity = 0.2
