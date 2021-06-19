@@ -98,12 +98,17 @@ class RP1Configuration():
     pos_gain = 12
     vel_gain = 0.004
     vel_integrator_gain = 0.021
-    vel_ramp_rate = 200 #TODO increase
+    vel_ramp_rate = 200
+    motor_current_limit = 20
 
     acceleration_max = 2 #m/s^2
     linear_velocity_max = 4 #m/s
     angular_acceleration_max = 0.5 #rad/s^2
     angular_velocity_max = 1 #rad/s
+    
+    acceleration_safe = 0.5
+    linear_velocity_safe = 0.5
+    angular_velocity_max = 0.2
 
     max_error_position = 0.2
     max_error_velocity = 0.2
