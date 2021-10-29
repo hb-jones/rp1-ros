@@ -5,7 +5,7 @@ import cv2
 class RSLocalisation():
     origin = [0,0] 
 
-    threshold_m00 = 140000
+    threshold_m00 = 70000
 
 
 

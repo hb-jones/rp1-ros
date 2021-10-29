@@ -79,6 +79,7 @@ class GamepadInput():
                 print("Gamepad Disconnected")
                 self.gamepad_loop_flag = False
                 self.brake()
+                return
             for event in events:
                 if event.code == self.button_BRK: #Emergency stop
                     self.gamepad_loop_flag = False

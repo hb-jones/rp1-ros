@@ -1,4 +1,3 @@
-from pickle import TRUE
 from rp1controller.odometry_system import VelocityPose
 from rp1controller.trajectory_planners import LocalVelocityControl, WorldVelocityControl, WorldPoseControl
 import time
@@ -7,11 +6,14 @@ from rp1controller.communications import RP1Server
 import threading, csv
 from rp1controller import Target
 from rs_localisation import RSLocalisation
-accelerations = [0.5, 1, 2, 3] #Accelerations to test in m/s^2
-positions = [(1,0),(1,-0.5),(0,0)] #Coordinates of test positions, measurements are taken at final position
+rs = None
+server = None
+#accelerations = [0.5, 1, 2, 3, 4, 5] #Accelerations to test in m/s^2
+accelerations = [ 4, 5] #Accelerations to test in m/s^2
+positions = [(1.5,0),(0,0)] #Coordinates of test positions, measurements are taken at final position
 speed_max = 1 #m/s
-repeats = 20
-mass = 9000 #g, for logging
+repeats = 5
+mass = 11500 #g, for logging
 mechanical_configuration = "single_wheel"
 paused = False
 
@@ -71,13 +73,20 @@ def pause():
     else:
         print(f"Unpaused test")
 
+def emergency_brake():
+    global server, rs
+    print("Ebrake")
+    del rs
+    del server
+
 def repeatability_test():
-    global pause
+    global pause, server
     log_setup()
     server = RP1Server("192.168.137.1")
     time.sleep(3)
     gamepad = GamepadInput(server)
     gamepad.variable_func = pause
+    gamepad.emergency_brake_func = emergency_brake
     rs = RSLocalisation()
     time.sleep(1)
     rs_pose = get_realsense_estimate(rs)
@@ -101,9 +110,12 @@ def repeatability_test():
             time.sleep(1)
         
         for repeat in range(repeats):
+            print()
+            print(f"Acceleration: {acceleration}, Repeat: {repeat}")
+            print()
             while pause:
                 time.sleep(1)
-                
+            rs.update_robot_origin()
             odom_reset = False
             while not odom_reset:
                 odom_reset = server.command_reset_localisation(expect_response=True, log=True)
@@ -117,12 +129,12 @@ def repeatability_test():
                 target_sent = False
                 while not target_sent:
                     target_sent = server.command_set_target(target, expect_response=True, log=True)
-                    time.sleep(1)
+                    time.sleep(0.5)
                 pose = server.command_get_location()
                 while not check_at_pos(position, pose):
                     #if pose!= False:
                         #print(f"Velocity X{pose.local_x_velocity}, Y{pose.local_y_velocity}")
-                    time.sleep(0.5)
+                    time.sleep(1)
                     pose = server.command_get_location()
             time.sleep(1)
             localisation_pose = server.command_get_location()
@@ -136,24 +148,30 @@ def repeatability_test():
             
             actual_pos = get_realsense_estimate(rs, true_position=True)
             if displacement(actual_pos)>0.3:
-                print(f"Attempting to re centre, displacement: {displacement(actual_pos):.2f}m, pos: ({actual_pos[0]:.2f},{actual_pos[1]:.2f})")
-                centre_pos =  (-actual_pos[0], -actual_pos[1])
-                print(f"Target pos: {centre_pos[0]:.2f}{centre_pos[1]:.2f}")
-                target = Target()
-                target.world_bearing = 0
-                target.world_point = centre_pos
-                target_sent = False
-                while not target_sent:
-                    target_sent = server.command_set_target(target, expect_response=True)
-                    time.sleep(1)
-                time.sleep(1)
+                pause = True
+                print("Please Recentre Robot!")
+                # print(f"Attempting to re centre, displacement: {displacement(actual_pos):.2f}m, pos: ({actual_pos[0]:.2f},{actual_pos[1]:.2f})")
+                # odom_reset = False
+                # while not odom_reset:
+                #     odom_reset = server.command_reset_localisation(expect_response=True, log=True)
+                #     time.sleep(1)
+                # centre_pos =  (actual_pos[1]/2, actual_pos[0]/2) #TODO Swapped these to test
+                # print(f"Target pos: {centre_pos[0]:.2f},{centre_pos[1]:.2f}")
+                # target = Target()
+                # target.world_bearing = 0
+                # target.world_point = centre_pos
+                # target_sent = False
+                # while not target_sent:
+                #     target_sent = server.command_set_target(target, expect_response=True)
+                #     time.sleep(1)
+                # time.sleep(3)
 
-                pose = server.command_get_location()
-                while not check_at_pos(centre_pos, pose):
-                    time.sleep(1)
-                    pose = server.command_get_location()
+                # pose = server.command_get_location()
+                # while not check_at_pos(centre_pos, pose):
+                #     time.sleep(1)
+                #     pose = server.command_get_location()
             
-            rs.update_robot_origin()
+            
     return
 
 

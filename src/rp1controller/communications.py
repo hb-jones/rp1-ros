@@ -98,6 +98,10 @@ class RP1Communications:
             print("Getting Location")
         return True
 
+    def command_custom(self, log = False):
+        if log:
+            print("Custom function")
+        return True
 
 class RP1Server(RP1Communications):
     watchdog_delay = 0.3 #How long between watchdog feeds
@@ -166,7 +170,6 @@ class RP1Server(RP1Communications):
         if self.watchdog_fail_count>self.watchdog_fail_max:
             print("Too many failed watchdog requests")
             self.watchdog_loop_flag = False
-            self.__del__()
 
     def command_set_target(self, target, expect_response = False, log = False):
         success = super().command_set_target(target, expect_response=expect_response, log=log)
@@ -279,6 +282,14 @@ class RP1Server(RP1Communications):
                 print(response) 
             return response
 
+    def command_custom(self, log = False):
+        success = super().command_custom(log=log)
+        if not success:
+            return False
+
+        custom_command = Command("custom", function=RP1Client.command_custom, log=log)
+        self.send_data(custom_command)
+        return True
 
 class RP1Client(RP1Communications):
     timeout = 2.0
@@ -286,8 +297,9 @@ class RP1Client(RP1Communications):
     loop_handle = None
     HLC: RP1Controller = None
 
-    def __init__(self, ip):
+    def __init__(self, ip, custom_function = None):
         super().__init__(ip=ip)
+        self.custom_function = custom_function
         self.HLC = RP1Controller()
 
         self.loop_flag = True
@@ -422,6 +434,14 @@ class RP1Client(RP1Communications):
             response = location
             self.send_data(response)
 
+    def command_custom(self, log = False):
+        success = super().command_set_target(log=log)
+        if self.custom_function is None:
+            success = False
+        if not success:
+            print("Custom function failed")
+            return False
+        self.custom_function(self.HLC)
 
 if __name__ == "__main__":
     pass

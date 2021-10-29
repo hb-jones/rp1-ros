@@ -5,18 +5,14 @@ import time
 from typing import Tuple
 import logging, threading
 
-class Target:
-    local_velocity = (0,0) #Linear velocity in local frame
-    angular_velocity  = 0 # angular velocity
-    world_velocity = (0,0) #linear velocity target in world frame
-    world_bearing  = 0 #Bearing to face
-    world_point     = (0,0) #Coordinate to move to
-    world_point_facing = (0,0) #Coordinate for platform to face
-    
+class Target:    
     def __init__(self, local_velocity: Tuple[float, float] = (0,0), local_angular: float = 0):
-        self.local_velocity = local_velocity
-        self.angular_velocity  = local_angular
-        return 
+        self.local_velocity = local_velocity    #Linear velocity in local frame
+        self.angular_velocity  = local_angular  #Angular velocity
+        self.world_velocity = (0,0)             #linear velocity target in world frame
+        self.world_bearing  = 0                 #Bearing to face
+        self.world_point = (0,0)                #Coordinate to move to
+        self.world_point_facing = (0,0)         #Coordinate for platform to face 
 
     def __str__(self):
         return f"Local Velocity: {self.local_velocity}, Angular: {self.angular_velocity}, Position: {self.world_point}, Bearing: {self.world_bearing}"
