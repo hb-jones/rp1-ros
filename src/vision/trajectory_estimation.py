@@ -1,7 +1,7 @@
-import cv2
+import cv2, time
 from math import atan
 from statistics import mean
-from vision_config import StereoConfig, TrajectoryConfig, BallConfig
+from .vision_config import StereoConfig, TrajectoryConfig, BallConfig
 import logging
 import logging.config
 from scipy import stats
@@ -175,7 +175,7 @@ class TrajectoryEstimator:
 
         #Check count, if too few then return false
         if len(self.positon_array)<self.config.min_datapoints:
-            self.logger.debug(f"trajectory_not_calculated: Needs {self.config.min_datapoints} datapoints, only has {len(self.positon_array)}")
+            #self.logger.debug(f"trajectory_not_calculated: Needs {self.config.min_datapoints} datapoints, only has {len(self.positon_array)}")
             return False
 
         #Check difference in times, displacement and velocity
@@ -200,16 +200,17 @@ class TrajectoryEstimator:
 
     def get_impact_point(self, relative_time = False): #TODO should return trajectory point with timestamp representing impact time
         if self.trajectory_status != self.VALID:
-            self.logger.info(f"impact_point_not_sent: Status is {self.trajectory_status}")
+            #self.logger.debug(f"impact_point_not_sent: Status is {self.trajectory_status}")
             return False
         return self.trajectory.get_ground_intercept(relative_time)
 
     def get_last_update_age(self):
         """Returns the time since the last update"""
         return time.time()-self.positon_array[-1].timestamp
+
     def stereo_publisher(self, stereo): #TODO make sure this works
         """To be passed to stereo cam so that it can update the trajectory"""
-
+        #print(f"Stereo publish{stereo.cartesian_coords}")#TODO Debug
         timestamp = stereo.last_update
         coords = stereo.cartesian_coords
         x = coords[0]

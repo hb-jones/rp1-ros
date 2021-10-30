@@ -1,9 +1,9 @@
 from logging import config
 import threading, cv2, time, json
-from stereocam import StereoCam
-from monocular import Monocular
-from vision_config import BallConfig, StereoConfig, MonocularConfig
-import preprocessing, trajectory_estimation
+from .stereocam import StereoCam
+from .monocular import Monocular
+from .vision_config import BallConfig, StereoConfig, MonocularConfig
+from . import preprocessing, trajectory_estimation
 
 class Stereo(Monocular):
 
@@ -72,7 +72,7 @@ class Stereo(Monocular):
 
                 #print(self.distance) #TODO DEBUG
 
-                self.publisher_func(self) #TODO call this after updating self 
+            self.publisher_func(self) #TODO call this after updating self 
 
             if self.debug_mode and self.debug_type == "oneshot":
                     self.debug_mode = False
@@ -128,7 +128,7 @@ class Stereo(Monocular):
 
         #print(f"Coord: {[x_l, y_l, z_l]}, {world_coord:}")
 
-        print(f"{x_translated:3f},{y_translated:3f},{z_translated:3f}")
+        #print(f"{x_translated:3f},{y_translated:3f},{z_translated:3f}")
 
         return world_coord
 

@@ -162,6 +162,7 @@ class GamepadInput():
         return
 
     def brake(self):
+        self.server.command_set_planner(LocalVelocityControl, log=self.log)
         self.server.command_set_target(Target(), log=self.log)
         return
     

@@ -1,7 +1,7 @@
 import threading, cv2, time
-from monocam import MonoCam
-from vision_config import BallConfig, MonocularConfig 
-import preprocessing, trajectory_estimation
+from .monocam import MonoCam
+from .vision_config import BallConfig, MonocularConfig 
+from . import preprocessing, trajectory_estimation
 
 class Monocular():
     loop_running = False #Flag for main loop

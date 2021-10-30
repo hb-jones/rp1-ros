@@ -109,6 +109,8 @@ class WorldPoseControl(ControlMode):
     current_target_linear_velocity = (0,0)
     current_target_angular_velocity = 0
 
+    slow_mode_displacement = 0.2 #If the target is this far away the robot will move more slowly.
+
 
     def __init__(self, hlc):
         super().__init__(hlc)
@@ -174,7 +176,7 @@ class WorldPoseControl(ControlMode):
                     elif abs(current_pose.world_x_velocity)>max_linear_velocity or self.current_target_linear_velocity[0]>max_linear_velocity:
                         target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
                         #print("Overspeed")
-                    elif abs(error_position[0])<0.5:
+                    elif abs(error_position[0])<self.slow_mode_displacement:
                         target_world_x = self.accelerate_linear_step(self.current_target_linear_velocity[0], target_velocity_safe[0], safe_mode=True)
                         #Accelerating Slowly
                     
@@ -191,7 +193,7 @@ class WorldPoseControl(ControlMode):
                         target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
                     elif abs(current_pose.world_y_velocity)>max_linear_velocity or self.current_target_linear_velocity[1]>max_linear_velocity:
                         target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
-                    elif abs(error_position[1])<0.5:
+                    elif abs(error_position[1])<self.slow_mode_displacement:
                         target_world_y = self.accelerate_linear_step(self.current_target_linear_velocity[1], target_velocity_safe[1], safe_mode=True)
                         #Accelerating Slowly
                     else:

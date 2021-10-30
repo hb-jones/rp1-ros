@@ -25,10 +25,11 @@ logging.config.fileConfig('logging.conf',disable_existing_loggers=False)
 #That includes terminal phase
 
 class RP1_FSM(abc.ABC):
-    catch_limit_dist = 0.5  #max metres to intercept for valid throw
+    catch_limit_dist = 1.3  #max metres to intercept for valid throw
     catch_limit_time = 0.5  #seconds until intercept for valid throw
     limit_update_age = 0.1  #Time from last stereo datapoint to switch to terminal, will need to be tuned
     limit_pitbull_age = 3   #Time to remain in terminal state
+    targeting_delay = 0.1   #TODO This is kinda slow
 
     def __init__(self):
         self.logger = logging.getLogger(__name__) #Creates a logger for use with the base logger
@@ -81,7 +82,7 @@ class RP1_FSM(abc.ABC):
         return STATE_INVALID
 
 
-    def prestartup(self): #TODO Mono
+    def prestartup(self):
         #Waiting, start cameras
         #Start Traj est
         self.trajectory_est = trajectory_estimation.TrajectoryEstimator()
@@ -107,7 +108,8 @@ class RP1_FSM(abc.ABC):
             
         planner_updated = self.server.command_set_planner(WorldPoseControl, expect_response=True, log=True)
         while not planner_updated:
-            time.sleep(0.2)
+            continue #TODO
+            time.sleep(2)
             planner_updated = self.server.command_set_planner(WorldPoseControl, expect_response=True, log=True)
         
         self.trajectory_est.clear_points()#Clears the current trajectory
@@ -119,6 +121,7 @@ class RP1_FSM(abc.ABC):
     def idle(self):
         #Waiting for arming signal, then resets localisation and prepares to catch ball
         self.disarm = False
+        self.stereo.loop_running = False
         if not self.arm:
             return STATE_IDLE
         else:
@@ -130,6 +133,7 @@ class RP1_FSM(abc.ABC):
             time.sleep(0.5)
             self.trajectory_est.clear_points()#Clears the current trajectory
             self.logger.info("state: ARMED")
+            self.stereo.start_loop()
             return STATE_ARMED
             #TODO potentially should also switch mode into correct one?????
     
@@ -141,15 +145,19 @@ class RP1_FSM(abc.ABC):
             self.logger.info("state: IDLE")
             return STATE_IDLE
         elif not self.check_for_throw():
+            time.sleep(0.05)
             return STATE_ARMED
         elif not self.check_throw_validity():
+            self.logger.info("state: BADTHROW")
             return STATE_BADTHROW
         else:
             self.logger.info("state: CATCHING")
+            self.logger.info(f" Intercept {self.trajectory_est.get_impact_point()}")
             return STATE_CATCHING
         
     def badthrow(self):#TODO!!!!!!!!!!!!!!!!!!
         #Reset everything and disarm
+        self.logger.info("state: IDLE")
         return STATE_IDLE
     
     def catching(self):
@@ -174,12 +182,13 @@ class RP1_FSM(abc.ABC):
         intercept = self.trajectory_est.get_impact_point()
         target= Target()
         target.world_point = (intercept.x,intercept.y)
-        if target == self.last_target:
+        if target.world_point == self.last_target.world_point:
             return STATE_CATCHING
         else:
             self.last_target = target
-            self.logger.debug(f"moving_to_target {target.world_point}")
+            self.logger.info(f"moving_to_target {target.world_point}")
             self.server.command_set_target(target)
+            time.sleep(self.targeting_delay)
             return STATE_CATCHING
 
     def check_for_throw(self):
@@ -188,18 +197,18 @@ class RP1_FSM(abc.ABC):
             return False
         return True
          
-    def check_throw_validity(self): #TODO debug messages
+    def check_throw_validity(self):
         """Checks the vailidity of a throw and if catching is possible"""
         impact = self.trajectory_est.get_impact_point()
         if impact == False:
-            self.logger.debug("invalid_throw: No impact point")
+            self.logger.info("invalid_throw: No impact point")
             return False
         if abs(impact.x)>self.catch_limit_dist or abs(impact.y)>self.catch_limit_dist:
-            self.logger.debug("invalid_throw: Intercept too far away")
+            self.logger.info(f"invalid_throw: Intercept too far away: {impact}")
             return False
         time_to_impact = impact.timestamp-time.time()
-        if time_to_impact<self.catch_limit_time:
-            self.logger.debug("invalid_throw: Intercept too soon")
+        if time_to_impact<self.catch_limit_time and self.state != STATE_CATCHING:
+            self.logger.info(f"invalid_throw: Intercept too soon: {time_to_impact}s")
             return False
         return True
 
@@ -213,7 +222,7 @@ class RP1_FSM(abc.ABC):
             self.logger.info("state: IDLE")
             return STATE_IDLE
         self.server.command_custom()
-        
+        time.sleep(self.targeting_delay)
         return STATE_PITBULL
 
     def trigger_disarm(self):
@@ -234,6 +243,7 @@ class RP1_FSM(abc.ABC):
 
 def main():
     fsm = RP1_FSM()
+    fsm.start_loop()
 
 if __name__ == "__main__":
     main()

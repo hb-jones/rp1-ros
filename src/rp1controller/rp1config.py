@@ -106,8 +106,8 @@ class RP1Configuration():
     angular_acceleration_max = 0.5 #rad/s^2
     angular_velocity_max = 1 #rad/s
     
-    acceleration_safe = 0.5
-    linear_velocity_safe = 0.5
+    acceleration_safe = 1
+    linear_velocity_safe = 1
     angular_velocity_max = 0.2
 
     max_error_position = 0.1
