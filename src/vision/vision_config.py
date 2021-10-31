@@ -33,7 +33,7 @@ class StereoConfig:
 
     #negative of position in world in m, world defined as robot's starting location at ground level
     #X forward, Y left, Z up
-    camera_position = [-4.55,0.32,-1.38+0.200] #0.2 is height of robot, may need to add bin height
+    camera_position = [-4.55,0.32,-1.38+0.250] #0.2 is height of robot, may need to add bin height
     
     
     x_id = [0,1,0]
