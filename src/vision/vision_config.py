@@ -21,9 +21,9 @@ class MonocularConfig:
 class StereoConfig:
 
     crop_topleft = (0,0)
-    crop_bottomright = (400,750)#(100,675)
+    crop_bottomright = (480,700)#(400,680)#(100,675)
     dist_crop_min = 200
-    dist_crop_max = 1300
+    dist_crop_max = 1500
 
     open_kernal_size = 7
     close_kernal_size = 11
@@ -33,7 +33,7 @@ class StereoConfig:
 
     #negative of position in world in m, world defined as robot's starting location at ground level
     #X forward, Y left, Z up
-    camera_position = [-4.35,0.45,-1.07] #TODO Might need to invert a couple
+    camera_position = [-4.55,0.32,-1.38] #TODO Might need to invert a couple
     
     
     x_id = [0,1,0]
