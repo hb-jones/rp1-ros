@@ -111,7 +111,7 @@ class RP1Configuration():
     angular_velocity_max = 0.2
 
     max_error_position = 0.1
-    max_error_velocity = 0.2
+    max_error_velocity = 0.7
     max_error_bearing = 0.05
     max_error_angular_velocity = 0.2
 
