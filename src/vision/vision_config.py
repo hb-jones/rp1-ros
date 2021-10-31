@@ -23,7 +23,7 @@ class StereoConfig:
     crop_topleft = (0,0)
     crop_bottomright = (480,700)#(400,680)#(100,675)
     dist_crop_min = 200
-    dist_crop_max = 1500
+    dist_crop_max = 1400
 
     open_kernal_size = 7
     close_kernal_size = 11
@@ -33,7 +33,7 @@ class StereoConfig:
 
     #negative of position in world in m, world defined as robot's starting location at ground level
     #X forward, Y left, Z up
-    camera_position = [-4.55,0.32,-1.38] #TODO Might need to invert a couple
+    camera_position = [-4.55,0.32,-1.38+0.200] #0.2 is height of robot, may need to add bin height
     
     
     x_id = [0,1,0]
