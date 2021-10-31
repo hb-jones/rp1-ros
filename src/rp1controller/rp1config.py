@@ -96,10 +96,10 @@ class RP1Configuration():
     model = None #The kinematic model containing robot size, gear ratio etc
 
     pos_gain = 12
-    vel_gain = 0.004
+    vel_gain = 0.006
     vel_integrator_gain = 0.021
     vel_ramp_rate = 200
-    motor_current_limit = 20
+    motor_current_limit = 30
 
     acceleration_max = 2 #m/s^2
     linear_velocity_max = 4 #m/s
@@ -110,8 +110,8 @@ class RP1Configuration():
     linear_velocity_safe = 1
     angular_velocity_max = 0.2
 
-    max_error_position = 0.1
-    max_error_velocity = 0.7
+    max_error_position = 0.15
+    max_error_velocity = 1
     max_error_bearing = 0.05
     max_error_angular_velocity = 0.2
 
