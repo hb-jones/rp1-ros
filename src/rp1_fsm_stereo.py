@@ -32,6 +32,6 @@ def main():
         x.stereo.loop_running = False
         x.loop_running = False
 if __name__ == "__main__":
-    print("Delay 1 seconds")
-    time.sleep(1)
+    print("Delay 0.1 seconds")
+    time.sleep(0.1)
     main()

@@ -251,7 +251,7 @@ class LowLevelInterface():
         self.axis_set_motor_current(self.config.motor_current_limit) #Current limit of motors
 
         self.axis_set_control_mode(CONTROL_MODE_VELOCITY_CONTROL) #Puts control mode into direct drive mode
-        self.axis_set_input_mode(INPUT_MODE_VEL_RAMP) #Turn on direct velocity control
+        self.axis_set_input_mode(INPUT_MODE_VEL_RAMP, self.config.vel_ramp_rate) #Turn on direct velocity control
         
         self.axis_set_state(AXIS_STATE_CLOSED_LOOP_CONTROL) #change axes states 
         
