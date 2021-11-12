@@ -109,7 +109,7 @@ class WorldPoseControl(ControlMode):
     current_target_linear_velocity = (0,0)
     current_target_angular_velocity = 0
 
-    slow_mode_displacement = 0.2 #If the target is this far away the robot will move more slowly.
+    slow_mode_displacement = 0.3 #If the target is this far away the robot will move more slowly.
 
 
     def __init__(self, hlc):
@@ -305,6 +305,125 @@ class WorldPoseControl(ControlMode):
         stopping_distance = (angular_speed**2)/(2*self.hlc.config.angular_acceleration_max)
         return stopping_distance
 
+class WorldPoseControlAggressive(WorldPoseControl):
+    def trajectory_loop(self):
+        while self.loop_run_flag:
+            if self.target != None:
+                if self.hlc.trajectory_planner != self:
+                    print(f"Disabling planner: {self.name}")#TODO DEBUG PRINT
+                    self.loop_run_flag = False
+                    self.set_low_level_interface_target((0,0),0)
+                    break
+
+                self.configure_target()
+                time_start = time.perf_counter()
+                
+                max_linear_velocity = self.hlc.config.linear_velocity_max
+                safe_linear_velocity = self.hlc.config.linear_velocity_safe
+                max_angular_velocity = self.hlc.config.angular_velocity_max
+                current_pose = self.localisation_system.current_pose
+
+                error_position = self.localisation_system.get_relative_position_of_point(self.target.world_point)
+
+
+                
+                target_velocity_max = (copysign(max_linear_velocity, error_position[0]), copysign(max_linear_velocity, error_position[1]))
+                target_velocity_safe = (copysign(safe_linear_velocity, error_position[0]), copysign(safe_linear_velocity, error_position[1]))
+                error_velocity = (target_velocity_max[0] - current_pose.world_x_velocity ,target_velocity_max[1] - current_pose.world_y_velocity)
+                
+                
+                error_angle = self.localisation_system.get_relative_bearing_from_absolute_bearing(self.target.world_bearing)
+                target_angular_velocity_max = copysign(max_angular_velocity, error_angle)
+                error_angular_velocity = target_angular_velocity_max-current_pose.angular_velocity
+                                
+                target_world_x = 0
+                target_world_y = 0
+                target_angular = 0
+
+
+
+                #X
+                                
+                if abs(error_position[0])<self.hlc.config.max_error_position and abs(current_pose.world_x_velocity)<self.hlc.config.max_error_velocity:
+                    target_world_x = 0
+                    #self.hlc.localisation.log_localisation(True)
+                    #print("Close Enough!")
+                
+                else:
+                    stopping_distance = self.get_stopping_distance_linear(current_pose.world_x_velocity)
+                    
+                    if stopping_distance>abs(error_position[0])-self.hlc.config.max_error_position and abs(error_velocity[0])<abs(target_velocity_max[0]):
+                            target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
+                            #print("Decelerating to target")
+                    elif abs(current_pose.world_x_velocity)>max_linear_velocity or self.current_target_linear_velocity[0]>max_linear_velocity:
+                        target_world_x = self.decelerate_linear_step(self.current_target_linear_velocity[0])
+                        #print("Overspeed")
+                    elif abs(error_position[0])<self.slow_mode_displacement:
+                        target_world_x = self.accelerate_linear_step(self.current_target_linear_velocity[0], target_velocity_safe[0], safe_mode=True)
+                        #Accelerating Slowly
+                    
+                    else:
+                        target_world_x = self.accelerate_linear_step(self.current_target_linear_velocity[0], target_velocity_max[0])
+                        #print("Accelerating!")
+                #Y
+               
+                if abs(error_position[1])<self.hlc.config.max_error_position and abs(current_pose.world_y_velocity)<self.hlc.config.max_error_velocity:
+                    target_world_y = 0
+                else:
+                    stopping_distance = self.get_stopping_distance_linear(current_pose.world_y_velocity)
+                    if stopping_distance>abs(error_position[1])-self.hlc.config.max_error_position and abs(error_velocity[1])<abs(target_velocity_max[1]):
+                        target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
+                    elif abs(current_pose.world_y_velocity)>max_linear_velocity or self.current_target_linear_velocity[1]>max_linear_velocity:
+                        target_world_y = self.decelerate_linear_step(self.current_target_linear_velocity[1])
+                    elif abs(error_position[1])<self.slow_mode_displacement:
+                        target_world_y = self.accelerate_linear_step(self.current_target_linear_velocity[1], target_velocity_safe[1], safe_mode=True)
+                        #Accelerating Slowly
+                    else:
+                        target_world_y = self.accelerate_linear_step(self.current_target_linear_velocity[1], target_velocity_max[1])
+
+                #print(f"Target WX: {target_world_x} target WY: {target_world_y}")
+
+                #Angular
+                
+                if abs(error_angle)<self.hlc.config.max_error_bearing and abs(current_pose.angular_velocity)<self.hlc.config.max_error_angular_velocity:
+                    #Close enough to target
+                    target_angular = 0
+                    
+                else:
+                    stopping_distance = self.get_stopping_distance_angular(current_pose.angular_velocity)
+                    if stopping_distance>abs(error_angle)-self.hlc.config.max_error_bearing and abs(error_angular_velocity)<abs(target_angular_velocity_max):
+                        #Decelerate
+                        target_angular = self.decelerate_angular_step(self.current_target_angular_velocity)
+                    elif abs(current_pose.angular_velocity)>max_angular_velocity or self.current_target_angular_velocity>max_angular_velocity: 
+                        #Stay below max speed
+                        target_angular = self.decelerate_angular_step(self.current_target_angular_velocity)
+                    else:
+                        #Accelerate
+                        target_angular = self.accelerate_angular_step(self.current_target_angular_velocity, target_angular_velocity_max)
+
+
+
+                self.current_target_linear_velocity = (target_world_x,target_world_y)
+                self.current_target_angular_velocity = target_angular
+                #FINAL ERROR CHECKING
+                target_local_x, target_local_y = self.localisation_system.transform_WV_to_LV((target_world_x, target_world_y))
+                if abs(target_local_x)>max_linear_velocity: target_local_x = copysign(max_linear_velocity, target_local_x)
+                if abs(target_local_y)>max_linear_velocity: target_local_y = copysign(max_linear_velocity, target_local_y)
+                if abs(target_angular)>max_angular_velocity: target_angular = copysign(max_angular_velocity, target_angular)
+                
+                #print(f"Output is X: {target_local_x}, Y: {target_local_y}, A: {target_angular}")
+                #print()
+                self.set_low_level_interface_target((target_local_x, target_local_y),target_angular)
+                
+                self.delay_time_last = time.perf_counter()-time_start
+                if self.delay_time_last > self.delay_time_target*1.1:
+                    print(f"Last delay time {self.delay_time_last}s")
+                if self.delay_time_last<self.delay_time_target: #If time taken was less than target then wait the rest of the time.
+                    sleep(self.delay_time_target-self.delay_time_last)
+                    self.delay_time_last = self.delay_time_target
+            else:
+                self.set_low_level_interface_target((0,0),0) #Stop if no valid target found
+        return
 
 #World Frame Pose Controllers - These are persistent and need a thread
 class WorldPoseControlPoly(ControlMode):
