@@ -9,8 +9,8 @@ class MonocularConfig:
     crop_topleft = (0,0)
     crop_bottomright = (0,0)
 
-    mask_lower = np.array([22,0,0])
-    mask_upper = np.array([31,255,170])
+    mask_lower = np.array([25,200,0])
+    mask_upper = np.array([35,255,255])
 
     open_kernal_size = 9
     close_kernal_size = 40

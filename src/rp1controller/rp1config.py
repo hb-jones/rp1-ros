@@ -101,7 +101,7 @@ class RP1Configuration():
     vel_ramp_rate = 1000
     motor_current_limit = 30
 
-    acceleration_max = 3#2 #m/s^2
+    acceleration_max = 2.5#2 #m/s^2
     linear_velocity_max = 4 #m/s
     angular_acceleration_max = 0.5 #rad/s^2
     angular_velocity_max = 1 #rad/s

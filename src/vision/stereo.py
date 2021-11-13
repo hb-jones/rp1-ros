@@ -1,11 +1,10 @@
 from logging import config
 import threading, cv2, time, json
 from .stereocam import StereoCam
-from .monocular import Monocular
 from .vision_config import BallConfig, StereoConfig, MonocularConfig
-from . import preprocessing, trajectory_estimation
+from . import preprocessing, trajectory_estimation, monocular
 
-class Stereo(Monocular):
+class Stereo(monocular.Monocular):
 
 
     def __init__(self, publisher_func, mode: str = "all", trajectory = None): # mode determines if a trajectory is calculated

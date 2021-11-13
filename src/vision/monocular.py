@@ -1,7 +1,9 @@
 import threading, cv2, time
 from .monocam import MonoCam
 from .vision_config import BallConfig, MonocularConfig 
-from . import preprocessing, trajectory_estimation
+from . import preprocessing
+from .trajectory_estimation import get_target_pixel_position_moment
+from vision import monocam
 
 class Monocular():
     loop_running = False #Flag for main loop
@@ -23,7 +25,7 @@ class Monocular():
     trajectory = None
 
 
-    def __init__(self, publisher_func, mode: str = "pixel_coord"): # mode determines if a trajectory is calculated
+    def __init__(self, publisher_func, mode: str = "norm_coord"): # mode determines if a trajectory is calculated
         self.camera: MonoCam = MonoCam()
         self.publisher_func:function = publisher_func
         self.mode = mode
@@ -47,15 +49,16 @@ class Monocular():
             raw_frame = self.camera.get_next_image()
             preprocessed_frame = self.preprocess(raw_frame)
 
-            moment_result = trajectory_estimation.get_target_pixel_position_moment(preprocessed_frame)
+            moment_result = get_target_pixel_position_moment(preprocessed_frame)
             if moment_result is False:
                 print(f"Invalid Moment: Image {self.image_id}")
                 continue
-            pixel_coords, pixel_diameter = moment_result
-
+            
+            pixel_coords, mass, pixel_diameter = moment_result
             # draw the center and diameter of the circle
             com_frame = cv2.circle(raw_frame,pixel_coords,2,(0,0,255),3)
-            com_frame = cv2.circle(com_frame,pixel_coords,pixel_diameter/2,(0,0,255),3)
+            com_frame = cv2.circle(com_frame,pixel_coords,int(pixel_diameter/2+20),(255,0,255),3)
+            com_frame = cv2.circle(com_frame,(int(len(com_frame[0])/2), int(len(com_frame)/2)),int(pixel_diameter/2+20),(255,0,255),3)
             self.save_image(com_frame, "com_frame")
 
             
@@ -80,7 +83,7 @@ class Monocular():
                 self.last_update = time.time()
                 self.pixel_coords = pixel_coords
                 self.pixel_diameter = pixel_diameter
-                self.norm_coords = (pixel_coords[0]*2/len(com_frame)-1,pixel_coords[1]*2/len(com_frame[0])-1) #TODO Ensure are correct
+                self.norm_coords = (pixel_coords[0]*2/len(com_frame[0])-1,pixel_coords[1]*2/len(com_frame)-1) #TODO Ensure are correct
                 self.distance = 0
                 self.cartesian_coords = (0,0,0)
                 self.trajectory = None
@@ -119,7 +122,7 @@ class Monocular():
         self.save_image(cropped_frame, "cropped_frame")
         
         #Mask ball
-        masked_frame = preprocessing.mask(cropped_frame)
+        masked_frame = preprocessing.mask(cropped_frame, MonocularConfig.mask_lower, MonocularConfig.mask_upper)
         self.save_image(masked_frame, "masked_frame")
 
         #Remove disconnected masses
@@ -151,16 +154,17 @@ class Monocular():
         self.debug_mode = True
 
     def save_image(self, frame, image_name): #TODO async func to save images to a file
-        #needs to set filename based on image id at start to ensure it has not been updated. 
+        #needs to set filename based on image id at start to ensure it has not been updated.
+        if frame is not False and image_name == "com_frame":
+
+            self.debug_frame_output = frame 
         return
 
     
 
-class CameraPos:
-    #Struct for output, not sure if will use.
-    pass
 
 def test_publisher_pixel_coordinate(monocular):
+    print(monocular.norm_coords)
     return 
 
 if __name__ == "__main__":

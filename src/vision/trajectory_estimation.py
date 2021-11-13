@@ -1,7 +1,6 @@
 import cv2, time
 from math import atan
 from statistics import mean
-from . import stereo as stereo_module
 from .vision_config import StereoConfig, TrajectoryConfig, BallConfig
 import logging
 import logging.config
@@ -206,6 +205,7 @@ class TrajectoryEstimator:
 
     def stereo_publisher(self, stereo): #TODO make sure this works
         """To be passed to stereo cam so that it can update the trajectory"""
+        from . import stereo as stereo_module
         #print(f"Stereo publish{stereo.cartesian_coords}")#TODO Debug
         timestamp = stereo.last_update
         coords = stereo.cartesian_coords
