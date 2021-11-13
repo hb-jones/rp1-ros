@@ -1,4 +1,4 @@
-import trajectory_estimation
+from . import trajectory_estimation
 import json
 from mpl_toolkits import mplot3d
 import numpy as np
@@ -13,11 +13,13 @@ def plot_quad_vs_linear(time, z_measured, z_linear):
     ax2.set_xlabel('Time (s)')
     ax2.set_ylabel('Ball height (m)')
     ax2.legend()
+    ax2.set_title("")
 
 
 
 
-if __name__ == "__main__":
+
+def main():
     #Load Data
     filename = "vision/log/90fpsiback.json"
     with open(filename, "r") as file:
@@ -89,5 +91,13 @@ if __name__ == "__main__":
     ax.set_xlabel('x')
     ax.set_ylabel('y')
     ax.set_zlabel('z')
-    plt.show()
+    #ax.set_title("Estimated trajectories for varying measured positions")
     
+    
+
+
+
+
+if __name__ == "__main__":
+    main()
+    plt.show()

@@ -33,9 +33,11 @@ class StereoConfig:
 
     #negative of position in world in m, world defined as robot's starting location at ground level
     #X forward, Y left, Z up
-    camera_position = [-4.55,0.32,-1.38+0.250] #0.2 is height of robot, may need to add bin height
+    #camera_position = [-4.55,0.32,-1.38+0.230+0.09] #0.2 is height of robot, may need to add bin height
+    camera_position = [-4.46,0.32,-1.375+0.52]
     
-    
+
+
     x_id = [0,1,0]
     y_id = [-1/(2**0.5),0,1/(2**0.5)]
     z_id = [1/(2**0.5),0,1/(2**0.5)]
@@ -47,7 +49,7 @@ class StereoConfig:
 
 class TrajectoryConfig:
     #Coordinates check
-    min_datapoints = 3   #Number of needed datapoints to estimate trajectory
+    min_datapoints = 4   #Number of needed datapoints to estimate trajectory
     max_velocity = 20 #Metres per second
     max_distance_between_points = 1 #Metres, will need to increase to 30 if estimating at both ends
     max_time_between_points = 5 #seconds

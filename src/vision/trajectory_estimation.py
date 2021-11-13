@@ -1,6 +1,7 @@
 import cv2, time
 from math import atan
 from statistics import mean
+from . import stereo as stereo_module
 from .vision_config import StereoConfig, TrajectoryConfig, BallConfig
 import logging
 import logging.config
@@ -37,18 +38,16 @@ def get_displacement_between_points(point_a:TrajectoryPoint , point_b: Trajector
     return ((b.x - a.x)**2 + (b.y - a.y)**2 + (b.z - a.z)**2)**0.5       
 
 class Trajectory:
-    g = -9.81
-
-    v_xi = 0 #Initial X velocity
-    v_yi = 0
-    v_zi = 0
-    x_i = 0
-    y_i = 0
-    z_i = 0 #initial z coordinate 
-    t_i = 0 #Timestamp of the initial state
-
     def __init__(self):
-        pass
+        self.g = -9.81
+
+        self.v_xi = 0 #Initial X velocity
+        self.v_yi = 0
+        self.v_zi = 0
+        self.x_i = 0
+        self.y_i = 0
+        self.z_i = 0 #initial z coordinate 
+        self.t_i = 0 #Timestamp of the initial state
 
     def get_pos_at_timestamp(self, time): #Relitive to absolute timestamp
         t = time-self.t_i
@@ -84,15 +83,12 @@ class TrajectoryEstimator:
     CALCULATING = 20
     VALID = 10
 
-    positon_array = [] #Array of TrajectoryPoints
-    trajectory_status = INVALID
-    impact_point:TrajectoryPoint = None #Estimated impact point, timestamp is impact time
-
-
     def __init__(self):
         self.logger = logging.getLogger(__name__) #Creates a logger for use with the base logger
         self.config = TrajectoryConfig
-        pass
+        self.positon_array = [] #Array of TrajectoryPoints
+        self.trajectory_status = self.INVALID
+        self.impact_point:TrajectoryPoint = None #Estimated impact point, timestamp is impact time
 
     def add_point(self, point:TrajectoryPoint):
         self.positon_array.append(point)
@@ -218,6 +214,8 @@ class TrajectoryEstimator:
         z = coords[2]
         point = TrajectoryPoint(x,y,z,timestamp)
         self.add_point(point)
+
+        stereo_module.test_publisher_pixel_coordinate(stereo) #DEBUG
 
 if __name__ == "__main__":
     import json, time
