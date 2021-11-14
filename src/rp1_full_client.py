@@ -44,6 +44,7 @@ def update_terminal_target(HLC):
 
 def update_camera_coords(cam):
     global coords, updated
+    print(f"Cam updated {cam.norm_coords}")
     coords = cam.norm_coords
     updated = True
 
