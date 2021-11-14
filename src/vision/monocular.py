@@ -66,6 +66,7 @@ class Monocular():
                 continue
             
             pixel_coords, mass, pixel_diameter = moment_result
+            self.mass = mass
             if mass<MonocularConfig.min_mass:
                 continue
             # draw the center and diameter of the circle
@@ -192,6 +193,8 @@ def test_publisher_pixel_coordinate(monocular):
     targ = (0,-0.5)
     new_coord = (monocular.norm_coords[0]-targ[0], monocular.norm_coords[1]-targ[1])
     print(new_coord)
+    print(monocular.mass)
+    print()
     return 
 
 if __name__ == "__main__":

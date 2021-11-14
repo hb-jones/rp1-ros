@@ -6,8 +6,8 @@ def test_func(var):
 
 
 def main():
-    #cam = Monocular(test_publisher_pixel_coordinate)
-    cam = Monocular(test_func)
+    cam = Monocular(test_publisher_pixel_coordinate)
+    #cam = Monocular(test_func)
     cam.start_loop()
     cam.debug_mode = False
     cam.debug_type = "cont"
