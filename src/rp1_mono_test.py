@@ -1,7 +1,7 @@
 from rp1controller import RP1Client
 from rp1controller.trajectory_planners import Target, WorldPoseControl
 import rp1controller, time
-from rp1_full_client import update_terminal_target, coords, updated, terminal_gain, max_dist, target_point
+from rp1_full_client import update_terminal_target, coords, updated, terminal_gain_x, terminal_gain_y, max_dist, target_point
 from vision import monocular
 
 
