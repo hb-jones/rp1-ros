@@ -221,8 +221,10 @@ class RP1_FSM(abc.ABC):
             self.disarm = False
             self.logger.info("state: IDLE")
             return STATE_IDLE
-        time.sleep(self.targeting_delay)
+        print("FSM sending command")
         self.server.command_custom()
+        time.sleep(self.targeting_delay)
+        
         
         return STATE_PITBULL
 

@@ -4,11 +4,6 @@ from rp1controller import Target, RP1Controller
 from .trajectory_planners import ControlMode
 
 class Command:
-    command_name = ""
-    expect_response = False
-    log = False
-    function = None
-    args = None
     def __init__(self, command_name, function = None, args = None, expect_response = False, log = False):
         self.command_name  = command_name
         self.function = function
@@ -286,9 +281,10 @@ class RP1Server(RP1Communications):
         success = super().command_custom(log=log)
         if not success:
             return False
-
+        print("Server sending custom")
         custom_command = Command("custom", function=RP1Client.command_custom, expect_response=False, log=log)
         self.send_data(custom_command)
+        print("Server sent custom")
         return True
 
 class RP1Client(RP1Communications):
