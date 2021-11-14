@@ -114,6 +114,8 @@ class Monocular():
 
 
     def preprocess(self, raw_frame):
+        #TODO remove is debug
+        print("Preproc")
         #Save raw image
         self.save_image(raw_frame, "raw_frame")
         

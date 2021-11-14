@@ -8,8 +8,8 @@ def main():
     cam = Monocular(test_publisher_pixel_coordinate)
     
     cam.start_loop()
-    cam.debug_mode = True
-    cam.debug_type = "cont"
+    #cam.debug_mode = True
+    #cam.debug_type = "cont"
     time.sleep(3)
     while True:
         #cv2.imshow("Colour Image", cam.debug_frame_output)
