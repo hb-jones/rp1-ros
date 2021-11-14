@@ -27,7 +27,7 @@ logging.config.fileConfig('logging.conf',disable_existing_loggers=False)
 class RP1_FSM(abc.ABC):
     catch_limit_dist = 1.4  #max metres to intercept for valid throw
     catch_limit_time = 0.5  #seconds until intercept for valid throw
-    limit_update_age = 0.1  #Time from last stereo datapoint to switch to terminal, will need to be tuned
+    limit_update_age = 0.01  #Time from last stereo datapoint to switch to terminal, will need to be tuned
     limit_pitbull_age = 3   #Time to remain in terminal state
     targeting_delay = 0.05   #TODO This is kinda slow
 
