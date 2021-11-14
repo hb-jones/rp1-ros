@@ -22,6 +22,7 @@ def get_target_pixel_position_moment(frame): #TODO need to finish diameter
     """Gets the COM of a target in pixel coordinates"""
     moments = cv2.moments(frame)
     if moments["m00"] == 0:
+        print("Empty image")
         return False
     centroid_X = int(moments["m10"] / moments["m00"])
     centroid_Y = int(moments["m01"] / moments["m00"])
