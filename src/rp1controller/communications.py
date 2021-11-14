@@ -141,8 +141,8 @@ class RP1Server(RP1Communications):
             self.clientsocket.send(data)
             self.last_command_time = time.time()
             return True
-        except:
-            print("Data was not sent")
+        except Exception as e:
+            print(f"Data was not sent: {e}")
             return False
 
     def get_response(self):
@@ -287,7 +287,7 @@ class RP1Server(RP1Communications):
         if not success:
             return False
 
-        custom_command = Command("custom", function=RP1Client.command_custom, log=log)
+        custom_command = Command("custom", function=RP1Client.command_custom, expect_response=False, log=log)
         self.send_data(custom_command)
         return True
 

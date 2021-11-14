@@ -1,3 +1,4 @@
+from threading import active_count
 from rp1controller import RP1Client, Target
 from vision import monocular
 import time
@@ -11,13 +12,22 @@ max_dist = 1.4 #TODO this is the max distance the robot can move from origin dur
 camera = None
 coords = (0,0) #Normalised camera coords
 updated = False
+active = False
+
+def enable_pitbull(var):
+    global active
+    active = True
 
 def update_terminal_target(HLC):
-    global coords, updated, terminal_gain_x, terminal_gain_y, max_dist, target_point, delay
+    global active, coords, updated, terminal_gain_x, terminal_gain_y, max_dist, target_point, delay
     if not updated:
         return
-    
     updated = False
+    
+    if not active:
+        return
+    active = False
+    
     updated_coords = (coords[0]-target_point[0], coords[1]-target_point[1])
     #Get most recent camera coords, apply gain
     scaled_coords = (updated_coords[0]*terminal_gain_y, updated_coords[1]*terminal_gain_x)
@@ -41,7 +51,7 @@ def update_terminal_target(HLC):
     HLC.set_target(target)
     #Artificial delay?
     #no
-    pass
+    return
 
 def update_camera_coords(cam):
     global coords, updated
@@ -57,8 +67,16 @@ def main():
     camera = monocular.Monocular(update_camera_coords,"norm_coord")
     camera.start_loop()
     print("Starting Server")
-    client = RP1Client(ip, custom_function= update_terminal_target)
+    #client = RP1Client(ip, custom_function= update_terminal_target)
     #add update terminal target to client somehow
+
+
+
+    client = RP1Client(ip, custom_function= enable_pitbull)
+    time.sleep(5)
+    while True:
+        update_terminal_target(client.HLC)
+        time.sleep(0.05)
 
 if __name__ == "__main__":
     main()
