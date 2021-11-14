@@ -29,7 +29,7 @@ class RP1_FSM(abc.ABC):
     catch_limit_time = 0.5  #seconds until intercept for valid throw
     limit_update_age = 0.1  #Time from last stereo datapoint to switch to terminal, will need to be tuned
     limit_pitbull_age = 3   #Time to remain in terminal state
-    targeting_delay = 0.1   #TODO This is kinda slow
+    targeting_delay = 0.05   #TODO This is kinda slow
 
     def __init__(self):
         self.logger = logging.getLogger(__name__) #Creates a logger for use with the base logger
