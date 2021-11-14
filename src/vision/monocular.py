@@ -19,6 +19,7 @@ def check_empty(frame):
 
 class Monocular():
     loop_running = False #Flag for main loop
+    loop_delay = 0.05
 
     #Debug/logging stuff
     image_id = 0
@@ -124,6 +125,7 @@ class Monocular():
             if self.debug_mode and self.debug_type == "oneshot" and self.debug_currrent:
                     self.debug_mode = False
                     self.debug_currrent  = False
+            time.sleep(self.loop_delay)
 
 
     def preprocess(self, raw_frame):
