@@ -1,5 +1,4 @@
-from code_snippets import Target
-from rp1controller import RP1Client
+from rp1controller import RP1Client, Target
 from vision import monocular
 import time
 ip = "192.168.137.1"
