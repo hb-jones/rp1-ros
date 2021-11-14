@@ -13,7 +13,7 @@ coords = (0,0) #Normalised camera coords
 updated = False
 
 def update_terminal_target(HLC):
-    global coords, updated, terminal_gain, max_dist, target_point
+    global coords, updated, terminal_gain_x, terminal_gain_y, max_dist, target_point
     if not updated:
         return
     updated = False
