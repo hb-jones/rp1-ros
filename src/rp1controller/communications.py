@@ -281,10 +281,8 @@ class RP1Server(RP1Communications):
         success = super().command_custom(log=log)
         if not success:
             return False
-        print("Server sending custom")
         custom_command = Command("custom", function=RP1Client.command_custom, expect_response=False, log=log)
         self.send_data(custom_command)
-        print("Server sent custom")
         return True
 
 class RP1Client(RP1Communications):
@@ -431,7 +429,7 @@ class RP1Client(RP1Communications):
             response = location
             self.send_data(response)
 
-    def command_custom(self, log = False):
+    def command_custom(self, expect_response = False, log = False):
         print("CUstom command start")
         success = super().command_set_target(log=log)
         if self.custom_function is None:
