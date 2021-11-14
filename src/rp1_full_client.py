@@ -15,7 +15,6 @@ updated = False
 
 def update_terminal_target(HLC):
     global coords, updated, terminal_gain_x, terminal_gain_y, max_dist, target_point, delay
-    print("UTT running")
     if not updated:
         return
     
@@ -39,7 +38,7 @@ def update_terminal_target(HLC):
         targ_y = -max_dist
     #Move to
     target = Target()
-    target.world_point(targ_x, targ_y)
+    target.world_point = (targ_x, targ_y)
     HLC.set_target(target)
     #Artificial delay?
     #no
