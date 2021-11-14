@@ -333,7 +333,8 @@ class RP1Client(RP1Communications):
                         self.handle_timeout()
                         return
                 self.handle_data(data)
-            except:# socket.timeout:
+            except Exception as e:
+                print(f"Recv failed: {e}")
                 self.handle_timeout()
                 return
         return
