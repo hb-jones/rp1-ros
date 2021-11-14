@@ -15,7 +15,7 @@ def main():
     HLC = rp1controller.RP1Controller()
     HLC.config.acceleration_max = 0.5
     HLC.config.linear_velocity_max = 0.5
-    HLC.set_trajectory_planner(WorldPoseControl())
+    HLC.set_trajectory_planner(WorldPoseControl(HLC))
     camera.start_loop()
     while(True):
         update_terminal_target(HLC)
