@@ -57,9 +57,9 @@ class Monocular():
             self.image_id += 1
             if self.debug_mode:
                 self.debug_currrent = True #Tells image saver that it can start saving images
-
-            raw_frame = self.camera.get_next_image()
             timestart = time.perf_counter()
+            raw_frame = self.camera.get_next_image()
+
             preprocessed_frame = self.preprocess(raw_frame)
             moment_result = get_target_pixel_position_moment(preprocessed_frame)
             if moment_result is False:

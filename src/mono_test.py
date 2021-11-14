@@ -1,14 +1,15 @@
 import time, cv2, json
 from vision.monocular import Monocular, test_publisher_pixel_coordinate
 
-
+def test_func(var):
+    return
 
 
 def main():
-    cam = Monocular(test_publisher_pixel_coordinate)
-    
+    #cam = Monocular(test_publisher_pixel_coordinate)
+    cam = Monocular(test_func)
     cam.start_loop()
-    cam.debug_mode = True
+    cam.debug_mode = False
     cam.debug_type = "cont"
     time.sleep(3)
     while True:
