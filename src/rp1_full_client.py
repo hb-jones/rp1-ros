@@ -15,9 +15,10 @@ updated = False
 
 def update_terminal_target(HLC):
     global coords, updated, terminal_gain_x, terminal_gain_y, max_dist, target_point, delay
+    print("UTT running")
     if not updated:
         return
-    print("UTT running")
+    
     updated = False
     updated_coords = (coords[0]-target_point[0], coords[1]-target_point[1])
     #Get most recent camera coords, apply gain
@@ -46,7 +47,7 @@ def update_terminal_target(HLC):
 
 def update_camera_coords(cam):
     global coords, updated
-    print(f"Cam updated {cam.norm_coords}")
+    #print(f"Cam updated {cam.norm_coords}")
     coords = cam.norm_coords
     updated = True
 
