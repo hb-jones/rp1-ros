@@ -19,7 +19,7 @@ def main():
     camera.start_loop()
     while(True):
         update_terminal_target(HLC)
-        time.sleep(0.1)
+        time.sleep(0.05)
 
 if __name__ == "__main__":
     main()
