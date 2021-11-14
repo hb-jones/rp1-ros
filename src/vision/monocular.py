@@ -48,10 +48,10 @@ class Monocular():
 
             raw_frame = self.camera.get_next_image()
             preprocessed_frame = self.preprocess(raw_frame)
-
+            print(preprocessed_frame)
             moment_result = get_target_pixel_position_moment(preprocessed_frame)
             if moment_result is False:
-                print(f"Invalid Moment: Image {self.image_id}")
+                #print(f"Invalid Moment: Image {self.image_id}")
                 continue
             
             pixel_coords, mass, pixel_diameter = moment_result
