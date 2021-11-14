@@ -15,6 +15,7 @@ updated = False
 active = False
 
 def enable_pitbull(var):
+    print("pitbull enable")
     global active
     active = True
 
@@ -23,10 +24,12 @@ def update_terminal_target(HLC):
     if not updated:
         return
     updated = False
-    
+
     if not active:
         return
     active = False
+
+    print("Update terminal target")
     
     updated_coords = (coords[0]-target_point[0], coords[1]-target_point[1])
     #Get most recent camera coords, apply gain
