@@ -29,6 +29,5 @@ class RP1Controller():
         self.trajectory_planner = planner #TODO perhaps should construct object here
         
     def set_target(self, target):
-        target: Target
         self.trajectory_planner.input_target(target)
         return
