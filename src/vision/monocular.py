@@ -5,6 +5,8 @@ from . import preprocessing
 from .trajectory_estimation import get_target_pixel_position_moment
 from vision import monocam
 
+from vision import vision_config
+
 
 def check_empty(frame):
     """Checks if a frame is empty"""
@@ -64,6 +66,8 @@ class Monocular():
                 continue
             
             pixel_coords, mass, pixel_diameter = moment_result
+            if mass<MonocularConfig.min_mass:
+                continue
             print(mass)
             # draw the center and diameter of the circle
             com_frame = cv2.circle(raw_frame,pixel_coords,2,(0,0,255),3)

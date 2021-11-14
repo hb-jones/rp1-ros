@@ -15,6 +15,8 @@ class MonocularConfig:
     open_kernal_size = 9
     close_kernal_size = 40
 
+    min_mass = 30000 #SMallest size of a return to be a ball
+
     pass #Camera calibration etc
 
 
