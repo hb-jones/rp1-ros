@@ -12,8 +12,9 @@ def main():
     cam.debug_type = "cont"
     time.sleep(3)
     while True:
-        cv2.imshow("Colour Image", cam.debug_frame_output)
+        #cv2.imshow("Colour Image", cam.debug_frame_output)
         # Press q if you want to end the loop
+        time.sleep(0.1)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
