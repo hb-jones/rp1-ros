@@ -27,7 +27,7 @@ def update_terminal_target(HLC):
     if active<=0:
         return
     active -=1
-    
+    print(f"Target updated: {time.time()}")
     updated_coords = (coords[0]-target_point[0], coords[1]-target_point[1])
     #Get most recent camera coords, apply gain
     scaled_coords = (updated_coords[0]*terminal_gain_y, updated_coords[1]*terminal_gain_x)

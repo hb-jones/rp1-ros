@@ -282,6 +282,7 @@ class RP1Server(RP1Communications):
         if not success:
             return False
         custom_command = Command("custom", function=RP1Client.command_custom, expect_response=False, log=log)
+        print(f"Custom Command Sent: {time.time()}")
         self.send_data(custom_command)
         return True
 
@@ -436,6 +437,7 @@ class RP1Client(RP1Communications):
         if not success:
             print("Custom function failed")
             return False
+        print(f"Custom Command Rec: {time.time()}")
         self.custom_function(self.HLC)
 
 if __name__ == "__main__":

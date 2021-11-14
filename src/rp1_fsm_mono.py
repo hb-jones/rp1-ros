@@ -13,6 +13,7 @@ class RP1_MonoFSM(rp1_fsm.RP1_FSM):
         if self.trajectory_est.get_last_update_age()>self.limit_update_age:
             self.logger.info("state: PITBULL")
             self.pitbull_time = time.time()
+            print(f"FSM to pitbull: {time.time()}")
             return rp1_fsm.STATE_PITBULL
         return rp1_fsm.STATE_CATCHING
 
