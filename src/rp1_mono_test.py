@@ -16,8 +16,8 @@ def main():
     HLC.config.acceleration_max = 0.5
     HLC.config.linear_velocity_max = 0.5
     HLC.set_trajectory_planner(WorldPoseControl)
+    camera.start_loop()
     while(True):
-        camera.start_loop()
         update_terminal_target(HLC)
         time.sleep(0.1)
 
