@@ -430,14 +430,12 @@ class RP1Client(RP1Communications):
             self.send_data(response)
 
     def command_custom(self, expect_response = False, log = False):
-        print("CUstom command start")
         success = super().command_custom(log=log)
         if self.custom_function is None:
             success = False
         if not success:
             print("Custom function failed")
             return False
-        print("Custom func")
         self.custom_function(self.HLC)
 
 if __name__ == "__main__":

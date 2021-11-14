@@ -28,8 +28,6 @@ def update_terminal_target(HLC):
     if not active:
         return
     active = False
-
-    print("Update terminal target")
     
     updated_coords = (coords[0]-target_point[0], coords[1]-target_point[1])
     #Get most recent camera coords, apply gain
@@ -79,7 +77,7 @@ def main():
     time.sleep(5)
     while True:
         update_terminal_target(client.HLC)
-        time.sleep(0.05)
+        time.sleep(0.02)
 
 if __name__ == "__main__":
     main()
