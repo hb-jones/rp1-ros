@@ -54,7 +54,7 @@ def main():
     print("Starting camera")
     global camera 
     camera = monocular.Monocular(update_camera_coords,"norm_coord")
-    camera.loop_running()
+    camera.start_loop()
     print("Starting Server")
     client = RP1Client(ip, custom_function= update_terminal_target)
     #add update terminal target to client somehow
