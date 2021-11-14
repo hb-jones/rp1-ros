@@ -1,5 +1,5 @@
 from pyueye import ueye
-import cv2
+import cv2, ctypes
 import numpy as np
 from time import sleep
 
@@ -17,6 +17,7 @@ class MonoCam:
         self.channels = 3                    #3: channels for color mode(RGB); take 1 channel for monochrome
         self.m_nColorMode = ueye.INT()		# Y8/RGB16/RGB24/REG32
         self.bytes_per_pixel = int(self.nBitsPerPixel / 8)
+        self.exposure = ueye.DOUBLE(20)
 
         # Starts the driver and establishes the connection to the camera
         nRet = ueye.is_InitCamera(self.hCam, None)
@@ -79,6 +80,8 @@ class MonoCam:
             self.nBitsPerPixel = ueye.INT(8)
             self.bytes_per_pixel = int(self.nBitsPerPixel / 8)
             print("else")
+        
+        nRet = ueye.is_Exposure(self.hCam, ueye.IS_EXPOSURE_CMD_SET_EXPOSURE, self.exposure, ueye.sizeof(self.exposure))#TODO
 
         # Can be used to set the size and position of an "area of interest"(AOI) within an image
         nRet = ueye.is_AOI(self.hCam, ueye.IS_AOI_IMAGE_GET_AOI, self.rectAOI, ueye.sizeof(self.rectAOI))

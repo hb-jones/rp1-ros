@@ -1,16 +1,9 @@
 from rp1controller import RP1Client
 from rp1controller.trajectory_planners import Target, WorldPoseControl
 import rp1controller, time
-from rp1_full_client import update_terminal_target
+from rp1_full_client import update_terminal_target, coords, updated, terminal_gain, max_dist, target_point
 from vision import monocular
-ip = "192.168.137.1"
-terminal_gain = 2 #TODO make sure to check command is within limit
-delay = 0.1
 
-max_dist = 1.4 #TODO this is the max distance the robot can move from origin during terminal phase
-camera = None
-coords = (0,0) #Normalised camera coords
-updated = False
 
 def update_camera_coords(cam):
     global coords, updated
@@ -26,10 +19,12 @@ def main():
 
     print("Sarting robot")
     HLC = rp1controller.RP1Controller()
+    HLC.config.acceleration_max = 0.5
+    HLC.config.linear_velocity_max = 0.5
     HLC.set_trajectory_planner(WorldPoseControl)
     while(True):
         update_terminal_target(HLC)
-        time.sleep(1)
+        time.sleep(0.2)
 
 if __name__ == "__main__":
     main()

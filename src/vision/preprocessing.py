@@ -13,8 +13,8 @@ def crop(frame, topleft, bottomright): #TODO
     right = bottomright[1]
     frame[0:,0:left] = 0
     frame[0:top,0:] = 0
-    frame[0:,right:] = 0
-    frame[bottom:,0:] = 0
+    frame[:,right:] = 0
+    frame[bottom:,:] = 0
     return frame
 
 def distance_crop(frame, min_dist, max_dist = 0):

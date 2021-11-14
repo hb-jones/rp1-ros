@@ -2,7 +2,9 @@ from code_snippets import Target
 from rp1controller import RP1Client
 from vision import monocular
 ip = "192.168.137.1"
-terminal_gain = 2 #TODO make sure to check command is within limit
+terminal_gain_x = 1 #TODO make sure to check command is within limit
+terminal_gain_y = 1
+target_point = (0,-0.5)
 delay = 0.1
 
 max_dist = 1.4 #TODO this is the max distance the robot can move from origin during terminal phase
@@ -11,12 +13,13 @@ coords = (0,0) #Normalised camera coords
 updated = False
 
 def update_terminal_target(HLC):
-    global coords, updated, terminal_gain, max_dist
+    global coords, updated, terminal_gain, max_dist, target_point
     if not updated:
         return
     updated = False
+    updated_coords = (coords[0]-target_point[0], coords[1]-target_point[1])
     #Get most recent camera coords, apply gain
-    scaled_coords = (coords[0]*terminal_gain,coords[1]*terminal_gain)
+    scaled_coords = (updated_coords[0]*terminal_gain_y, updated_coords[1]*terminal_gain_x)
     #Get position
     current_pose = HLC.localisation.current_pose
     #Add some amount to pos based on camera coords

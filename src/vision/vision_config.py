@@ -6,10 +6,10 @@ class BallConfig:
 
 
 class MonocularConfig:
-    crop_topleft = (0,0)
-    crop_bottomright = (0,0)
+    crop_topleft = (0,70)
+    crop_bottomright = (int(1200/2-0),int(1600/2-70))
 
-    mask_lower = np.array([25,200,0])
+    mask_lower = np.array([20,200,0])
     mask_upper = np.array([35,255,255])
 
     open_kernal_size = 9

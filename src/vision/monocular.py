@@ -51,7 +51,7 @@ class Monocular():
 
             moment_result = get_target_pixel_position_moment(preprocessed_frame)
             if moment_result is False:
-                print(f"Invalid Moment: Image {self.image_id}")
+                #print(f"Invalid Moment: Image {self.image_id}")
                 continue
             
             pixel_coords, mass, pixel_diameter = moment_result
@@ -155,7 +155,7 @@ class Monocular():
 
     def save_image(self, frame, image_name): #TODO async func to save images to a file
         #needs to set filename based on image id at start to ensure it has not been updated.
-        if frame is not False and image_name == "com_frame":
+        if frame is not False and image_name == "com_frame":# "thresholded_frame":
 
             self.debug_frame_output = frame 
         return
@@ -164,7 +164,9 @@ class Monocular():
 
 
 def test_publisher_pixel_coordinate(monocular):
-    print(monocular.norm_coords)
+    targ = (0,-0.5)
+    new_coord = (monocular.norm_coords[0]-targ[0], monocular.norm_coords[1]-targ[1])
+    print(new_coord)
     return 
 
 if __name__ == "__main__":
