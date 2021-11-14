@@ -27,7 +27,7 @@ def update_terminal_target(HLC):
     if active<=0:
         return
     active -=1
-    
+    timestart = time.perf_counter()
     updated_coords = (coords[0]-target_point[0], coords[1]-target_point[1])
     #Get most recent camera coords, apply gain
     scaled_coords = (updated_coords[0]*terminal_gain_y, updated_coords[1]*terminal_gain_x)
@@ -49,6 +49,8 @@ def update_terminal_target(HLC):
     target = Target()
     target.world_point = (targ_x, targ_y)
     HLC.set_target(target)
+    print(f"Time taken: {time.perf_counter() - timestart}s")
+
     #Artificial delay?
     #no
     return

@@ -57,7 +57,6 @@ class Monocular():
             self.image_id += 1
             if self.debug_mode:
                 self.debug_currrent = True #Tells image saver that it can start saving images
-            timestart = time.perf_counter()
             raw_frame = self.camera.get_next_image()
 
             preprocessed_frame = self.preprocess(raw_frame)
@@ -126,7 +125,6 @@ class Monocular():
                     self.debug_mode = False
                     self.debug_currrent  = False
             
-            print(f"Time taken: {time.perf_counter() - timestart}s")
 
 
     def preprocess(self, raw_frame):
