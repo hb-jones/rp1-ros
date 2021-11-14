@@ -441,6 +441,7 @@ class RP1Client(RP1Communications):
         if not success:
             print("Custom function failed")
             return False
+        print("Custom func")
         self.custom_function(self.HLC)
 
 if __name__ == "__main__":
