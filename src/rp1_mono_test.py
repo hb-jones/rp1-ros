@@ -24,7 +24,7 @@ def main():
     HLC.set_trajectory_planner(WorldPoseControl)
     while(True):
         update_terminal_target(HLC)
-        time.sleep(0.2)
+        time.sleep(0.1)
 
 if __name__ == "__main__":
     main()
