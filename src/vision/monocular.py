@@ -5,6 +5,15 @@ from . import preprocessing
 from .trajectory_estimation import get_target_pixel_position_moment
 from vision import monocam
 
+
+def check_empty(frame):
+    """Checks if a frame is empty"""
+    moments = cv2.moments(frame)
+    if moments["m00"] == 0:
+        return True
+    else:
+        return False    
+
 class Monocular():
     loop_running = False #Flag for main loop
 
@@ -47,7 +56,6 @@ class Monocular():
                 self.debug_currrent = True #Tells image saver that it can start saving images
 
             raw_frame = self.camera.get_next_image()
-            print(raw_frame)
             preprocessed_frame = self.preprocess(raw_frame)
             moment_result = get_target_pixel_position_moment(preprocessed_frame)
             if moment_result is False:
@@ -114,28 +122,39 @@ class Monocular():
 
 
     def preprocess(self, raw_frame):
+
+        print(f"Raw frame empty? {check_empty(raw_frame)}")
         #Save raw image
         self.save_image(raw_frame, "raw_frame")
         
         #Crop frame
         cropped_frame = preprocessing.crop(raw_frame, MonocularConfig.crop_topleft, MonocularConfig.crop_bottomright)
         self.save_image(cropped_frame, "cropped_frame")
-        
+        print(f"crop frame empty? {check_empty(cropped_frame)}")
+
+
         #Mask ball
         masked_frame = preprocessing.mask(cropped_frame, MonocularConfig.mask_lower, MonocularConfig.mask_upper)
         self.save_image(masked_frame, "masked_frame")
+        print(f"mask frame empty? {check_empty(masked_frame)}")
 
         #Remove disconnected masses
         opened_frame = preprocessing.morph_open(masked_frame, MonocularConfig.open_kernal_size)
         self.save_image(opened_frame, "opened_frame")
+        print(f"open frame empty? {check_empty(opened_frame)}")
 
         #Fill holes in ball
         closed_frame = preprocessing.morph_close(opened_frame, MonocularConfig.close_kernal_size)
         self.save_image(closed_frame, "closed_frame")
+        print(f"closed frame empty? {check_empty(closed_frame)}")
 
         #Threshold to binary
         thresholded_frame = preprocessing.threshold(closed_frame)
         self.save_image(thresholded_frame, "thresholded_frame")
+        print(f"thresh frame empty? {check_empty(thresholded_frame)}")
+        print()
+        print()
+        time.sleep(0.3) #TODO really need to remove this
 
         return thresholded_frame
 
