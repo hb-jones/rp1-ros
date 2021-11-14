@@ -45,6 +45,7 @@ class MonoCam:
         if int.from_bytes(self.sInfo.nColorMode.value, byteorder='big') == ueye.IS_COLORMODE_BAYER:
             # setup the color depth to the current windows setting
             ueye.is_GetColorDepth(self.hCam, self.nBitsPerPixel, self.m_nColorMode)
+            self.nBitsPerPixel = ueye.INT(32) #------------Added this because it gets changed on linux and that fucks everything up. 
             self.bytes_per_pixel = int(self.nBitsPerPixel / 8)
             print("IS_COLORMODE_BAYER: ", )
             print("\tm_nColorMode: \t\t", self.m_nColorMode)

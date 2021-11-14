@@ -84,7 +84,9 @@ nRet = ueye.is_SetDisplayMode(hCam, ueye.IS_SET_DM_DIB)
 # Set the right color mode
 if int.from_bytes(sInfo.nColorMode.value, byteorder='big') == ueye.IS_COLORMODE_BAYER:
     # setup the color depth to the current windows setting
+    print(nBitsPerPixel)
     ueye.is_GetColorDepth(hCam, nBitsPerPixel, m_nColorMode)
+    print(nBitsPerPixel)
     bytes_per_pixel = int(nBitsPerPixel / 8)
     print("IS_COLORMODE_BAYER: ", )
     print("\tm_nColorMode: \t\t", m_nColorMode)
