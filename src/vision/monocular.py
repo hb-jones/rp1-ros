@@ -19,7 +19,7 @@ def check_empty(frame):
 
 class Monocular():
     loop_running = False #Flag for main loop
-    loop_delay = 0.05
+    loop_delay = 0.1
 
     #Debug/logging stuff
     image_id = 0
