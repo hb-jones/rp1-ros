@@ -26,6 +26,7 @@ class RP1_MonoFSM(rp1_fsm.RP1_FSM):
 
 def main():
     x = RP1_MonoFSM()
+    x.start_loop()
 
 if __name__ == "__main__":
     main()

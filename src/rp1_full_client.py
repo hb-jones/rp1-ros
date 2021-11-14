@@ -4,7 +4,7 @@ import time
 ip = "192.168.137.1"
 terminal_gain_x = 1 
 terminal_gain_y = -1
-target_point = (0,-0.5)
+target_point = (0,-0.8)
 delay = 0.1
 
 max_dist = 1.4 #TODO this is the max distance the robot can move from origin during terminal phase
