@@ -431,7 +431,7 @@ class RP1Client(RP1Communications):
 
     def command_custom(self, expect_response = False, log = False):
         print("CUstom command start")
-        success = super().command_set_target(log=log)
+        success = super().command_custom(log=log)
         if self.custom_function is None:
             success = False
         if not success:
