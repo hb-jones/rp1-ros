@@ -1,6 +1,7 @@
 from code_snippets import Target
 from rp1controller import RP1Client
 from vision import monocular
+import time
 ip = "192.168.137.1"
 terminal_gain_x = 1 #TODO make sure to check command is within limit
 terminal_gain_y = 1
@@ -13,9 +14,10 @@ coords = (0,0) #Normalised camera coords
 updated = False
 
 def update_terminal_target(HLC):
-    global coords, updated, terminal_gain_x, terminal_gain_y, max_dist, target_point
+    global coords, updated, terminal_gain_x, terminal_gain_y, max_dist, target_point, delay
     if not updated:
         return
+    print("UTT running")
     updated = False
     updated_coords = (coords[0]-target_point[0], coords[1]-target_point[1])
     #Get most recent camera coords, apply gain

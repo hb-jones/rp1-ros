@@ -68,7 +68,6 @@ class Monocular():
             pixel_coords, mass, pixel_diameter = moment_result
             if mass<MonocularConfig.min_mass:
                 continue
-            print(mass)
             # draw the center and diameter of the circle
             com_frame = cv2.circle(raw_frame,pixel_coords,2,(0,0,255),3)
             com_frame = cv2.circle(com_frame,pixel_coords,int(pixel_diameter/2+20),(255,0,255),3)
