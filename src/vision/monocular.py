@@ -8,7 +8,8 @@ from vision import monocam
 
 def check_empty(frame):
     """Checks if a frame is empty"""
-    moments = cv2.moments(frame)
+    gs_masked_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) #Must be in greyscale colourspace
+    moments = cv2.moments(gs_masked_frame)
     if moments["m00"] == 0:
         return True
     else:
