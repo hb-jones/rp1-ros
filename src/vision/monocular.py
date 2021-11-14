@@ -51,7 +51,7 @@ class Monocular():
 
             moment_result = get_target_pixel_position_moment(preprocessed_frame)
             if moment_result is False:
-                #print(f"Invalid Moment: Image {self.image_id}")
+                print(f"Invalid Moment: Image {self.image_id}")
                 continue
             
             pixel_coords, mass, pixel_diameter = moment_result
@@ -114,8 +114,6 @@ class Monocular():
 
 
     def preprocess(self, raw_frame):
-        #TODO remove is debug
-        print("Preproc")
         #Save raw image
         self.save_image(raw_frame, "raw_frame")
         
