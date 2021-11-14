@@ -2,8 +2,8 @@ from rp1controller import RP1Client, Target
 from vision import monocular
 import time
 ip = "192.168.137.1"
-terminal_gain_x = 1 #TODO make sure to check command is within limit
-terminal_gain_y = 1
+terminal_gain_x = 1 
+terminal_gain_y = -1
 target_point = (0,-0.5)
 delay = 0.1
 
