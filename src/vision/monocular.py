@@ -181,7 +181,7 @@ class Monocular():
 
     def save_image(self, frame, image_name): #TODO async func to save images to a file
         #needs to set filename based on image id at start to ensure it has not been updated.
-        if frame is not False and image_name == "thresholded_frame":# "thresholded_frame":
+        if frame is not False and image_name == "masked_frame":# "thresholded_frame":
 
             self.debug_frame_output = frame 
         return
