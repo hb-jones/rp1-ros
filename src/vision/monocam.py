@@ -17,7 +17,7 @@ class MonoCam:
         self.channels = 3                    #3: channels for color mode(RGB); take 1 channel for monochrome
         self.m_nColorMode = ueye.INT()		# Y8/RGB16/RGB24/REG32
         self.bytes_per_pixel = int(self.nBitsPerPixel / 8)
-        self.exposure = ueye.DOUBLE(20)
+        self.exposure = ueye.DOUBLE(10)
 
         # Starts the driver and establishes the connection to the camera
         nRet = ueye.is_InitCamera(self.hCam, None)
