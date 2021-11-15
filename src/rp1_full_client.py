@@ -51,7 +51,6 @@ def update_terminal_target(HLC):
     HLC.set_target(target)
     print(f"Time taken: {time.perf_counter() - timestart}s")
     timestart = time.perf_counter()
-    time.sleep(0.2)
     #Artificial delay?
     #no
     return
