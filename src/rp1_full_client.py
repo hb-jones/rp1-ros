@@ -2,7 +2,7 @@ from threading import active_count
 from rp1controller import RP1Client, Target
 from vision import monocular
 import time
-ip = "192.168.137.1"
+ip = "192.168.43.237"
 terminal_gain_x = 10
 terminal_gain_y = -5
 target_point = (0,-0.8)
